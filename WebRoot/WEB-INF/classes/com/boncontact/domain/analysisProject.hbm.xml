@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="AnalysisProject" table="bdc_analysisProject">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="name" type="string" not-null="true"/>
+		<property name="type" type="integer" not-null="true" />
+		<property name="other" type="string"/>
+		<many-to-one name="analysisCategory" cascade="save-update" class="AnalysisCategory" lazy="false" column="categoryId" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="HistoryLogin" table="bdc_historyLogin">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<many-to-one name="user" class="User"  />
+		<property name="ip" type="string" length="1000"/>
+		<property name="state" type="integer"/>
+		<property name="startDate" type="string" length="1000"/>
+	</class>
+</hibernate-mapping>

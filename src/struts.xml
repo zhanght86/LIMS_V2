@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  
+<!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"     
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<constant name="struts.action.extension" value="action" />
+	<!-- 系统常量定义，定义上传文件零时存放路径 -->
+	<constant name="struts.multipart.saveDir" value="d:\"></constant>
+	<package name="all" extends="struts-default">
+		<interceptors>
+			<!-- 定义权限控制拦截器 -->
+			<interceptor name="authority"
+				class="com.boncontact.base.AuthorizationInterceptor" />
+			<!-- 定义一个包含权限控制的拦截器栈 -->
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack">
+					<param name="execludeMethods">mainPage_*</param>
+				</interceptor-ref>
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 定义默认拦截器 -->
+		<default-interceptor-ref name="mydefault" />
+		<!-- 定义全局处理结果 -->
+		<global-results>
+			<!-- 逻辑名为login的结果，映射到/login.jsp页面 -->
+			<result name="login">/welcome.html?target='_top'</result>
+			<result name="limitPower" type="redirectAction">mainPage_limitPower.action
+			</result>
+		</global-results>
+	</package>
+
+	<package name="identify" extends="all">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		<action name="*_*_add" class="{2}" method="add">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_change" class="{2}" method="change">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_delete" class="{2}" method="delete">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_deleteAll" class="{2}" method="deleteAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_page" class="{2}" method="page">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_autoCreate" class="{2}" method="autoCreate">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="*_*_finishQuery" class="{2}" method="finishQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="default" extends="all">
+		<action name="mainPage_*" class="mainPage" method="{1}">
+			<result name="main">/WEB-INF/JSP/main.jsp</result>
+			<result name="left">/WEB-INF/JSP/left.jsp</result>
+			<result name="top">/WEB-INF/JSP/top.jsp</result>
+			<result name="index">/WEB-INF/JSP/index.jsp</result>
+			<result name="highEdit">/WEB-INF/JSP/highEdit.html</result>
+			<result name="showMessageQueue">/WEB-INF/JSP/showMessageQueue.jsp</result>
+			<result name="listen">/WEB-INF/JSP/listen.jsp</result>
+		</action>
+		<action name="*_*_*" class="{2}" method="{3}">
+			<result name="addPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="addAllPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="recordPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="addCoverPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="referPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewCoverPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="main">/WEB-INF/JSP/{1}/{2}.jsp</result>
+			<result name="changePage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewResultPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="choosePage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewReportPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="choose">/WEB-INF/JSP/{1}/{2}_choosePage.jsp</result>
+			<result name="chooseByContract">/WEB-INF/JSP/{1}/{2}_chooseByContract.jsp
+			</result>
+			<result name="changeParam">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="create">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="createService">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewTContract">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewSContract">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="auditContract">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="contractSList">/WEB-INF/JSP/contractManage/contractSList.jsp
+			</result>
+			<result name="viewAudit">/WEB-INF/JSP/contractManage/contractList_viewAudit.jsp
+			</result>
+			<result name="registration">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewRegistration">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="changeRegistration">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewProjectBook">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="changeProjectBook">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="otherViewPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="receivePage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="allocation">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="chooseAnalysisPage">/WEB-INF/JSP/{1}/{2}_chooseAnalysisPage.jsp
+			</result>
+			<result name="viewWaterDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewAirDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewSolidDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewSoilDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="writeWaterDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="writeAirDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="writeSolidDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="writeSoilDetailPage">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+
+			<result name="choosePageCheck">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="choosePageNoSelect">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="viewProject">/WEB-INF/JSP/{1}/{2}_{3}.jsp</result>
+			<result name="dataBaseSetting">/WEB-INF/JSP/basicSetting/basicSetting_dataBaseSetting.jsp
+			</result>
+
+		</action>
+	</package>
+
+	<package name="noInterceptor" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		<action name="mainPage_login" class="mainPage" method="login">
+			<result name="login">/WEB-INF/JSP/login.jsp</result>
+		</action>
+		<action name="login_login_updateHistory" class="login" method="updateHistory">
+			<result name="updateHistory">/WEB-INF/JSP/updateHistory.jsp</result>
+		</action>
+		<action name="login_login_about" class="login" method="about">
+			<result name="about">/WEB-INF/JSP/about.jsp</result>
+		</action>
+		<action name="mainPage_limitPower" class="mainPage" method="limitPower">
+			<result name="limitPower">/WEB-INF/JSP/limitPower.html</result>
+		</action>
+		<action name="login_historyLogin_viewPage" class="login"
+			method="viewPage">
+			<result name="viewPage">/WEB-INF/JSP/historyLogin_viewPage.jsp</result>
+		</action>
+		<action name="userManage_user_addPage" class="user" method="addPage">
+			<result name="addPage">/WEB-INF/JSP/userManage/user_addPage.jsp</result>
+		</action>
+		<action name="feedBack_feedBack_addPage" class="feedBack"
+			method="addPage">
+			<result name="addPage">/WEB-INF/JSP/feedBack/feedBack_addPage.jsp
+			</result>
+		</action>
+		<action name="login_login_login" class="login" method="login">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="login_login_forgetPage" class="login" method="forgetPage">
+			<result name="forgetPage">/WEB-INF/JSP/login_forgetPage.jsp</result>
+		</action>
+
+	</package>
+
+
+	<package name="other" extends="all">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		<!-- <action name="analysisGategory_analysisGategory_add" class="analysisGategory" 
+			method="add"> <result type="json"> <param name="root">jsonResult</param> 
+			</result> </action> -->
+		<action name="userManage_user_resetPWD" class="user" method="resetPWD">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="userManage_user_resetAllPWD" class="user" method="resetAllPWD">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="customerManage_customer_resetPWD" class="customer"
+			method="resetPWD">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="customerManage_customer_resetAllPWD" class="customer"
+			method="resetAllPWD">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="userPWDManage_userPWD_changePWD" class="userPWD"
+			method="changePWD">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="inventoryManage_inventory_changeLower" class="inventory"
+			method="changeLower">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="departmentManage_department_giveManager" class="department"
+			method="giveManager">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="detectionResult_detectionResult_writeWater" class="detectionResult"
+			method="writeWater">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_writeAir" class="detectionResult"
+			method="writeAir">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_writeSolid" class="detectionResult"
+			method="writeSolid">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_writeSoil" class="detectionResult"
+			method="writeSoil">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="report_report_deleteReport" class="report"
+			method="deleteReport">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="report_report_deleteReportCover" class="report"
+			method="deleteReportCover">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		
+		<action name="contractManage_contract_export" class="contract"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="selfSendSampleInfo_deliveryReceitp_export" class="deliveryReceitp"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="selfSendSampleInfo_inspectionSheet_export" class="inspectionSheet"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_contractList_exportList" class="contractList"
+			method="exportList">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_contractChange_export" class="contractChange"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_contract_exportTContract" class="contract"
+			method="exportTContract">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_serviceContract_export" class="serviceContract"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_serviceContract_exportSContract"
+			class="serviceContract" method="exportSContract">
+			<result type="stream" name="exportSContract">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="contractManage_contractAudit_export" class="contractAudit"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_projectBook_export" class="projectBook"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="commonTemplet_commonTemplet_export" class="commonTemplet"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="selfSendSampleInfo_selfSendSampleInfo_export"
+			class="selfSendSampleInfo" method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="deliveryReceitp_deliveryReceitp_export" class="deliveryReceitp"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_export" class="detectionResult"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_exportAudit"
+			class="detectionResult" method="exportAudit">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="qualityControl_qualityControl_export" class="qualityControl"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="report_report_export" class="report" method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="noticeManage_noticeManage_export" class="noticeManage"
+			method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="nonSelfSendSample_nonSelfSendSample_export"
+			class="nonSelfSendSample" method="export">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="reportReceipt_reportReceipt_exportAudit" class="reportReceipt"
+			method="exportAudit">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_exportInspectionSheet"
+			class="detectionResult" method="exportInspectionSheet">
+			<result type="stream" name="export">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="contractManage_contract_flow" class="contract"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contract_flowInto" class="contract"
+			method="flowInto">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_serviceContract_flow" class="serviceContract"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_serviceContract_flowInto" class="serviceContract"
+			method="flowInto">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_projectBook_flow" class="projectBook"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="selfSendSampleInfo_selfSendSampleInfo_flow"
+			class="selfSendSampleInfo" method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="selfSendSampleInfo_selfSendSampleInfo_addSample"
+			class="selfSendSampleInfo" method="addSample">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="nonSelfSendSample_nonSelfSendSample_addSample"
+			class="nonSelfSendSample" method="addSample">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="qualityControl_qualityControl_flow" class="qualityControl"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="taskDistribution_taskDistribution_flow" class="taskDistribution"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="sampleTransfer_sampleTransfer_flow" class="sampleTransfer"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_flow" class="detectionResult"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="report_report_flow" class="report" method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contractAudit_flow" class="contractAudit"
+			method="flow">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contract_save" class="contract"
+			method="save">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_serviceContract_save" class="serviceContract"
+			method="save">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_projectPlan_save" class="projectPlan"
+			method="save">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_projectBook_save" class="projectBook"
+			method="save">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="report_report_saveRecordCover" class="report"
+			method="saveRecordCover">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contractList_stopContract" class="contractList"
+			method="stopContract">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contractList_deleteContract"
+			class="contractList" method="deleteContract">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_analyst" class="taskDistribution"
+			method="analyst">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_delAnalyst"
+			class="taskDistribution" method="delAnalyst">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="taskDistribution_taskDistribution_review" class="taskDistribution"
+			method="review">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_delReview"
+			class="taskDistribution" method="delReview">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_audit" class="taskDistribution"
+			method="audit">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_delAudit"
+			class="taskDistribution" method="delAudit">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="taskDistribution_taskDistribution_analystAll" class="taskDistribution"
+			method="analystAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="taskDistribution_taskDistribution_reviewAll" class="taskDistribution"
+			method="reviewAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="taskDistribution_taskDistribution_auditAll" class="taskDistribution"
+			method="auditAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="sampleTransfer_sampleTransfer_receiveNonItem"
+			class="sampleTransfer" method="receiveNonItem">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="sampleTransfer_sampleTransfer_receiveBackNonItem"
+			class="sampleTransfer" method="receiveBackNonItem">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="sampleTransfer_sampleTransfer_receiveItem" class="sampleTransfer"
+			method="receiveItem">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="sampleTransfer_sampleTransfer_receiveBackItem"
+			class="sampleTransfer" method="receiveBackItem">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="sampleTransfer_sampleTransfer_receive" class="sampleTransfer"
+			method="receive">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_resultURL" class="detectionResult"
+			method="resultURL">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_deleteRecord"
+			class="detectionResult" method="deleteRecord">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_refer" class="detectionResult"
+			method="refer">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="resultReview_resultReview_refer" class="resultReview"
+			method="refer">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="resultItemAudit_resultItemAudit_refer" class="resultItemAudit"
+			method="refer">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="reportReceipt_reportReceipt_refer" class="reportReceipt"
+			method="refer">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="resultReview_resultReview_referAll" class="resultReview"
+			method="referAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="resultItemAudit_resultItemAudit_referAll" class="resultItemAudit"
+			method="referAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_addOther" class="detectionResult"
+			method="addOther">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="detectionResult_detectionResult_delOther" class="detectionResult"
+			method="delOther">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="login_login_forget" class="login" method="forget">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="report_report_createNum" class="report" method="createNum">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="contractManage_contractAudit_aduit" class="contractAudit"
+			method="audit">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="fileUploadAction" class="fileAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="pushMessage" class="pushMessage" method="message">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="power_power_powerInit" class="power" method="powerInit">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="power_power_powerGiven" class="power" method="powerGiven">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="mainPage_outLogin" class="mainPage" method="outLogin">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="basicSetting_basicSetting_dataBaseOpt" class="basicSetting"
+			method="dataBaseOpt">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="basicSetting_basicSetting_prefixSetting" class="basicSetting"
+			method="prefixSetting">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="basicSetting_basicSetting_infoSetting" class="basicSetting"
+			method="infoSetting">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="mainPage_listenSetting" class="mainPage" method="listenSetting">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="pushMessage_ignoreMessage" class="pushMessage"
+			method="ignoreMessage">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="pushMessage_ignoreMessageAll" class="pushMessage"
+			method="ignoreMessageAll">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_contract_analysisCategory" class="contract"
+			method="analysisCategory">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="contractManage_projectBook_userList" class="projectBook"
+			method="userList">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="detectionResult_detectionResult_saveRecord" class="detectionResult"
+			method="saveRecord">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="selfSendSampleInfo_selfSendSampleInfo_delSample"
+			class="selfSendSampleInfo" method="delSample">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<action name="nonSelfSendSample_nonSelfSendSample_delSample"
+			class="nonSelfSendSample" method="delSample">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="report_report_saveRecord"
+			class="report" method="saveRecord">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<action name="qualityControl_qualityControl_projectToSampleNum"
+			class="qualityControl" method="projectToSampleNum">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="pageoffice" extends="struts-default">
+		<action name="openword" class="com.boncontact.pageoffice.WordDemo"
+			method="openword">
+			<result name="openword_success">/editword.jsp</result>
+		</action>
+
+		<action name="saveword" class="com.boncontact.pageoffice.WordDemo"
+			method="saveword">
+			<result name="saveword_success">/savefile.jsp</result>
+		</action>
+
+		<action name="contract_template" class="contract" method="template">
+			<result name="template">/WEB-INF/JSP/template/trafficContract_Template.jsp
+			</result>
+		</action>
+	</package>
+
+
+	<package name="test" extends="struts-default">
+		<action name="admin_init" class="admin_init" method="init">
+		</action>
+		
+	</package>
+</struts>  

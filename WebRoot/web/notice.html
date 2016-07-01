@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 发布公告</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- CKEDITOR -->
+    <!-- <link rel="stylesheet" type="text/css" href="js/ckeditor/css/sample.css"> -->
+    <!-- SELECT2 -->
+    <link rel="stylesheet" type="text/css" href="js/select2/select2.min.css"/>
+    <!-- UNIFORM -->
+    <link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css"/>
+    <!-- WIZARD -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-wizard/wizard.css"/>
+    <!-- TYPEAHEAD -->
+    <link rel="stylesheet" type="text/css" href="js/typeahead/typeahead.css"/>
+    <!-- SELECT2 -->
+    <link rel="stylesheet" type="text/css" href="js/select2/select2.min.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body style="height:auto;">
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">个人中心</a>
+                            </li>
+                            <li>发布公告</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">发布公告</h3>
+                        </div>
+                        <div class="description">系统将会为您过滤重复的公告对象.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMPLE -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BOX -->
+                    <div id="formWizard">
+                        <form id="wizForm" action="#" class="form-horizontal">
+                            <div class="wizard-form">
+                                <div class="wizard-content">
+                                    <ul class="nav nav-pills nav-justified steps">
+                                        <li>
+                                            <a href="#account" data-toggle="tab" class="wiz-step">
+                                                <span class="step-number">1</span>
+                                                <span class="step-name"><i class="fa fa-check"></i> 选择对象 </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#payment" data-toggle="tab" class="wiz-step active">
+                                                <span class="step-number">2</span>
+                                                <span class="step-name"><i class="fa fa-check"></i> 编辑内容 </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#confirm" data-toggle="tab" class="wiz-step">
+                                                <span class="step-number">3</span>
+                                                <span class="step-name"><i class="fa fa-check"></i> 发布公告 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div id="bar" class="progress progress-striped progress-sm active"
+                                         role="progressbar">
+                                        <div class="progress-bar progress-bar-warning"></div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="alert alert-danger display-none">
+                                            <a class="close" aria-hidden="true" href="#" data-dismiss="alert">×</a>
+                                            Your form has errors. Please correct them to proceed.
+                                        </div>
+                                        <div class="alert alert-success display-none">
+                                            <a class="close" aria-hidden="true" href="#" data-dismiss="alert">×</a>
+                                            Your form validation is successful!
+                                        </div>
+                                        <div class="tab-pane active" id="account">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">部门</label>
+                                                <div class="col-md-6">
+                                                    <select multiple id="e2" class="col-md-12">
+                                                        <option></option>
+                                                        <option>部门一</option>
+                                                        <option>部门二</option>
+                                                        <option>部门三</option>
+                                                        <option>部门四</option>
+                                                        <option>部门五</option>
+                                                        <option>部门六</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">用户组</label>
+                                                <div class="col-md-6">
+                                                    <select multiple id="e1" class="col-md-12">
+                                                        <option></option>
+                                                        <option>用户组一</option>
+                                                        <option>用户组二</option>
+                                                        <option>用户组三</option>
+                                                        <option>用户组四</option>
+                                                        <option>用户组五</option>
+                                                        <option>用户组六</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane" id="payment">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">公告类型</label>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"> <input type="radio" class="uniform"
+                                                                                        name="optionsRadios2"
+                                                                                        value="option1" checked> 普通
+                                                    </label>
+                                                    <label class="radio-inline"> <input type="radio" class="uniform"
+                                                                                        name="optionsRadios2"
+                                                                                        value="option2"> 重要 </label>
+                                                    <label class="radio-inline"> <input type="radio" class="uniform"
+                                                                                        name="optionsRadios2"
+                                                                                        value="option3"> 紧急 </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">公告标题</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" placeholder="请输入公告标题">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">公告内容</label>
+                                                <div class="col-md-6">
+                                                    <textarea class="ckeditor" name="editor1"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="confirm">
+                                            <h3 class="block">确认公告信息</h3>
+                                            <h4 class="form-section">公告对象</h4>
+                                            <div class="well">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">部门:</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static" data-display="email">
+                                                            部门一;部门二;部门三;</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">用户组:</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            用户组一;用户组二;用户组三;用户组四;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">公告内容</h4>
+                                            <div class="well">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">公告类型:紧急</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static"
+                                                           data-display="card_number"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">公告标题:</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static" data-display="card_cvc">
+                                                            2016年1月25日供应商培训通知</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">公告作者:</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static"
+                                                           data-display="card_expiry_date">张三</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">公告内容:</label>
+                                                    <div class="col-md-6">
+                                                        <p class="form-control-static" data-display="card_name">
+
+                                                            <!--公告内容-->
+
+                                                        <div style="line-height: 28pt; margin: 0cm 0cm 10pt">
+                                                            <strong><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">各供应商：</span></strong>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">为帮助供应商熟悉中国大唐集团公司集采平台（</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 12pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">http://jc.cdtbid.cn</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">）操作，有效提高供应商电子投标操作水平，</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: black; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">中国水利电力物资集团有限公司网络采购部将为参与投标的供应商提供现场<span
+                                                                style="layout-grid-mode: line">培训和投标文件上传支持服务，具体安排如下：</span></span>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28.1pt; margin: 0cm 0cm 10pt">
+                                                            <strong><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">一、培训时间</span></strong>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <b><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">2016</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">年</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">1</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">月</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">25</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">日上午</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">10:00—17</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">：</span></b><b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">00</span></b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">（上午培训，下午指导供应商上传报价和投标文件）</span>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28.1pt; margin: 0cm 0cm 10pt">
+                                                            <strong><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">二、培训地点</span></strong>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <b><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">北京市万达嘉华酒店</span></b><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: black; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">（石景山区万达广场向东</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: black; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">50</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: black; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">米）五楼中华厅。</span>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28.1pt; margin: 0cm 0cm 10pt">
+                                                            <strong><span
+                                                                    style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">三、培训内容</span></strong>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">供应商投标报价上传，投标文件上传，澄清回复，开标价格确认，计算机环境配置</span>
+                                                        </div>
+                                                        <div style="line-height: 28pt; text-indent: 28.1pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">四、注意事项</span>
+                                                        </div>
+                                                        <div style="line-height: 27pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">1.</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">供应商参加培训时须携带笔记本电脑、加盖过电子签章的投标文件和电子钥匙到场；参与培训的供应商应提前绑定电子钥匙；</span>
+                                                        </div>
+                                                        <div style="line-height: 27pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">2</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">．投标电脑配置要求：</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">Windows7</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">（</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">32</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">位</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">/64</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">位）操作系统，完整安装的</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">Office 2007/2010</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">，</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">IE8/9/10</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">浏览器；</span>
+                                                        </div>
+                                                        <div style="line-height: 27pt; margin: 0cm 0cm 10pt"><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;3</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">．供应商可登录中国大唐集团公司集采平台下载操作手册，按照操作手册上的步骤，自行上传投</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; layout-grid-mode: line; padding-right: 0cm; color: black; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">标报价和投标文件；集采平台供应商操作手册下载地址：</span><a
+                                                                href="http://jc.cdtbid.cn/html/resource/global/021003003001/list_1.html"><span
+                                                                style="layout-grid-mode: line; color: blue; font-size: 12pt">http://jc.cdtbid.cn/html/resource/global/021003003001/list_1.html</span></a>
+                                                        </div>
+                                                        <div style="line-height: 27pt; text-indent: 28pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">4</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">．本次培训活动免费。</span>
+                                                        </div>
+                                                        <div style="line-height: 27pt; text-indent: 21pt; margin: 0cm 0cm 10pt">
+                                                            &nbsp;</div>
+                                                        <div style="line-height: 27pt; text-indent: 21pt; margin: 0cm 0cm 10pt">
+                                                            <span style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">联系人：</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">400-888-6262</span>
+                                                        </div>
+                                                        <div style="line-height: 27pt; text-indent: 21pt; margin: 0cm 0cm 10pt">
+                                                            &nbsp;</div>
+                                                        <div style="text-align: right; line-height: 27pt; text-indent: 21pt; margin: 0cm 0cm 10pt"
+                                                             align="right"><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">中国水利电力物资集团有限公司</span>
+                                                        </div>
+                                                        <div style="text-align: right; line-height: 27pt; text-indent: 21pt; margin: 0cm 0cm 10pt"
+                                                             align="right"><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">网络采购部</span>
+                                                        </div>
+                                                        <div style="text-align: right; margin: 0cm 0cm 10pt"
+                                                             align="right"><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">2016</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">年</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">01</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">月</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">06</span><span
+                                                                style="border-bottom: windowtext 1pt; border-left: windowtext 1pt; padding-bottom: 0cm; padding-left: 0cm; padding-right: 0cm; color: #303030; font-size: 14pt; border-top: windowtext 1pt; border-right: windowtext 1pt; padding-top: 0cm">日</span>
+                                                        </div>
+                                                        <!--公告内容-->
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-buttons">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <a href="javascript:;" class="btn btn-default prevBtn">
+                                                    <i class="fa fa-arrow-circle-left"></i> 上一步
+                                                </a>
+                                                <a href="javascript:;" class="btn btn-primary nextBtn">
+                                                    下一步 <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
+                                                <a href="javascript:;" class="btn btn-success submitBtn">
+                                                    发布 <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!-- /BOX -->
+                    </div>
+                    <!-- /SAMPLE -->
+
+
+                    <!-- /PAGE HEADER -->
+                    <!-- ROW 2 -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- CKE -->
+                            <!--<textarea class="ckeditor" name="editor1"></textarea>-->
+                            <!-- /CKE -->
+                        </div>
+                    </div>
+                    <!-- /ROW 2 -->
+                </div><!-- /CONTENT-->
+            </div>
+        </div>
+        <!-- JAVASCRIPTS -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!-- JQUERY -->
+        <script src="js/jquery/jquery-2.0.3.min.js"></script>
+        <!-- JQUERY UI-->
+        <script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <!-- BOOTSTRAP -->
+        <script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+        <!-- DATE RANGE PICKER -->
+        <script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+        <script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+        <!-- SLIMSCROLL -->
+        <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+        <!-- BLOCK UI -->
+        <script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+        <!-- CKEDITOR -->
+        <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+        <!-- SELECT2 -->
+        <script type="text/javascript" src="js/select2/select2.min.js"></script>
+        <!-- UNIFORM -->
+        <script type="text/javascript" src="js/uniform/jquery.uniform.min.js"></script>
+        <!-- WIZARD -->
+        <script src="js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+        <!-- WIZARD -->
+        <script src="js/jquery-validate/jquery.validate.min.js"></script>
+        <script src="js/jquery-validate/additional-methods.min.js"></script>
+        <!-- BOOTBOX -->
+        <script type="text/javascript" src="js/bootbox/bootbox.min.js"></script>
+        <!-- BOOTSTRAP WYSIWYG -->
+        <script type="text/javascript" src="js/bootstrap-wysiwyg/jquery.hotkeys.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-wysiwyg/bootstrap-wysiwyg.min.js"></script>
+        <!-- TYPEHEAD -->
+        <script type="text/javascript" src="js/typeahead/typeahead.min.js"></script>
+        <!-- AUTOSIZE -->
+        <script type="text/javascript" src="js/autosize/jquery.autosize.min.js"></script>
+        <!-- COUNTABLE -->
+        <script type="text/javascript" src="js/countable/jquery.simplyCountable.min.js"></script>
+        <!-- INPUT MASK -->
+        <script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+        <!-- COOKIE -->
+        <script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+        <!-- CUSTOM SCRIPT -->
+        <script src="js/script.js"></script>
+        <script src="js/bootstrap-wizard/form-wizard.js"></script>
+        <script>
+            jQuery(document).ready(function () {
+                App.setPage("notice");  //Set current page
+                App.init(); //Initialise plugins and elements
+                FormWizard.init();
+            });
+        </script>
+        <!-- /JAVASCRIPTS -->
+</body>
+</html>

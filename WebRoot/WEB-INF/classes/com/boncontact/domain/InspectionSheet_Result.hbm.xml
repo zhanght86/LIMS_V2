@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="InspectionSheet_Result" table="bdc_inspectionSheet_result">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="saveDate" type="date"/>
+		<many-to-one name="sampleInfo" class="SelfSendSampleInfo" column="sampleInfo_Id" />
+		<many-to-one name="NonSelfSampleInfo" class="NonSelfSendSample" column="nonSampleInfo_Id" />
+		<joined-subclass name="InspectionSheet_Air" table="bdc_inspectionSheet_Air">
+			<key column="type_id"/>
+			<property name="analysisResult" type="double"/>
+			<property name="standardVolume" type="double"/>
+			<property name="concentration" type="double"/>
+		</joined-subclass>
+		<joined-subclass name="InspectionSheet_Soil" table="bdc_inspectionSheet_Soil">
+			<key column="type_id"/>
+			<property name="samplingSection" type="string"/>
+			<property name="analysisResult" type="double"/>
+			<property name="remarks" type="string"/>
+		</joined-subclass>
+		<joined-subclass name="InspectionSheet_Solid" table="bdc_inspectionSheet_Solid">
+			<key column="type_id"/>
+			<property name="analysisResult" type="double"/>
+			<property name="standardVolume" type="double"/>
+			<property name="concentration" type="double"/>
+			<property name="standardDryFlow" type="double"/>
+			<property name="discharge" type="double"/>
+		</joined-subclass>
+		<joined-subclass name="InspectionSheet_Water" table="bdc_inspectionSheet_Water">
+			<key column="type_id"/>
+			<property name="sampleProperties" type="string"/>
+			<property name="analysisResult" type="double"/>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

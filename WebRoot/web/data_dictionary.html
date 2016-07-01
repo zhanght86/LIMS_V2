@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 数据字典</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="index.html">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">系统管理</a>
+                            </li>
+                            <li>数据字典</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">数据字典</h3>
+                        </div>
+                        <div class="description">请选择右侧的选项卡切换到不同数据字典设置页面。</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- BOX TABS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BOX -->
+                    <div class="box border">
+                        <div class="box-title">
+                            <h4><i class="fa fa-columns"></i><span
+                                    class="hidden-inline-mobile">数据字典</span></h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="tabbable header-tabs">
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#box_tab3" data-toggle="tab"><i class="fa fa-desktop"></i> <span
+                                            class="hidden-inline-mobile">监测频次</span></a></li>
+                                    <li><a href="#box_tab2" data-toggle="tab"><i class="fa fa-flask"></i> <span
+                                            class="hidden-inline-mobile">监测项目</span></a></li>
+                                    <li class="active"><a href="#box_tab1" data-toggle="tab"><i class="fa fa-home"></i>
+                                        <span class="hidden-inline-mobile">环境要素</span></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="box_tab1">
+                                        <div class="pull-left hidden-xs">
+                                            <div class="btn-group">
+                                                <button class="btn btn-info" id="reset_user_password_checked"><i
+                                                        class="fa fa-file-o"></i> 新增
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-danger" id="del_user_password_checked"><i
+                                                        class="fa fa-trash-o"></i> 批量删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right">
+                                            <div class="dataTables_filter">
+                                                <label>
+                                                    <input type="text" aria-controls="datatable1" placeholder="搜索..."
+                                                           class="form-control input-sm">
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <hr>
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr class="user_group_item">
+                                                <th class="only-checkbox">
+                                                    #
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">用户编号</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">姓名</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">性别</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">部门</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">用户组</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">证件号码</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">联系电话</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">账户名</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">当前状态</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">操作</div>
+                                                </th>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">启用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-warning btn-xs stop_user">
+                                                                <i
+                                                                        class="fa fa-lock"></i> 停用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0002</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-warning">停用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info btn-xs start_user">
+                                                                <i
+                                                                        class="fa fa-unlock"></i> 启用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">启用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-warning btn-xs stop_user">
+                                                                <i
+                                                                        class="fa fa-lock"></i> 停用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0002</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-warning">停用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info btn-xs start_user">
+                                                                <i
+                                                                        class="fa fa-unlock"></i> 启用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">启用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-warning btn-xs stop_user">
+                                                                <i
+                                                                        class="fa fa-lock"></i> 停用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0002</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-warning">停用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info btn-xs start_user">
+                                                                <i
+                                                                        class="fa fa-unlock"></i> 启用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">启用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-warning btn-xs stop_user">
+                                                                <i
+                                                                        class="fa fa-lock"></i> 停用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0002</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-warning">停用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info btn-xs start_user">
+                                                                <i
+                                                                        class="fa fa-unlock"></i> 启用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">启用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-warning btn-xs stop_user">
+                                                                <i
+                                                                        class="fa fa-lock"></i> 停用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0002</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">瞿龙俊</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">男</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">综合办公室</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">管理员组</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">320404199202214414</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">13816157552</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">admin</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-warning">停用</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs reset_user_password">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 重设密码
+                                                            </button>
+
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info btn-xs start_user">
+                                                                <i
+                                                                        class="fa fa-unlock"></i> 启用
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-danger btn-xs del_user"><i
+                                                                    class="fa fa-trash-o"></i> 删除
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <div class="text-right">
+                                            <ul class="pagination">
+                                                <li class="disabled">
+                                                    <a href="#">
+                                                        <i class="fa fa-angle-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="active">
+                                                    <a href="#">
+                                                        1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">3</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">4</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">5</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="box_tab2">
+
+                                    </div>
+                                    <div class="tab-pane fade" id="box_tab3">
+                                        <div class="alert alert-info"><strong>Hello!</strong> I'm a cool tabbed box.
+                                        </div>
+                                        <p>Content #3</p>
+                                        <p> Duis autem vel eum iriure dolor. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /BOX -->
+                </div>
+            </div>
+            <!-- BOX TABS -->
+        </div><!-- /CONTENT-->
+    </div>
+</div>
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("tabs_accordions");  //Set current page
+        App.init(); //Initialise plugins and elements
+    });
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

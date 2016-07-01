@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+	<class name="Device" table="bdc_device">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="identify" type="string" not-null="true" unique="true" />
+		<property name="name" type="string" not-null="true"/>
+		<property name="timeBuying" type="date"/>
+		<property name="coreDesp" type="string"/>
+		<property name="commonlyUserdParts" type="string"/>
+		<property name="technicalDocument" type="string"/>
+		<many-to-one name="admin" class="User" column="adminId" cascade="save-update"/>
+		<many-to-one name="custodian" class="User" column="custodianId" cascade="save-update"/>
+		<many-to-one name="supplier" class="Customer" column="supplierId" cascade="save-update"/>
+	</class>
+
+</hibernate-mapping>

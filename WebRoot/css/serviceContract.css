@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+#serviceTable {
+	border: 1px solid #000;
+	width: 100%;
+}
+
+#serviceTable td {
+	border: 1px solid #000;
+	height: 30px;
+	vertical-align: middle;
+	font-size: 16px;
+}
+#serviceTable td input,
+#serviceTable td textarea{
+	font-size:16px;
+}
+
+#serviceTable div {
+	margin: 10px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+#serviceTable div label {
+	text-justify: inter-ideograph;
+	line-height: 30px;
+}

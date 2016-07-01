@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+	<class name="BusinessRegistration" table="bdc_businessRegistration">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="item" type="string" />
+		<property name="address" type="string" />
+		<property name="contacts" type="string" />
+		<property name="tel" type="string" />
+		<property name="time" type="date"/>
+		<property name="payment" type="double"/>
+	</class>
+
+</hibernate-mapping>

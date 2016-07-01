@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="Project" table="bdc_project">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="tContractId" lazy="false" cascade="all"
+			unique="true" column="tContractId" />
+		<many-to-one name="sContractId" lazy="false" cascade="all"
+			unique="true" column="sContractId" />
+		<property name="process" type="integer" />
+		<property name="createTime" type="date" />
+		<many-to-one name="draftsMan" cascade="all" lazy="false"
+			class="User" column="draftsMan" />
+		<many-to-one name="contractAuditRole" cascade="all" class="Role"
+			column="auditRole_id" lazy="false" />
+		<property name="rewriteCount" type="integer" />
+		<one-to-one name="contractAudit" cascade="all-delete-orphan"
+			property-ref="project" lazy="false" />
+		<property name="contractId" type="string" />
+		<many-to-one name="businessRegistration" cascade="all-delete-orphan"
+			class="BusinessRegistration" column="businessRegistration_Id" unique="true" />
+		<many-to-one name="projectBook" cascade="all-delete-orphan"
+			class="ProjectBook" column="projectBook_id" unique="true" />
+		<property name="gainSample" type="string" />
+		<property name="QualityControlDate" type="date"/>
+		<many-to-one name="QualityControlUser" class="User" column="qualityControlUser_id" lazy="false"/>
+		<many-to-one name="recordAudit" class="RecordAudit" column="recordAudit_id" lazy="false" cascade="all-delete-orphan" unique="true"/>
+		<set name="selfSendSampleInfo" cascade="all">
+			<key column="projectId" />
+			<one-to-many class="SelfSendSampleInfo" />
+		</set>
+		<set name="nonSelfSendSampleInfo" cascade="all">
+			<key column="projectId" />
+			<one-to-many class="NonSelfSendSample" />
+		</set>
+		<set name="deliveryReceitpInfo" cascade="all">
+			<key column="projectId" />
+			<one-to-many class="DeliveryReceitp" />
+		</set>
+		<set name="inspectionSheet" cascade="all">
+			<key column="projectId" />
+			<one-to-many class="InspectionSheet" />
+		</set>
+
+		<set name="analysisedProject" table="bdc_analysisedProject_project">
+			<key column="project_id" />
+			<many-to-many class="AnalysisProject" column="analysisProject_id" />
+		</set>
+		<set name="qualityControlSet" table="bdc_qualityControl_project"  cascade="all">
+			<key column="project_id" />
+			<many-to-many class="QualityControl" column="qualityControl_id" />
+		</set>
+		<set name="reportSet"  cascade="all">
+			<key column="project_id"/>
+			<one-to-many class="Report"/>
+		</set>
+		<set name="contractChange" cascade="all">
+			<key column="projectId" />
+			<one-to-many class="ContractChange" />
+		</set>
+	</class>
+</hibernate-mapping>

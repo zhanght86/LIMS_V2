@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="Feedback" table="bdc_feedBack">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="date" type="date" />
+		<property name="context" type="string" length="2000" />
+		<property name="type" type="integer"></property>
+		<property name="refer" type="integer" />
+		<property name="referContext" type="string" length="2000"></property>
+	</class>
+</hibernate-mapping>

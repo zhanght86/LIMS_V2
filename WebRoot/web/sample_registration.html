@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 样品登记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- BOOTSTRAP SWITCH -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-switch/bootstrap-switch.min.css"/>
+    <!-- SELECT2 -->
+    <!--<link rel="stylesheet" type="text/css" href="js/select2/select2.min.css" />-->
+    <!-- UNIFORM -->
+    <!--<link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css" />-->
+    <!-- TYPEAHEAD -->
+    <!--<link rel="stylesheet" type="text/css" href="js/typeahead/typeahead.css" />-->
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">样品管理</a>
+                            </li>
+                            <li>样品登记</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">样品登记</h3>
+                        </div>
+                        <div class="description">登记您的自送样和非自送样的样品信息。</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- ORDERS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BOX -->
+                    <div class="box border">
+                        <div class="box-title">
+                            <h4><i class="fa fa-list-ul"></i>未登记项目列表</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- ORDERS -->
+                            <div class="row">
+                                <!-- ORDER SCROLL -->
+                                <div class="col-md-4 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body orders">
+                                            <div class="scroller" data-height="650px" data-always-visible="1"
+                                                 data-rail-visible="1">
+                                                <ul class="list-unstyled" id="project_list">
+                                                    <li class="clearfix active">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A001</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-03-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-success arrow-in-right"><i
+                                                                        class="fa fa-check"></i> 已登记</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-success"
+                                                                 role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 85%;">
+                                                                <span class="sr-only">85% 已登记</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A003</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-primary arrow-in-right"><i
+                                                                        class="fa fa-archive"></i> 流程未达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-primary"
+                                                                 role="progressbar" aria-valuenow="97" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 97%;">
+                                                                <span class="sr-only">97% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A004</strong>关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-info arrow-in-right"><i class="fa fa-star"></i> 尚未登记</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-info"
+                                                                 role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 10%;">
+                                                                <span class="sr-only">10% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix active">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A001</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-03-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-success arrow-in-right"><i
+                                                                        class="fa fa-check"></i> 已登记</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-success"
+                                                                 role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 85%;">
+                                                                <span class="sr-only">85% 已登记</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A003</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-primary arrow-in-right"><i
+                                                                        class="fa fa-archive"></i> 流程未达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-primary"
+                                                                 role="progressbar" aria-valuenow="97" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 97%;">
+                                                                <span class="sr-only">97% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A004</strong>关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-info arrow-in-right"><i
+                                                                        class="fa fa-star"></i> 尚未登记</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-info"
+                                                                 role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 10%;">
+                                                                <span class="sr-only">10% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class='text-center'>
+                                            <ul class='pagination'>
+                                                <li class='disabled'>
+                                                    <a href='#'>
+                                                        <i class='fa fa-angle-left'></i>
+                                                    </a>
+                                                </li>
+                                                <li class='active'>
+                                                    <a href='#'>
+                                                        1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>2</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>3</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>4</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>5</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>
+                                                        <i class='fa fa-angle-right'></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /ORDER SCROLL -->
+                                <!-- ORDER DETAILS -->
+                                <div class="col-md-8" id="agreement_detail">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="pull-right hidden-xs">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info" id="create_sample_item"><i
+                                                            class="fa fa-edit"></i> 新增样品
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default" id="print_sample_checked"><i
+                                                            class="fa fa-edit"></i> 批量打印
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary" id="download_sample_list"><i
+                                                            class="fa fa-edit"></i> 导出登记表
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-danger" id="del_sample_checked"><i
+                                                            class="fa fa-trash-o"></i> 批量删除
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <!--此处应该添加合同范本内容-->
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <div class="only-checkbox">#</div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="text-center">样品编号</div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="text-center">样品名称</div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="text-center">检测项目</div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="text-center">备注</div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="text-center">操作</div>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="only-checkbox">
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">A0001</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">地表水</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">氨氮</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">无备注</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-success btn-xs edit_sample_item"><i
+                                                                        class="fa fa-edit"></i> 编辑
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-warning btn-xs print_sample_item"><i
+                                                                        class="fa fa-lock"></i> 二维码
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-danger btn-xs del_sample_item"><i
+                                                                        class="fa fa-trash-o"></i> 删除
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="only-checkbox">
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">A0001</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">地表水</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">氨氮</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">无备注</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-success btn-xs edit_sample_item"><i
+                                                                        class="fa fa-edit"></i> 编辑
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-warning btn-xs print_sample_item"><i
+                                                                        class="fa fa-lock"></i> 二维码
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-danger btn-xs del_sample_item"><i
+                                                                        class="fa fa-trash-o"></i> 删除
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="only-checkbox">
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">A0001</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">地表水</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">氨氮</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">无备注</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-success btn-xs edit_sample_item"><i
+                                                                        class="fa fa-edit"></i> 编辑
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-warning btn-xs print_sample_item"><i
+                                                                        class="fa fa-lock"></i> 二维码
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-danger btn-xs del_sample_item"><i
+                                                                        class="fa fa-trash-o"></i> 删除
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="only-checkbox">
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">A0001</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">地表水</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">氨氮</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">无备注</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-success btn-xs edit_sample_item"><i
+                                                                        class="fa fa-edit"></i> 编辑
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-warning btn-xs print_sample_item"><i
+                                                                        class="fa fa-lock"></i> 二维码
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-danger btn-xs del_sample_item"><i
+                                                                        class="fa fa-trash-o"></i> 删除
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="only-checkbox">
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">A0001</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">地表水</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">氨氮</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">无备注</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-success btn-xs edit_sample_item"><i
+                                                                        class="fa fa-edit"></i> 编辑
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-warning btn-xs print_sample_item"><i
+                                                                        class="fa fa-lock"></i> 二维码
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-danger btn-xs del_sample_item"><i
+                                                                        class="fa fa-trash-o"></i> 删除
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--范本内容-->
+                                            <hr>
+                                            <div class="text-right">
+                                                <ul class="pagination">
+                                                    <li class="disabled">
+                                                        <a href="#">
+                                                            <i class="fa fa-angle-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">3</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">4</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">5</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="fa fa-angle-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /PANEL BODY -->
+                                    </div>
+                                </div>
+                                <!-- /ORDER DETAILS -->
+                            </div>
+                            <!-- /ORDER DETAILS 创建范本 -->
+                        </div>
+                        <!-- ORDERS -->
+                    </div>
+                </div>
+                <!-- /BOX -->
+            </div>
+        </div>
+        <!-- /ORDERS -->
+    </div><!-- /CONTENT-->
+</div>
+</div>
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- TIMEAGO -->
+<script type="text/javascript" src="js/timeago/jquery.timeago.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- ONHOVER -->
+<script type="text/javascript" src="js/bootstrap-onhover/twitter-bootstrap-hover-dropdown.min.js"></script>
+<!-- BOOTSTRAP SWITCH -->
+<script type="text/javascript" src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("sample_registration");  //Set current page
+        App.init(); //Initialise plugins and elements
+        $('#project_list li').on('click', function () {
+            $(this).addClass('active').siblings('li').removeClass('active');
+        });
+    });
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

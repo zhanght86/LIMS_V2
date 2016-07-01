@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="SelfSendSampleInfo" table="bdc_selfSendSampleInfo">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="identify" type="string" not-null="true"
+			unique="true" />
+		<property name="sampleName" type="string" />
+		<property name="sampleState" type="string"></property>
+		<property name="other" type="string" />
+		<property name="client" type="string" />
+		<property name="date" type="date" />
+		<property name="deliver" type="integer"></property>
+
+		<many-to-one name="analysisProject" column="analysisProject"
+			cascade="save-update" class="AnalysisProject"></many-to-one>
+		<set name="analysisProjectSet" cascade="save-update"
+			table="bdc_selfSampleInfo_analysisProject">
+			<key column="sample_id" />
+			<many-to-many class="AnalysisProject" column="analysisProjectId" unique="false" />
+		</set>
+		<many-to-one name="user" class="User" column="userId"
+			cascade="save-update" />
+		<many-to-one name="project" class="Project" column="projectId" />
+	</class>
+</hibernate-mapping>

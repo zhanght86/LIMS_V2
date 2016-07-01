@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="MessageQueue" table="bdc_messageQueue">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="message" type="string" length="1000"/>
+		<property name="type" type="integer"/>
+		<property name="itemId" type="long"/>
+		<property name="pushDate" type="date"></property>
+		<property name="flag" type="integer"/>
+		<many-to-one name="receiver" class="User" column="receiver_id"/>
+	</class>
+</hibernate-mapping>

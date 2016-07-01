@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="AuthSignator" table="bdc_authsignator">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="reportType" type="string"/>
+		<many-to-one name="user" column="user_id" cascade="save-update"/>
+		
+	</class>
+</hibernate-mapping>

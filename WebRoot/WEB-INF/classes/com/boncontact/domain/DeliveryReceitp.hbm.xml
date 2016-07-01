@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="DeliveryReceitp" table="bdc_deliveryReceitp">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="samplesType" type="integer" />
+		<property name="samplingDate" type="date" />
+		<property name="monitoringType" type="string" />
+		<property name="itemNum" type="integer" />
+		<property name="transferDate" type="date" />
+		<property name="backDate" type="date" />
+		<many-to-one name="transferUser" cascade="save-update"
+			class="User" column="transferUser" />
+		<many-to-one name="receiverUser" cascade="save-update"
+			class="User" column="receiverUser" />
+		<many-to-one name="backUser" cascade="save-update" class="User"
+			column="backUser" />
+		<!-- <set name="selfSendSampleInfo" table="bdc_delivery_selfSendSampleInfo">
+			<key column="delivery_id" />
+			<many-to-many class="SelfSendSampleInfo" column="selfSendSampleInf_id"
+				/>
+		</set> -->
+		<set name="selfSendSampleInfo" table="bdc_delivery_selfSendSampleInfo" cascade="save-update">
+			<key column="delivery_id"></key>
+			<many-to-many class="SelfSendSampleInfo" column="selfSendSample_id"/>
+		</set>
+		<many-to-one name="project" class="Project" column="projectId" />
+		<set name="analysisProject" 
+			table="bdc_analysisProject_deliveryReceitp">
+			<key column="deliveryReceitp_id" />
+			<many-to-many class="AnalysisProject" column="analysisProject_id" />
+		</set>
+		<set name="nonSelfSendSampleInfo" table="bdc_delivery_nonSelfSendSampleInfo" cascade="save-update">
+			<key column="delivery_id"></key>
+			<many-to-many class="NonSelfSendSample" column="nonSelfSendSample_id"/>
+		</set>
+	</class>
+</hibernate-mapping>

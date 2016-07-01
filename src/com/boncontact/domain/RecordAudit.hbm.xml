@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="RecordAudit" table="bdc_recordAudit">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="firstAuditDate" type="date" />
+		<property name="secondAuditDate" type="date" />
+		<property name="firstInstance1" type="integer" />
+		<property name="firstInstance2" type="integer" />
+		<property name="firstInstance3" type="integer" />
+		<property name="firstInstance4" type="integer" />
+		<property name="firstInstance5" type="integer" />
+		<property name="firstInstance6" type="integer" />
+		<property name="secondInstance1" type="integer" />
+		<property name="secondInstance2" type="integer" />
+		<property name="secondInstance3" type="integer" />
+		<property name="secondInstance4" type="integer" />
+		<property name="secondInstance5" type="integer" />
+		<property name="secondInstance6" type="integer" />
+		<property name="remarks" type="string" length="2000"/>
+		<property name="firstOther" type="string" length="2000"/>
+		<property name="secondOther" type="string" length="2000"/>
+		<many-to-one name="firstAudit" class="User" column="firstAudit" />
+		<many-to-one name="secondAudit" class="User" column="secondAudit" />
+		<many-to-one name="project" class="Project" column="project_id" />
+	</class>
+</hibernate-mapping>

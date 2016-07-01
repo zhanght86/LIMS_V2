@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="ProjectBook" table="bdc_projectBook">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="client" type="string" />
+		<property name="projectName" type="string" />
+		<property name="aim" type="string" />
+		<property name="address" type="string" />
+		<property name="code" type="string" />
+		<property name="contact" type="string" />
+		<property name="tel" type="string" />
+		<property name="context" type="string" />
+		<property name="customerText" type="string" />
+		<property name="other" type="string" />
+		<property name="projectWay" type="integer" />
+
+		<property name="taskUnderDate" type="date" />
+		<property name="reportDate" type="date" />
+		<property name="reportFirstDate" type="date" />
+		<property name="reportSecondDate" type="date" />
+		<property name="reportSignDate" type="date" />
+		<property name="salesmanSignDate" type="date" />
+		<property name="fileClerkDate" type="date" />
+
+		<many-to-one name="undertake" cascade="save-update" class="Department" />
+		<many-to-one name="projectCharge" cascade="save-update"
+			class="User" />
+		<many-to-one name="taskUnder" cascade="save-update" class="User" />
+		<many-to-one name="reportWriter" cascade="save-update"
+			class="User" />
+		<many-to-one name="reportFirstInstance" cascade="save-update"
+			class="User" />
+		<many-to-one name="reportSecondInstance" cascade="save-update"
+			class="User" />
+		<many-to-one name="reportSign" cascade="save-update"
+			class="User" />
+		<many-to-one name="salesmanSign" cascade="save-update"
+			class="User" />
+		<many-to-one name="fileClerk" cascade="save-update" class="User" />
+
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="CommonTemplet" table="bdc_commonTemplet">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="identify" type="string"/>
+		<property name="filesId" type="string"/>
+		<property name="name" type="string"/>
+		<property name="path" type="string" length="1000"/>
+		<set name="useDepartment"  table="bdc_templet_department">
+			<key column="templet_id"></key>
+			<many-to-many class="Department" column="department_id"/>
+		</set>
+	</class>
+</hibernate-mapping>

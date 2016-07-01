@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="OriginalRecord" table="bdc_originalRecord">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="name" type="string" length="1000"/>
+		<property name="path" type="string" length="2000"/>
+		<many-to-one name="category" class="AnalysisCategory"/>
+	</class>
+</hibernate-mapping>

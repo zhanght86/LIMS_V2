@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="Encode" table="bdc_encode">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="contracId" type="integer" not-null="true" />
+		<property name="selfSendSample" type="integer" />
+		<property name="airReport" type="integer" />
+		<property name="voiceReport" type="integer" />
+		<property name="waterReport" type="integer" />
+		<property name="soilReport" type="integer" />
+		<property name="smokeReport" type="integer" />
+		<property name="nonSelfSendSample" type="integer"/>
+		<property name="nonSelfSendSamplePre" type="string"/>
+		<property name="userId" type="integer"/>
+		<property name="department" type="integer"/>
+		<property name="role" type="integer"/>
+		<property name="analysisType" type="integer"/>
+		<property name="YS" type="integer"/>
+		<property name="HP" type="integer"/>
+		<property name="WT" type="integer"/>
+		<property name="ZF" type="integer"/>
+		<property name="LX" type="integer"/>
+		<property name="YJ" type="integer"/>
+		<property name="JD" type="integer"/>
+	</class>
+</hibernate-mapping>

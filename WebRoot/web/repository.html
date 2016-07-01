@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="bracket/images/favicon.png" type="image/png">
+
+    <title>实验室信息平台 | 公共知识库</title>
+
+    <link href="bracket/css/style.default.css" rel="stylesheet">
+    <link href="bracket/css/prettyPhoto.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="bracket/js/html5shiv.js"></script>
+    <script src="bracket/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div>
+    <div class="contentpanel">
+
+        <ul class="filemanager-options">
+            <li>
+                <div class="ckbox ckbox-default">
+                    <input type="checkbox" id="selectall" value="1"/>
+                    <label for="selectall">全选</label>
+                </div>
+            </li>
+            <li>
+                <a href="#" id="collectAllFile" class="itemopt disabled"><i class="fa fa-star"></i>收藏</a>
+            </li>
+            <li>
+                <a href="#" id="downloadAllFile" class="itemopt disabled"><i class="fa fa-download"></i>下载</a>
+            </li>
+            <li>
+                <a href="#" id="delAllFile" class="itemopt disabled"><i class="fa fa-trash-o"></i>删除</a>
+            </li>
+            <li class="filter-type">
+                分类:
+                <a href="all.html" class="active">全部</a>
+                <a href="document.html">文档</a>
+                <a href="audio.html">音频</a>
+                <a href="image.html">图片</a>
+                <a href="video.html">视频</a>
+            </li>
+
+        </ul>
+
+
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="row filemanager">
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 document">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check1" value="1"/>
+                                <label for="check1"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media-doc.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">MyDocuments.doc</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 image">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check2" value="1"/>
+                                <label for="check2"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <a href="bracket/images/photos/media1.jpg" data-rel="prettyPhoto">
+                                    <img src="bracket/images/photos/media1.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <h5 class="fm-title"><a href="">Vegetarian.png</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 video">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check3" value="1"/>
+                                <label for="check3"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media5.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">DogAnimation.mp4</a></h5>
+                            <small class="text-muted">Time: 2016-03-24</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 audio">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check7" value="1"/>
+                                <label for="check7"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media-audio.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">WreckingBall.mp3</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 image">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check4" value="1"/>
+                                <label for="check4"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <a href="bracket/images/photos/media3.png" data-rel="prettyPhoto">
+                                    <img src="bracket/images/photos/media3.png" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <h5 class="fm-title"><a href="">MyFirstArt.png</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 document">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check5" value="1"/>
+                                <label for="check5"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media-doc.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">MyResume.docx</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 video">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check6" value="1"/>
+                                <label for="check6"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media4.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">MyFirstMovie.mp4</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 image">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check13" value="1"/>
+                                <label for="check13"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <a href="bracket/images/photos/media2.png" data-rel="prettyPhoto">
+                                    <img src="bracket/images/photos/media2.png" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <h5 class="fm-title"><a href="">MeAndFriends.png</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 audio">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check8" value="1"/>
+                                <label for="check8"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media-audio.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">IWillSurvive.mp3</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 document">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check9" value="1"/>
+                                <label for="check9"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media-doc.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">MyDocuments.doc</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 image">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check10" value="1"/>
+                                <label for="check10"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <a href="bracket/images/photos/media6.png" data-rel="prettyPhoto">
+                                    <img src="bracket/images/photos/media6.png" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <h5 class="fm-title"><a href="">GreatCity.png</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                    <div class="col-xs-6 col-sm-4 col-md-3 video">
+                        <div class="thmb">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" id="check11" value="1"/>
+                                <label for="check11"></label>
+                            </div>
+                            <div class="btn-group fm-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fm-toggle"
+                                        data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu fm-menu" role="menu">
+                                    <li><a href="#" class="collectFile"><i class="fa fa-star"></i> 收藏</a></li>
+                                    <li><a href="#" class="editFile"><i class="fa fa-pencil"></i> 编辑</a></li>
+                                    <li><a href="#" class="downloadFile"><i class="fa fa-download"></i> 下载</a></li>
+                                    <li><a href="#" class="delFile"><i class="fa fa-trash-o"></i> 删除</a></li>
+                                </ul>
+                            </div><!-- btn-group -->
+                            <div class="thmb-prev">
+                                <img src="bracket/images/photos/media7.png" class="img-responsive" alt=""/>
+                            </div>
+                            <h5 class="fm-title"><a href="">InTheSea.mp4</a></h5>
+                            <small class="text-muted">Time: 2016-03-21</small>
+                        </div><!-- thmb -->
+                    </div><!-- col-xs-6 -->
+
+                </div><!-- row -->
+            </div><!-- col-sm-9 -->
+            <div class="col-sm-3">
+                <div class="fm-sidebar">
+
+                    <button class="btn btn-primary btn-block " id="uploadFile">上传文件</button>
+
+                    <div class="mb30"></div>
+
+                    <h5 class="subtitle">文件夹 <a href="javascript:;" id="addFolder" class="pull-right">+ 新增文件夹</a></h5>
+                    <ul class="folder-list">
+                        <li><a href=""><i class="fa fa-folder-o"></i> 规章制度</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 专业资料</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 程序文件汇编</a><<a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a>/li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 指导书和操作手册</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 视频资料</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 音频资料</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                        <li><a href=""><i class="fa fa-folder-o"></i> 上级来文</a><a href="javascript:;" class="delFolder" style="float: right"><i class="fa fa-trash-o"></i></a><a href="javascript:;" class="editFolder" style="float: right"><i class="fa fa-pencil"></i></a></li>
+                    </ul>
+
+                    <div class="mb30"></div>
+
+                    <h5 class="subtitle">标签</h5>
+                    <ul class="tag-list" style="overflow: hidden">
+                        <li><a href="">程序</a></li>
+                        <li><a href="">质控</a></li>
+                        <li><a href="">业务合同</a></li>
+                        <li><a href="">项目</a></li>
+                        <li><a href="">年度报表</a></li>
+                        <li><a href="">上级来文</a></li>
+                        <li><a href="">电子书</a></li>
+                        <li><a href="">实验分析</a></li>
+                        <li><a href="">表格</a></li>
+                        <li><a href="">模板</a></li>
+                    </ul>
+
+                    <div class="mb30"></div>
+
+                    <h5 class="subtitle">搜索文件 </h5>
+
+                    <div class="input-group mb15 col-sm-12">
+                        <span class="input-group-addon"><i class="fa fa-search search-icon"></i></span>
+                        <input type="text" placeholder="搜索文件" class="form-control">
+                    </div>
+                </div>
+            </div><!-- col-sm-3 -->
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <ul class="pagination pagination-split">
+                    <li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><!-- mainpanel -->
+
+
+<script src="bracket/js/jquery-1.11.1.min.js"></script>
+<script src="bracket/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="bracket/js/bootstrap.min.js"></script>
+<script src="bracket/js/modernizr.min.js"></script>
+<script src="bracket/js/jquery.sparkline.min.js"></script>
+<script src="bracket/js/toggles.min.js"></script>
+<script src="bracket/js/jquery.cookies.js"></script>
+
+
+<script src="bracket/js/jquery.prettyPhoto.js"></script>
+
+<script src="bracket/js/custom.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+
+
+        jQuery('.thmb').hover(function () {
+            var t = jQuery(this);
+            t.find('.ckbox').show();
+            t.find('.fm-group').show();
+        }, function () {
+            var t = jQuery(this);
+            if (!t.closest('.thmb').hasClass('checked')) {
+                t.find('.ckbox').hide();
+                t.find('.fm-group').hide();
+            }
+        });
+
+        jQuery('.ckbox').each(function () {
+            var t = jQuery(this);
+            var parent = t.parent();
+            if (t.find('input').is(':checked')) {
+                t.show();
+                parent.find('.fm-group').show();
+                parent.addClass('checked');
+            }
+        });
+
+
+        jQuery('.ckbox').click(function () {
+            var t = jQuery(this);
+            if (!t.find('input').is(':checked')) {
+                t.closest('.thmb').removeClass('checked');
+                enable_itemopt(false);
+            } else {
+                t.closest('.thmb').addClass('checked');
+                enable_itemopt(true);
+            }
+        });
+
+        jQuery('#selectall').click(function () {
+            if (jQuery(this).is(':checked')) {
+                jQuery('.thmb').each(function () {
+                    jQuery(this).find('input').attr('checked', true);
+                    jQuery(this).addClass('checked');
+                    jQuery(this).find('.ckbox, .fm-group').show();
+                });
+                enable_itemopt(true);
+            } else {
+                jQuery('.thmb').each(function () {
+                    jQuery(this).find('input').attr('checked', false);
+                    jQuery(this).removeClass('checked');
+                    jQuery(this).find('.ckbox, .fm-group').hide();
+                });
+                enable_itemopt(false);
+            }
+        });
+
+        function enable_itemopt(enable) {
+            if (enable) {
+                jQuery('.itemopt').removeClass('disabled');
+            } else {
+
+                // check all thumbs if no remaining checks
+                // before we can disabled the options
+                var ch = false;
+                jQuery('.thmb').each(function () {
+                    if (jQuery(this).hasClass('checked'))
+                        ch = true;
+                });
+
+                if (!ch)
+                    jQuery('.itemopt').addClass('disabled');
+            }
+        }
+
+        jQuery("a[data-rel^='prettyPhoto']").prettyPhoto();
+
+    });
+
+</script>
+
+</body>
+</html>

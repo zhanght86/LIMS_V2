@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 合同变更</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- SELECT2 -->
+    <link rel="stylesheet" type="text/css" href="js/select2/select2.min.css"/>
+    <!-- UNIFORM -->
+    <link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css"/>
+    <!-- WIZARD -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-wizard/wizard.css"/>
+    <!--My97DatePicker-->
+    <link rel="stylesheet" type="text/css" href="datepicker/skin/WdatePicker.css"/>
+    <link rel="stylesheet" type="text/css" href="datepicker/skin/default/datepicker.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">合同管理</a>
+                            </li>
+                            <li>合同变更</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">合同变更</h3>
+                        </div>
+                        <div class="description">在任务下达流程结束之前,您可以多次变更已经生成的合同项目。</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- SAMPLE -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BOX -->
+
+                    <div class="form" id="agreement_edit">
+                        <form id="agreement_editor_form" action="#" class="form-horizontal demoform">
+                            <div class="wizard-form">
+                                <div class="wizard-content">
+                                    <ul class="nav nav-pills nav-justified steps">
+                                        <li>
+                                            <a href="#agreement_select_page" data-toggle="tab" class="wiz-step active">
+                                                <span class="step-number">1</span>
+                                                <span class="step-name"><i
+                                                        class="fa fa-check"></i> 选择合同 </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#agreement_edit_page" data-toggle="tab" class="wiz-step">
+                                                <span class="step-number">2</span>
+                                                <span class="step-name"><i
+                                                        class="fa fa-check"></i> 变更合同</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#edit_info_page" data-toggle="tab" class="wiz-step">
+                                                <span class="step-number">3</span>
+                                                <span class="step-name"><i class="fa fa-check"></i> 填写变更信息 </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#agreement_check_page" data-toggle="tab" class="wiz-step">
+                                                <span class="step-number">4</span>
+                                                <span class="step-name"><i class="fa fa-check"></i> 确认信息 </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div id="bar" class="progress progress-striped progress-sm active"
+                                         role="progressbar">
+                                        <div class="progress-bar progress-bar-warning"></div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="agreement_select_page">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">选择合同</label>
+                                                    <div class="col-md-4">
+                                                        <select name="country" id="agreement_select"
+                                                                class="col-md-12 full-width-fix">
+                                                            <option value="YW">关于六号桥水质监测的项目</option>
+                                                            <option value="FW">服务合同</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <hr>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            变更编号
+                                                        </th>
+                                                        <th>变更人</th>
+                                                        <th>
+                                                            <div class="text-center">变更原因</div>
+                                                        </th>
+                                                        <th>
+                                                            <div class="text-center">操作</div>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="text-center">
+                                                           BG0001
+                                                        </td>
+                                                        <td>张三</td>
+                                                        <td>
+                                                            <div class="text-center">用户需求变更</div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center">
+                                                                <div class="btn-group">
+                                                                    <button class="btn btn-info btn-xs view_agreement_edit_history"><i
+                                                                            class="fa fa-eye"></i> 查看
+                                                                    </button>
+                                                                </div>
+                                                                <div class="btn-group">
+                                                                    <button class="btn btn-warning btn-xs download_agreement_edit_history"><i
+                                                                            class="fa fa-download"></i> 导出
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="agreement_edit_page">
+                                            <div class="row">
+                                                <div class="col-sm-12" id="agreement_tpl_container">
+                                                    <!--此处为合同模板生成的地方-->
+                                                    <h3 style="text-align: center;font-weight: bold">
+                                                        环 境 监 测 业 务 合 同
+                                                    </h3>
+                                                    <p>
+                                                        <br/>
+                                                    </p>
+                                                    <div class="col-sm-2"></div>
+                                                    <table data-sort="sortDisabled" class="col-sm-8"
+                                                           style="margin: 0 auto">
+                                                        <tbody>
+                                                        <tr class="firstRow">
+                                                            <td width="88" valign="middle" rowspan="3" colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                甲方信息<br/>
+                                                            </td>
+                                                            <td width="101" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                委托单位
+                                                            </td>
+                                                            <td valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center" rowspan="1" colspan="2" width="201">
+                                                                <input name="client" type="text" value=""
+                                                                       class="form-control" datatype="s5-16"
+                                                                       errormsg="昵称至少5个字符,最多16个字符"/>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                邮编<br/>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                <input name="client_code" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                地址<br/>
+                                                            </td>
+                                                            <td valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center" rowspan="1" colspan="2">
+                                                                <input name="client_address" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                电话
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="client_tel" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                联系人<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="2"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="client_contacts" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                传真
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="client_fax" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="item_title" width="88" valign="middle"
+                                                                align="center" rowspan="9"
+                                                                colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测内容<br/>
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                项目名称
+                                                            </td>
+                                                            <td valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                rowspan="1" colspan="4" width="419">
+                                                                <input name="project_name" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测目的
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="4"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="project_porpuse" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测类别
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="4"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="project_type" value="委托监测" type="radio"
+                                                                       checked/>&nbsp;&nbsp;委托监测&nbsp;
+                                                                <input name="project_type" value="验收监测" type="radio"/>&nbsp;&nbsp;验收监测&nbsp;
+                                                                <input name="project_type" value="委托分析" type="radio"/>&nbsp;&nbsp;委托分析&nbsp;
+                                                                <input name="project_type" value="其他" type="radio"/>&nbsp;&nbsp;其他&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                环境要素
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测点（个）<br/>
+                                                            </td>
+                                                            <td width="92" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测项目<br/>
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测频次<br/>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                备注
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="item_tag">
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <select id="environment_element"
+                                                                        name="environment_element" class="col-md-12">
+                                                                    <option></option>
+                                                                    <option value="water">废水</option>
+                                                                    <option value="noice">噪声</option>
+                                                                    <option value="soil">土壤</option>
+                                                                </select>
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="monitor_point" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                            <td width="92" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <select id="monitor_item" name="monitor_item"
+                                                                        class="col-md-12">
+                                                                    <option></option>
+                                                                    <option value="氨氮">氨氮</option>
+                                                                    <option value="硫化物">硫化物</option>
+                                                                    <option value="氰化物">氰化物</option>
+                                                                </select>
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <select id="monitor_rate" name="monitor_rate"
+                                                                        class="col-md-12">
+                                                                    <option></option>
+                                                                    <option value="1次/天">1次/天</option>
+                                                                    <option value="1次/月">1次/月</option>
+                                                                    <option value="1次/年">1次/年</option>
+                                                                </select>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="project_item_other" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="5" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <a class="btn btn-xs btn-info" id="add_item"
+                                                                   href="javascript:;">
+                                                                    保存
+                                                                </a>
+                                                                <a class="btn btn-xs btn-danger" id="del_item"
+                                                                   href="javascript:;">
+                                                                    删除
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center" rowspan="2"
+                                                                colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                检测方法<br/>
+                                                            </td>
+                                                            <td valign="middle" align="left"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                rowspan="2" colspan="4">
+                                                                <input
+                                                                        name="monitor_way"
+                                                                        value="以我单位通过计量认证、国家实验室认可的方法进行监测"
+                                                                        type="radio" data-type="0" checked/>以我单位通过计量认证、国家实验室认可的方法进行监测&nbsp;<br/>
+                                                                <input
+                                                                        name="monitor_way" value="客户指定的方法："
+                                                                        type="radio" data-type="1"/>客户指定的方法：&nbsp;
+                                                                <input name="monitor_customer_way" disabled type="text"
+                                                                       value="" class="form-control"/>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                分包单位
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="outsource_company" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                分包项目
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="2" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="outsource_project" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                报告<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                width="13">
+                                                                交付方式
+                                                            </td>
+                                                            <td valign="middle" align="left" colspan="4" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                            <span leipiplugins="radios" title="project_pay_way"
+                                                                  name="leipiNewField"><input name="leipiNewField"
+                                                                                              value="自取"
+                                                                                              type="radio"/>自取&nbsp;<input
+                                                                    name="leipiNewField" value="挂号邮寄" type="radio"/>挂号邮寄&nbsp;<input
+                                                                    name="leipiNewField" value="其他"
+                                                                    type="radio"/>其他&nbsp;</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                完成时间
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="prject_deadline" type="text" value=""
+                                                                       class="Wdate form-control"
+                                                                       onfocus="WdatePicker({minDate:'%y-%M-{%d+1}'})"/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测费用
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                <input name="project_money" type="text" value=""
+                                                                       class="form-control"/>
+                                                            </td>
+                                                            <td valign="middle" id="chinese_pay" align="center"
+                                                                colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                零元整
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                客户要求<br/>
+                                                            </td>
+                                                            <td valign="middle" align="left" colspan="5" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                <div class="col-md-12">
+                                                                    <label class="checkbox">
+                                                                        <div class="checker"><span class=""><input
+                                                                                type="checkbox" class="uniform"
+                                                                                value="是否需要进入本实验室监视与本次委托有关的检测活动"></span>
+                                                                        </div>
+                                                                        是否需要进入本实验室监视与本次委托有关的检测活动 </label>
+                                                                    <label class="checkbox">
+                                                                        <div class="checker"><span class=""><input
+                                                                                type="checkbox" class="uniform"
+                                                                                value="是否需要本实验室对本次委托有关资料保密"
+                                                                                checked></span></div>
+                                                                        是否需要本实验室对本次委托有关资料保密</label>
+                                                                </div>
+                                                                <br>
+                                                            </td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                其他<br/>
+                                                            </td>
+                                                            <td valign="middle" align="left" colspan="5" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                <p>
+                                                                    其他约定或说明：
+                                                                </p>
+                                                                <p>
+                                                                    <textarea rows="30" cols="5" name="project_other"
+                                                                              class="autosize form-control"></textarea>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="3"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                乙方信息
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                width="13">
+                                                                受托单位<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="2" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+
+                                                                <input name="my_company" type="text"
+                                                                       value="邦达诚环境监测中心（江苏）有限公司" class="form-control"/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                邮编
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                <input name="my_code" type="text" value="213022"
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                地址
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="2" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="my_address" type="text"
+                                                                       value="常州市新北区环保产业园环保一路2号" class="form-control"/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                电话
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="my_tel" type="text" value="0519-89802621"
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                承办人
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="2" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <span>张三</span>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                传真
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid;">
+                                                                <input name="my_fax" type="text" value="0519-89802605"
+                                                                       class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="col-sm-2 "></div>
+                                                    <p>
+                                                        <br/>
+                                                    </p>
+
+                                                    <!---->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane active" id="edit_info_page">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">合同变更内容</label>
+                                                <div class="col-md-4">
+                                                    <textarea rows="5" cols="5" name="project_other"
+                                                              class="autosize form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">合同变更原因</label>
+                                                <div class="col-md-4">
+                                                    <textarea rows="5" cols="5" name="project_other"
+                                                              class="autosize form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">是否重新评审</label>
+                                                <div class="col-md-4">
+                                                    <label class="radio-inline"> <input type="radio"
+                                                                                        class="uniform"
+                                                                                        name="agreement_audit_item8"
+                                                                                        value="1"
+                                                                                        checked> 是
+                                                    </label>
+                                                    <label class="radio-inline"> <input type="radio"
+                                                                                        class="uniform"
+                                                                                        name="agreement_audit_item8"
+                                                                                        value="0"> 否
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="agreement_check_page">
+                                            <h3 class="block">确认合同信息</h3>
+                                            <h4 class="form-section">基本信息</h4>
+                                            <div class="well col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">变更者:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="fullname">
+                                                                张三</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">变更者编号:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="fullname">
+                                                                YH0003</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">合同类型:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="gender">
+                                                                业务合同</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">项目名称:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="gender">
+                                                                关于四号桥河流水质监测的项目</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">变更次数:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="fullname">
+                                                                5次(不含本次)</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">变更内容:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="fullname">
+                                                                YH0003</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">变更原因:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="gender">
+                                                                业务合同</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">重新评审:</label>
+                                                        <div class="col-md-4">
+                                                            <p class="form-control-static" data-display="gender">
+                                                                是</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="pull-right hidden-xs">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info" id="download_agreement_edit">
+                                                                <i
+                                                                        class="fa fa-download"></i> 导出变更申请表
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">合同内容</h4>
+                                            <div class="well col-sm-12">
+                                                <!--以下为合同内容的生成代码-->
+                                                <div class="col-sm-2 "></div>
+                                                <div class="col-sm-8">
+                                                    <h3 style="text-align: center;">
+                                                        环 境 监 测 业 务 合 同
+                                                    </h3>
+                                                    <p>
+                                                        <br/>
+                                                    </p>
+                                                    <table data-sort="sortDisabled" style="width: 100%">
+                                                        <tbody>
+                                                        <tr class="firstRow">
+                                                            <td width="88" valign="middle" rowspan="3" colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                甲方信息<br/>
+                                                            </td>
+                                                            <td width="101" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                委托单位
+                                                            </td>
+                                                            <td valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center" rowspan="1" colspan="2" width="201"></td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                邮编<br/>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                地址<br/>
+                                                            </td>
+                                                            <td valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center" rowspan="1" colspan="2"></td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                电话
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                align="center">
+                                                                联系人<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="2"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                传真
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center" rowspan="8"
+                                                                colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测内容<br/>
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                项目名称
+                                                            </td>
+                                                            <td valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                rowspan="1" colspan="4" width="419"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测目的
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="4"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测类别
+                                                            </td>
+                                                            <td valign="middle" align="center" rowspan="1" colspan="4"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                环境要素
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测点（个）<br/>
+                                                            </td>
+                                                            <td width="92" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测项目<br/>
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测频次<br/>
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                备注
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">水
+                                                            </td>
+                                                            <td width="101" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">3
+                                                            </td>
+                                                            <td width="92" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">氨氮
+                                                            </td>
+                                                            <td width="71" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;">1周/次
+                                                            </td>
+                                                            <td width="88" valign="middle" align="center"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="88" valign="middle" align="center" rowspan="2"
+                                                                colspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                检测方法<br/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="left" colspan="4" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                客户指定的方法：<br/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                分包单位
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                分包项目
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="2" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                报告<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                width="13">
+                                                                交付方式
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="4" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                完成时间
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                监测费用
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                客户要求<br/>
+                                                            </td>
+                                                            <td valign="middle" align="left" colspan="5" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                是否需要进入本实验室监视与本次委托有关的检测活动
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="left" colspan="5" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                是否需要本实验室对本次委托有关资料保密<br/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                其他<br/>
+                                                            </td>
+                                                            <td valign="middle" align="left" colspan="5" rowspan="2"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                <p>
+                                                                    其他约定或说明：
+                                                                </p>
+                                                                <p>
+                                                                    <br/>
+                                                                </p>
+                                                                <p>
+                                                                    <br/>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="3"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                乙方信息
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                width="13">
+                                                                受托单位<br/>
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;"
+                                                                width="75"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                邮编
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                地址
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                电话
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                style="word-break: break-all; border-width: 1px; border-style: solid;">
+                                                                承办人
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="13"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="92"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="71"
+                                                                style="border-width: 1px; border-style: solid; word-break: break-all;">
+                                                                传真
+                                                            </td>
+                                                            <td valign="middle" align="center" colspan="1" rowspan="1"
+                                                                width="88"
+                                                                style="border-width: 1px; border-style: solid;"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-2 "></div>
+
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-buttons">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <a href="javascript:;" class="btn btn-default prevBtn">
+                                                    <i class="fa fa-arrow-circle-left"></i> 上一步
+                                                </a>
+                                                <a href="javascript:;" class="btn btn-primary nextBtn">
+                                                    下一步 <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
+                                                <a href="javascript:;" class="btn btn-success submitBtn">
+                                                    变更 <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- /BOX -->
+                    </div>
+                </div>
+                <!-- /SAMPLE -->
+            </div><!-- /CONTENT-->
+        </div>
+    </div>
+    <!-- JAVASCRIPTS -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- JQUERY -->
+    <script src="js/jquery/jquery-2.0.3.min.js"></script>
+    <!-- JQUERY UI-->
+    <script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <!-- BOOTSTRAP -->
+    <script src="bootstrap-dist/js/bootstrap.min.js"></script>
+    <!-- DATE RANGE PICKER -->
+    <script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+    <script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+    <!-- SLIMSCROLL -->
+    <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+    <!-- BLOCK UI -->
+    <script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+    <!-- SELECT2 -->
+    <script type="text/javascript" src="js/select2/select2.min.js"></script>
+    <!-- UNIFORM -->
+    <script type="text/javascript" src="js/uniform/jquery.uniform.min.js"></script>
+    <!-- WIZARD -->
+    <script src="js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <!-- WIZARD -->
+    <script src="js/jquery-validate/jquery.validate.min.js"></script>
+    <script src="js/jquery-validate/additional-methods.min.js"></script>
+    <!--MyDatePicker-->
+    <script type="text/javascript" src="datepicker/WdatePicker.js"></script>
+    <!-- AUTOSIZE -->
+    <script type="text/javascript" src="js/autosize/jquery.autosize.min.js"></script>
+    <!--ValidForm-->
+    <!--<script type="text/javascript" src="js/validform_v5.3.2/js/Validform_v5.3.2.js"></script>-->
+    <!-- COOKIE -->
+    <script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+    <!--Plugin-->
+    <script type="text/javascript" src="js/customer/plugin/sum2chinese.js"></script>
+    <script type="text/javascript" src="js/customer/plugin/FormWizard.js"></script>
+    <!-- CUSTOM SCRIPT -->
+    <script src="js/script.js"></script>
+    <script src="js/bootstrap-wizard/form-wizard.min.js"></script>
+    <script src="js/customer/agreement_manage/agreement_edit.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            App.setPage("agreement_create");  //Set current page
+            App.init(); //Initialise plugins and elements
+            wizard.init($('#agreement_editor_form'), $('#agreement_edit'));//表单向导
+        });
+    </script>
+    <!-- /JAVASCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+	<class name="User" table="bdc_user">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="identify" not-null="true" unique="true" type="string"/>
+		<property name="name" not-null="true" type="string" ></property>
+		<property name="password" not-null="true" type="string"/>
+		<property name="sex" type="string"></property>
+		<property name="idCard" type="string"/>
+		<property name="tel" type="string"/>
+		<property name="workTel" type="string"/>
+		<property name="entryTime" type="date"/>
+		<property name="address" type="string"/>
+		<property name="contacts" type="string"/>
+		<property name="contactsTel" type="string"/>
+		
+		<many-to-one name="role" column="role_id" class="Role" ></many-to-one>
+	</class>
+	
+</hibernate-mapping>

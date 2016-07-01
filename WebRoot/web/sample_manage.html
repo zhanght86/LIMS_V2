@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息 | 样品管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- BOOTSTRAP SWITCH -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-switch/bootstrap-switch.min.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <!--</script>-->
+
+</head>
+<body>
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">样品管理</a>
+                            </li>
+                            <li>用户管理</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">样品管理</h3>
+                        </div>
+                        <div class="description">用户可以根据项目、编号筛选样品信息。</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- ORDERS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box border">
+                        <div class="box-title">
+                            <h4><i class="fa fa-columns"></i><span
+                                    class="hidden-inline-mobile">样品列表</span></h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="tabbable header-tabs">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#box_tab1" data-toggle="tab"><i class="fa fa-users"></i>
+                                        <span class="hidden-inline-mobile">样品列表</span></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="box_tab1">
+                                        <div class="pull-left hidden-xs">
+                                            <div class="btn-group">
+                                                <button class="btn btn-default" id="reset_user_password_checked"><i
+                                                        class="fa fa-edit"></i> 批量打印
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right">
+                                            <div class="dataTables_filter">
+                                                <label>
+                                                    <input type="text" aria-controls="datatable1" placeholder="搜索..."
+                                                           class="form-control input-sm">
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <hr>
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr class="user_group_item">
+                                                <th class="only-checkbox">
+                                                    #
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">样品编号</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">项目编号</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">样品名称</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">项目名称</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">检测项目</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">备注</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">当前状态</div>
+                                                </th>
+                                                <th>
+                                                    <div class="text-center">操作</div>
+                                                </th>
+                                            </tr>
+                                            <tr class="user_group_item">
+                                                <td class="only-checkbox">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">A0001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">2016001</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">地表水</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">关于四号桥河流水质检测项目</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">氨氮、硫化物</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">无备注</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center"><span
+                                                            class="label label-info">已接收</span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-success btn-xs print_sample_item">
+                                                                <i
+                                                                        class="fa fa-edit"></i> 二维码
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <div class="text-right">
+                                            <ul class="pagination">
+                                                <li class="disabled">
+                                                    <a href="#">
+                                                        <i class="fa fa-angle-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="active">
+                                                    <a href="#">
+                                                        1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">3</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">4</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">5</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ORDERS -->
+    </div><!-- /CONTENT-->
+</div>
+</div>
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- TIMEAGO -->
+<script type="text/javascript" src="js/timeago/jquery.timeago.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- ONHOVER -->
+<script type="text/javascript" src="js/bootstrap-onhover/twitter-bootstrap-hover-dropdown.min.js"></script>
+<!-- BOOTSTRAP SWITCH -->
+<script type="text/javascript" src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("agreement_midel");  //Set current page
+        App.init(); //Initialise plugins and elements
+
+    });
+</script>
+</body>
+</html>

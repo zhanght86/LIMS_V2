@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="ServiceContract" table="bdc_servicecontract">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="identify" type="string" not-null="true"
+			unique="true" />
+		<property name="name" type="string" length="500" />
+		<property name="context" type="string" length="2000" />
+		<property name="clientResp" type="string" length="1000" />
+		<property name="serviceResp" type="string" length="1000" />
+		<property name="deadLine" type="date" />
+		<property name="times" type="integer"/>
+		<property name="cost" type="double" />
+		<property name="client" type="string" />
+		<property name="clientAddress" type="string" />
+		<property name="clientTel" type="string" />
+		<property name="service" type="string" />
+		<property name="serviceAddress" type="string" />
+		<property name="serviceTel" type="string" />
+		<property name="serviceBank" type="string" />
+		<property name="serviceCard" type="string" />
+		<property name="bearUnit" type="string" />
+		<property name="bearUnitAddress" type="string" />
+		<property name="bearUnitTel" type="string" />
+		<one-to-one name="project" cascade="all" property-ref="sContractId" />
+	</class>
+</hibernate-mapping>

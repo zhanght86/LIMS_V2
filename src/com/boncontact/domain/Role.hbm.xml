@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="Role" table="bdc_role">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="name" type="string" not-null="true"/>
+		<property name="identify" type="string" not-null="true" unique="true"/>
+		<property name="desp" type="string"/>
+		<set name="powers" table="bdc_role_power" lazy="false">
+			<key column="role_id"/>
+			<many-to-many class="Power" column="powerId"/>
+		</set>
+		<many-to-one name="department" class="Department" cascade="save-update" column="departmentId"/>
+		
+		
+	</class>
+</hibernate-mapping>

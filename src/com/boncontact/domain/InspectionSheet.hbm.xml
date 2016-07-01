@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="InspectionSheet" table="bdc_inspectionSheet">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="sheetType" type="integer"/>
+		<property name="samplingDate" type="date"/>
+		<property name="sendSample" type="date"/>
+		<property name="other" type="string"/>
+		<property name="analysisDate" type="date"/>
+		<many-to-one name="sendUser"  class="User" />
+		<many-to-one name="receiver"  class="User" />
+		<many-to-one name="analyst"  class="User" />
+		<many-to-one name="review"  class="User" />
+		<many-to-one name="audit"  class="User" />
+		<many-to-one name="project" class="Project" column="projectId" />
+		<many-to-one name="analysisProject" class="AnalysisProject" column="analysisProject_item" cascade="all"/>
+		<property name="resultPath" type="string" length="1000"/>
+		<set name="result" cascade="all">
+			<key column="inspectionSheet"/>
+			<one-to-many class="InspectionSheet_Result" />
+		</set>
+		<property name="step" type="long"/>
+	</class>
+</hibernate-mapping>

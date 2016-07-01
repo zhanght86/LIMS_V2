@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>LIMS</display-name>
+	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 配置Spring的用于初始化容器对象的监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext*.xml</param-value>
+	</context-param>
+	<!-- 配置Struts2的核心的过滤器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+<!-- PageOffice Begin -->
+  <servlet>
+    <servlet-name>poserver</servlet-name> 
+    <servlet-class>com.zhuozhengsoft.pageoffice.poserver.Server</servlet-class> 
+  </servlet>
+  <servlet-mapping> 
+    <servlet-name>poserver</servlet-name> 
+    <url-pattern>/poserver.zz</url-pattern> 
+  </servlet-mapping> 
+  <servlet-mapping> 
+    <servlet-name>poserver</servlet-name> 
+    <url-pattern>/poserver.do</url-pattern> 
+  </servlet-mapping> 
+  <servlet-mapping> 
+	<servlet-name>poserver</servlet-name> 
+	<url-pattern>/pageoffice.cab</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping> 
+	<servlet-name>poserver</servlet-name> 
+	<url-pattern>/popdf.cab</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping> 
+	<servlet-name>poserver</servlet-name> 
+	<url-pattern>/sealsetup.exe</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping> 
+     <servlet-name>poserver</servlet-name> 
+     <url-pattern>/posetup.exe</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>adminseal</servlet-name> 
+    <servlet-class>com.zhuozhengsoft.pageoffice.poserver.AdminSeal</servlet-class> 
+  </servlet>
+  <servlet-mapping> 
+    <servlet-name>adminseal</servlet-name> 
+    <url-pattern>/adminseal.do</url-pattern> 
+  </servlet-mapping>
+  <servlet-mapping> 
+    <servlet-name>adminseal</servlet-name> 
+    <url-pattern>/loginseal.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping> 
+    <servlet-name>adminseal</servlet-name> 
+    <url-pattern>/sealimage.do</url-pattern>
+  </servlet-mapping>
+  <mime-mapping>  
+  	<extension>mht</extension>  
+  	<mime-type>message/rfc822</mime-type>  
+  </mime-mapping>
+  <context-param>
+  	<param-name>adminseal-password</param-name>
+  	<param-value>111111</param-value>
+  </context-param>
+  
+  <!--<context-param>
+  	<param-name>posealdb-driver</param-name>
+  	<param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>posealdb-url</param-name>
+  	<param-value>jdbc:mysql://localhost:3306/sample</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>posealdb-username</param-name>
+  	<param-value>root</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>posealdb-password</param-name>
+  	<param-value>admin</param-value>
+  </context-param>-->
+  <!-- PageOffice End -->
+
+	<welcome-file-list>
+		<welcome-file>welcome.html</welcome-file>
+	</welcome-file-list>
+</web-app>

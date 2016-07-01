@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="AnalysisFrequency" table="bdc_analysisFrequency">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string" not-null="true" />
+		<property name="other" type="string" length="1000"/>
+	</class>
+</hibernate-mapping>

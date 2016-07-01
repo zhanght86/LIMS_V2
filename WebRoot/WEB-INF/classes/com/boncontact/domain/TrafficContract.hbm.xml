@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="TrafficContract" table="bdc_trafficContract">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="identify" not-null="true" unique="true" type="string" />
+		<property name="customerName" type="string" />
+		<property name="customerCode" type="string" />
+		<property name="customerAddress" type="string" />
+		<property name="customerTel" type="string" />
+		<property name="customerPeople" type="string"/>
+		<property name="customerFax" type="string" />
+		<property name="projectName" type="string" />
+		<property name="projectAim" type="string" />
+		<property name="projectType" type="string" />
+		<property name="projectWay" type="integer" />
+		<property name="projectWayText" type="string"/>
+		<property name="subpackageName" type="string" />
+		<property name="subProject" type="string" />
+		<property name="paymentWay" type="string" />
+		<property name="deadLine" type="date" />
+		<property name="cost" type="double" />
+		<property name="inRoom" type="integer" />
+		<property name="secrecy" type="integer" />
+		<property name="other" type="string" />
+		<property name="entrusted" type="string" />
+		<property name="entrustedCode" type="string" />
+		<property name="entrustedAddress" type="string" />
+		<property name="entrustedTel" type="string" />
+		<property name="entrustedFax" type="string" />
+		<set name="items" cascade="all-delete-orphan">
+			<key column="contractId"></key>
+			<one-to-many class="ContractMonitoringItem" />
+		</set>
+		<many-to-one name="Contractors" class="User" column="contractors" />
+		<one-to-one name="project" cascade="all" property-ref="tContractId" />
+	</class>
+</hibernate-mapping>

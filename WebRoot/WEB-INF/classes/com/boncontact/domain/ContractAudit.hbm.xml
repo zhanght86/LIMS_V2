@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="ContractAudit" table="bdc_contractAudit">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="client" type="string" length="1000"/>
+		<property name="service" type="string" length="1000"/>
+		<property name="contractContext" type="string" length="1000"/>
+		<property name="contractSame" type="integer"/>
+		<property name="resourceSatisfaction" type="integer"/>
+		<property name="custSatisfaction" type="integer"/>
+		<property name="subpackage" type="integer"/>
+		<property name="subcontractUnit" type="integer"/>
+		<property name="paymentSatisfaction" type="integer"/>
+		<property name="timeSatisfaction" type="integer"/>
+		<property name="other" type="string" length="2000"/>
+		<property name="auditResult" type="string" length="1000"/>
+		<many-to-one name="project" cascade="all" unique="true" column="project_id"/>
+	</class>
+</hibernate-mapping>

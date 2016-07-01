@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- 1，数据库连接信息 -->
+	<property name="dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+	</property>
+	<!-- 2，其他配置 -->
+	<property name="show_sql">true</property>
+	<property name="hbm2ddl.auto">update</property>
+	<property name="current_session_context_class">
+		org.springframework.orm.hibernate3.SpringSessionContext
+	</property>
+	<property name="connectio.useUnicode">true</property>
+	<property name="connection.characterEncoding">utf-8</property>
+	<property name="hibernate.connection.isolation">4</property>
+	<!-- 3，导入映射文件 -->
+	<mapping resource="com/boncontact/domain/Role.hbm.xml" />
+	<mapping resource="com/boncontact/domain/User.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Customer.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Device.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Inventory.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Department.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/ContractMonitoringItem.hbm.xml" />
+	<mapping resource="com/boncontact/domain/TrafficContract.hbm.xml" />
+	<mapping resource="com/boncontact/domain/ServiceContarct.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Project.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Encode.hbm.xml" />
+	<mapping resource="com/boncontact/domain/ContractAudit.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/BusinessRegistration.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Report.hbm.xml" />
+	<mapping resource="com/boncontact/domain/ProjectBook.hbm.xml" />
+	<mapping resource="com/boncontact/domain/CommonTemplet.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/SelfSendSampleInfo.hbm.xml" />
+	<mapping resource="com/boncontact/domain/DeliveryReceitp.hbm.xml" />
+	<mapping resource="com/boncontact/domain/analysisProject.hbm.xml" />
+	<mapping resource="com/boncontact/domain/InspectionSheet.hbm.xml" />
+	<mapping resource="com/boncontact/domain/QualityControl.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/InspectionSheet_Result.hbm.xml" />
+	<mapping resource="com/boncontact/domain/RecordAudit.hbm.xml" />
+	<mapping resource="com/boncontact/domain/ReportAudit.hbm.xml" />
+	<mapping resource="com/boncontact/domain/HistoryLogin.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Notice.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/NonSelfSendSampleInfo.hbm.xml" />
+	<mapping resource="com/boncontact/domain/ContractChange.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Feedback.hbm.xml" />
+	<mapping resource="com/boncontact/domain/Power.hbm.xml" />
+	<mapping resource="com/boncontact/domain/AnalysisType.hbm.xml" />
+	<mapping resource="com/boncontact/domain/MessageQueue.hbm.xml" />
+	<mapping resource="com/boncontact/domain/MessageListen.hbm.xml" />
+	<mapping resource="com/boncontact/domain/AnalysisCategory.hbm.xml" />
+	<mapping resource="com/boncontact/domain/AnalysisFrequency.hbm.xml" />
+	<mapping resource="com/boncontact/domain/OriginalRecord.hbm.xml" />
+	<mapping resource="com/boncontact/domain/AuthSignator.hbm.xml" />
+
+
+</session-factory>
+
+
+</hibernate-configuration>

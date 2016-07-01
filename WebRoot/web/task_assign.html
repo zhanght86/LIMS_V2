@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 任务下达</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- BOOTSTRAP SWITCH -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-switch/bootstrap-switch.min.css"/>
+    <!-- UNIFORM -->
+    <link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">任务管理</a>
+                            </li>
+                            <li>任务下达</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">任务下达</h3>
+                        </div>
+                        <div class="description">任务流程的起始环节,生成任务书。</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- ORDERS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BOX -->
+                    <div class="box border">
+                        <div class="box-title">
+                            <h4><i class="fa fa-list-ul"></i>合同列表</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- ORDERS -->
+                            <div class="row">
+                                <!-- ORDER SCROLL -->
+                                <div class="col-md-4 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body orders">
+                                            <div class="scroller" data-height="650px" data-always-visible="1"
+                                                 data-rail-visible="1">
+                                                <ul class="list-unstyled" id="agreement_audit_list">
+                                                    <li class="clearfix active">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A001</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-03-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-success arrow-in-right"><i
+                                                                        class="fa fa-check"></i> 已下达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-success"
+                                                                 role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 85%;">
+                                                                <span class="sr-only">85% 已下达</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A003</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-primary arrow-in-right"><i
+                                                                        class="fa fa-archive"></i> 流程未达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-primary"
+                                                                 role="progressbar" aria-valuenow="97" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 97%;">
+                                                                <span class="sr-only">97% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A004</strong>关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-info arrow-in-right"><i
+                                                                        class="fa fa-star"></i> 尚未下达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-info"
+                                                                 role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 10%;">
+                                                                <span class="sr-only">10% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix active">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A001</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-03-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-success arrow-in-right"><i
+                                                                        class="fa fa-check"></i> 已下达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-success"
+                                                                 role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 85%;">
+                                                                <span class="sr-only">85% 已下达</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A003</strong> 关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-primary arrow-in-right"><i
+                                                                        class="fa fa-archive"></i> 流程未达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-primary"
+                                                                 role="progressbar" aria-valuenow="97" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 97%;">
+                                                                <span class="sr-only">97% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="clearfix">
+                                                        <div class="pull-left">
+                                                            <p>
+                                                            <h5><strong>#A004</strong>关于四号桥河流水质监测项目</h5>
+                                                            </p>
+                                                            <p><i class="fa fa-clock-o"></i> <abbr class="timeago"
+                                                                                                   title="最后更新时间">2015-02-21</abbr>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="text-right pull-right">
+                                                            <h4 class="cost">&nbsp;</h4>
+                                                            <p>
+                                                                <span class="label label-info arrow-in-right"><i
+                                                                        class="fa fa-star"></i> 尚未下达</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar progress-bar-info"
+                                                                 role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                                 aria-valuemax="100" style="width: 10%;">
+                                                                <span class="sr-only">10% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class='text-center'>
+                                            <ul class='pagination'>
+                                                <li class='disabled'>
+                                                    <a href='#'>
+                                                        <i class='fa fa-angle-left'></i>
+                                                    </a>
+                                                </li>
+                                                <li class='active'>
+                                                    <a href='#'>
+                                                        1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>2</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>3</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>4</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>5</a>
+                                                </li>
+                                                <li>
+                                                    <a href='#'>
+                                                        <i class='fa fa-angle-right'></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-info" id="switch_item_list"><i
+                                                class="fa fa-list"></i> 未下达列表
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- /ORDER SCROLL -->
+                                <!-- ORDER DETAILS -->
+                                <div class="col-md-8" id="agreement_detail">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="pull-left">
+                                                <span class="label label-info">尚未下达</span>
+                                                <span class="label label-success">已下达</span>
+                                                <span class="label label-primary">流程未达</span>
+                                            </div>
+                                            <div class="pull-right hidden-xs">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info" id="download_agreement_audit"><i
+                                                            class="fa fa-download"></i> 导出任务书
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default" id="print_agreement_audit"><i
+                                                            class="fa fa-print"></i> 打印
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <!--此处应该添加合同范本内容-->
+                                            <!--<form class="form-horizontal" role="form">-->
+                                            <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-3 control-label">委托单位</label>-->
+                                            <!--<div class="col-sm-9">-->
+                                            <!--<input type="text" class="form-control" placeholder="Text input">-->
+                                            <!--</div>-->
+                                            <!--</div>-->
+
+                                            <!--</form>-->
+                                            <h4 class="form-section">基本信息</h4>
+                                            <div class="well col-sm-12">
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">委托单位:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            江苏省常州市环保局</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">甲方地址:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            进行四号桥日常的水质监测</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">甲方邮编:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            213023</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">联系人:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            张三</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">联系电话:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            13816157552</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">合同内容</h4>
+                                            <div class="well col-sm-12">
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">项目名称:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            关于四号桥河流水质监测项目</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">监测目的:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            进行四号桥日常的水质监测</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">委托内容:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            氨氮、硫化物、氰化物</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">检测方法:</label>
+                                                    <div class="col-md-10">
+                                                        <p class="form-control-static" data-display="fullname">
+                                                            以我单位通过计量认证或实验室认可的方法进行检测</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">任务流转</h4>
+                                            <div class="well col-sm-12">
+                                                <form class="form-horizontal" role="form">
+                                                <div class="form-group col-sm-12">
+                                                    <label class="control-label col-md-2 text-right">承接科室:</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control">
+                                                            <option>科室1</option>
+                                                            <option>科室2</option>
+                                                            <option>科室3</option>
+                                                            <option>科室4</option>
+                                                            <option>科室5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="form-group col-sm-12">
+                                                        <label class="control-label col-md-2 text-right">项目负责人:</label>
+                                                        <div class="col-md-10">
+                                                            <select class="form-control">
+                                                                <option>负责人1</option>
+                                                                <option>负责人2</option>
+                                                                <option>负责人3</option>
+                                                                <option>负责人4</option>
+                                                                <option>负责人5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!--范本内容-->
+                                            <!-- PAYMENT STATUS -->
+                                            <hr>
+                                        </div>
+                                        <!-- /PANEL BODY -->
+
+                                    </div>
+                                </div>
+                                <!-- /ORDER DETAILS -->
+
+
+                            </div>
+                        </div>
+                        <!-- /ORDER DETAILS 创建范本 -->
+                    </div>
+                    <!-- ORDERS -->
+                </div>
+            </div>
+            <!-- /BOX -->
+        </div>
+    </div>
+    <!-- /ORDERS -->
+</div><!-- /CONTENT-->
+</div>
+</div>
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- TIMEAGO -->
+<script type="text/javascript" src="js/timeago/jquery.timeago.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- ONHOVER -->
+<script type="text/javascript" src="js/bootstrap-onhover/twitter-bootstrap-hover-dropdown.min.js"></script>
+<!-- BOOTSTRAP SWITCH -->
+<script type="text/javascript" src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
+<!-- AUTOSIZE -->
+<script type="text/javascript" src="js/autosize/jquery.autosize.min.js"></script>
+<!-- UNIFORM -->
+<script type="text/javascript" src="js/uniform/jquery.uniform.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("agreement_audit");  //Set current page
+        App.init(); //Initialise plugins and elements
+        $('#agreement_audit_list li').on('click', function () {
+            $(this).addClass('active').siblings('li').removeClass('active');
+        });
+        $('#switch_item_list').on('click', function () {
+            if ($(this).html().indexOf('未审列表') > 0) {
+                var code = $('#agreement_audit_list').html();
+                console.log(code);
+                $('#agreement_audit_list').empty().html(code);
+                $(this).html('<i class="fa fa-list"></i> 合同列表');
+            } else {
+                var code = $('#agreement_audit_list').html();
+                console.log(code);
+                $('#agreement_audit_list').empty().html(code);
+                $(this).html('<i class="fa fa-list"></i> 未审列表');
+            }
+
+        })
+    });
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

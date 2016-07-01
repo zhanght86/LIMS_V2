@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>实验室信息平台 | 通讯录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- ANIMATE -->
+    <link rel="stylesheet" type="text/css" href="css/animatecss/animate.min.css"/>
+    <!-- SLIDENAV -->
+    <link rel="stylesheet" type="text/css" href="js/slidernav/slidernav.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Box Settings</h4>
+            </div>
+            <div class="modal-body">
+                Here goes box setting content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-lg-12">
+            <!-- PAGE HEADER-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <!-- STYLER -->
+
+                        <!-- /STYLER -->
+                        <!-- BREADCRUMBS -->
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="javascript:;">首页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">个人中心</a>
+                            </li>
+                            <li>通讯录</li>
+                        </ul>
+                        <!-- /BREADCRUMBS -->
+                        <div class="clearfix">
+                            <h3 class="content-title pull-left">通讯录</h3>
+                        </div>
+                        <div class="description">平台中所有用户的联络方式</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /PAGE HEADER -->
+            <!-- SAMPLE -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="address-book">
+                                <div class="slider-content">
+                                    <ul>
+                                        <li id="a"><a name="a" class="title">A</a>
+                                            <ul>
+                                                <li><a href="/">Adam</a></li>
+                                                <li><a href="/">Alex</a></li>
+                                                <li><a href="/">Ali</a></li>
+                                                <li><a href="/">Apple</a></li>
+                                                <li><a href="/">Arthur</a></li>
+                                                <li><a href="/">Ashley</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="b"><a name="b" class="title">B</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="c"><a name="c" class="title">c</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="d"><a name="d" class="title">d</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="e"><a name="e" class="title">E</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="f"><a name="f" class="title">f</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="g"><a name="g" class="title">g</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="h"><a name="h" class="title">h</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="i"><a name="i" class="title">i</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="j"><a name="j" class="title">j</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="k"><a name="k" class="title">k</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="l"><a name="l" class="title">l</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="m"><a name="m" class="title">m</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="n"><a name="n" class="title">n</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="o"><a name="o" class="title">o</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="p"><a name="p" class="title">p</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="q"><a name="q" class="title">q</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="r"><a name="r" class="title">r</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="s"><a name="s" class="title">s</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="t"><a name="t" class="title">t</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="u"><a name="u" class="title">u</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="v"><a name="v" class="title">v</a>
+                                            <ul>
+                                                <li><a href="/">Barry</a></li>
+                                                <li><a href="/">Becky</a></li>
+                                                <li><a href="/">Biff</a></li>
+                                                <li><a href="/">Billy</a></li>
+                                                <li><a href="/">Bozarking</a></li>
+                                                <li><a href="/">Bryan</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="w"><a name="w" class="title">w</a>
+                                            <ul>
+                                                <li><a href="/">Calista</a></li>
+                                                <li><a href="/">Cathy</a></li>
+                                                <li><a href="/">Chris</a></li>
+                                                <li><a href="/">Cinderella</a></li>
+                                                <li><a href="/">Corky</a></li>
+                                                <li><a href="/">Cypher</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="x"><a name="x" class="title">x</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="y"><a name="y" class="title">y</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="z"><a name="z" class="title">z</a>
+                                            <ul>
+                                                <li><a href="/">damien</a></li>
+                                                <li><a href="/">danny</a></li>
+                                                <li><a href="/">denver</a></li>
+                                                <li><a href="/">devon</a></li>
+                                                <li><a href="/">doug</a></li>
+                                                <li><a href="/">dustin</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="contact-card" class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">John Doe</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="card" class="row">
+                                        <div class="col-md-6 headshot">
+                                            <img src="img/addressbook/1.jpg" alt="" height="200" width="200"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <td><i class="fa fa-font"></i> 姓名</td>
+                                                    <td id="card-name">John Doe</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-home"></i> 地址</td>
+                                                    <td>意派科技有限公司 中国上海
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-phone"></i> 手机</td>
+                                                    <td>+86 13816157552</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-envelope"></i> 邮箱</td>
+                                                    <td>qulongjunl@g163.com</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /SAMPLE -->
+            <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+            </div>
+        </div><!-- /CONTENT-->
+    </div>
+</div>
+
+<!--/PAGE -->
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- SLIDENAV -->
+<script type="text/javascript" src="js/slidernav/slidernav.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("address_book");  //Set current page
+        App.init(); //Initialise plugins and elements
+    });
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

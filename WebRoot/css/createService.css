@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+#serviceForm {
+	border: 1px solid #000;
+	width: 100%;
+}
+
+#serviceForm td {
+	border: 1px solid #000;
+	height: 30px;
+	vertical-align: middle;
+	font-size: 16px;
+}
+
+#serviceForm div {
+	margin: 10px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+#serviceForm div label {
+	text-justify: inter-ideograph;
+	line-height: 30px;
+}
+#serviceForm .lastTd{
+	border-bottom:1px solid #FFF;
+	vertical-align:top;
+}

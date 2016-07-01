@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+	<class name="Inventory" table="bdc_inventory">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="identify" type="string" not-null="true" unique="true" />
+		<property name="name" type="string" not-null="true"/>
+		<property name="standard" type="string" not-null="true"/>
+		<property name="unit" type="string"/>
+		<property name="price" type="double" not-null="true"/>
+		<property name="type" type="string"/>
+		<property name="lowerValue" type="double" not-null="true"/>
+		<property name="amount" type="double" not-null="true"/>
+		<property name="attention" type="string"/>
+		<property name="envirRequire" type="string"/>
+	</class>
+
+</hibernate-mapping>

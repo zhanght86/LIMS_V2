@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+	<class name="Notice" table="bdc_notice">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="priority" type="integer"/>
+		<property name="noticeHead" type="string" length="1000"/>
+		<property name="context" type="string" length="5000"/>
+		<property name="startDate" type="date"/>
+		<property name="endDate" type="date"/>
+		<property name="sendWay" type="integer"/>
+		<many-to-one name="user" class="User" column="send_id"/>
+		<set name="receive"  table="bdc_notice_receive">
+			<key column="notice_id"></key>
+			<many-to-many class="User" column="user_id"/>
+		</set>
+		<set name="department"  table="bdc_notice_department">
+			<key column="notice_id"></key>
+			<many-to-many class="Department" column="department_id"/>
+		</set>
+		<property name="path" type="string" length="1000"/>
+	</class>
+
+</hibernate-mapping>

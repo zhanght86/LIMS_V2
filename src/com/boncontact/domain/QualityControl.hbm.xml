@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="QualityControl" table="bdc_qualityControl">
+		<id name="id">
+            <generator class="identity"/>
+		</id>
+		<property name="SampleNum" type="integer"/>
+		<property name="parallelSample" type="integer"/>
+		<property name="laboratorySampleNum" type="integer"/>
+		<property name="spikedRecoverySampleNum" type="integer"/>
+		<property name="blindSample" type="integer"/>
+		<property name="laboratorySampleIdentifys" type="string" length="1000"/>
+		<property name="spikedSampleIdentifys" type="string" length="1000"/>
+		<property name="createDate" type="date" ></property>
+		<many-to-one name="analysisProject" class="AnalysisProject" column="analysisProject_id"/>
+		<many-to-one name="laboratorySample" class="SelfSendSampleInfo" column="laboratorySample_id"/>
+		<many-to-one name="nonLaboratorySample" class="NonSelfSendSample" column="nonLaboratorySample_id"/>
+		<many-to-one name="spikedRecoverySample" class="SelfSendSampleInfo" column="spikedRecoverySample_id"/>
+		<many-to-one name="nonSpikedRecoverySample" class="NonSelfSendSample" column="nonSpikedRecoverySample_id"/>
+		<many-to-one name="project" class="Project" column="projectId" />
+		<many-to-one name="createUser" class="User" column="createUser" />
+	</class>
+</hibernate-mapping>

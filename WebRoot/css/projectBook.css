@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+body {
+	width: 100%
+}
+
+table {
+	border: 1px solid #000;
+	width: 100%;
+}
+
+td {
+	border: 1px solid #000;
+	height: 30px;
+	vertical-align: middle;
+	font-size: 14px;
+}
+
+td label {
+	padding-left: 10px;
+}
+
+ul {
+	list-style: none;
+}
