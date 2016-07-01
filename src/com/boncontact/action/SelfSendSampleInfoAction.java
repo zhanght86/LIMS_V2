@@ -587,7 +587,7 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 			temp.setSelfSendSample(index);
 			break;
 		}
-		String indexString = first +"-"+ String.format("%04d", index);
+		String indexString = first + String.format("%04d", index);
 		return indexString;
 	}
 

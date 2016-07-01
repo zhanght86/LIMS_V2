@@ -231,7 +231,7 @@ public class ContractAction extends BaseAction<TrafficContract> {
 		} else {
 			index += 1;
 		}
-		String indexString = first + String.format("%03d", index);
+		String indexString = first +"-"+ String.format("%03d", index);
 
 		return indexString;
 	}
