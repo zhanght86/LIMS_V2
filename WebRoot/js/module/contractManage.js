@@ -129,6 +129,11 @@ $(function() {
 			return false;
 		}
 		
+		if($('.itemsResult').length == 0){
+			alert("至少需要一个监测项目");
+			return false;
+		}
+		
 		var str='';
 		$('.itemsResult').each(function(){
 			var obj='environmentElement:'+$(this).find('td:eq(0)').data("id")+',siteNum:'+$(this).find('td:eq(1)').html()+',project:'+$(this).find('td:eq(2)').data("id")+',frequency:'+$(this).find('td:eq(3)').data("id")+',other:'+$(this).find('td:eq(4)').html()+';';

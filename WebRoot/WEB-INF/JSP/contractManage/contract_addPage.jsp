@@ -105,21 +105,21 @@
 							<td width="73" style="text-align:center">委托单位</td>
 							<td colspan="4" width="263"><input type='text'
 								name="customerName"
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								class="required"  /></td>
 							<td colspan="2" width="88" style="text-align:center">邮编</td>
 							<td colspan="3" width="242"><input type='text'
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								name="customerCode"  /></td>
 						</tr>
 						<tr>
 							<td width="73" style="text-align:center">地  址</td>
 							<td colspan="4" width="263"><input type='text'
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								name="customerAddress" /></td>
 							<td colspan="2" width="88" style="text-align:center">电话</td>
 							<td colspan="3" width="242"><input type='text'
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								name="customerTel"
 								 /></td>
 						</tr>
@@ -127,12 +127,12 @@
 							<td width="73" style="text-align:center">联系人</td>
 							<td colspan="4" width="263"><input type='text'
 								name="customerPeople"
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								class="required"/></td>
 							<td colspan="2" width="88" style="text-align:center">传真</td>
 							<td colspan="3" width="242"><input type='text'
 								name="customerFax"
-								style="width:100%; height:30px; background:#e9e3e3" /></td>
+								style="width:100%; height:30px; background:#EDD5DF" /></td>
 						</tr>
 						<tr>
 							<td rowspan="9" id="itemContainer" width="46"
@@ -145,14 +145,14 @@
 							<td width="73" style="text-align:center">项目名称</td>
 							<td colspan="9" width="593"><input type='text'
 								name="projectName"
-								style="width:100%; height:30px; background:#e9e3e3;cursor:text;"
+								style="width:100%; height:30px; background:#EDD5DF;cursor:text;"
 								class="required"  /></td>
 						</tr>
 						<tr>
 							<td width="73" style="text-align:center">监测目的</td>
 							<td colspan="9" width="593"><input type='text'
 								name="projectAim"
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								class="required" /></td>
 						</tr>
 						<tr>
@@ -252,12 +252,12 @@
 						<tr>
 							<td width="73" style="text-align:center">完成时间</td>
 							<td width="93"><input type='text'
-								style="width:100%; height:30px; background:#e9e3e3"
+								style="width:100%; height:30px; background:#EDD5DF"
 								name="deadLine"  onfocus="WdatePicker({minDate:'%y-%M-{%d+1}'})"
 								class="required" /></td>
 							<td colspan="2" width="126" style="text-align:center">监测费用(￥)</td>
 							<td colspan="3" width="374"><input type='text'
-								style="width:100%; height:30px; background:#e9e3e3" name="cost"
+								style="width:100%; height:30px; background:#EDD5DF" name="cost"
 								class="required decimal"/></td>
 							<td colspan="3" width="374" id="paymentChinese">零元整</td>
 						</tr>

@@ -111,7 +111,7 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 						.getById(delId);
 				info.setAnalysisProjectSet(null);
 				selfSendSampleInfoService.update(info);
-				selfSendSampleInfoService.delete(viewId);
+				selfSendSampleInfoService.delete(delId);
 				jsonResult = "{'info':'success'}";
 			} else {
 				jsonResult = "{'info':'failed'}";
@@ -539,43 +539,43 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		
 		switch (type) {
 		case "验收监测":
-			first="YS";
+			first="YSZ";
 			history=temp.getYS();
 			index = (int) (history + 1);
 			temp.setYS(index);
 			break;
 		case "环评监测":
-			first="HP";
+			first="HPZ";
 			history=temp.getHP();
 			index = (int) (history + 1);
 			temp.setHP(index);
 			break;
 		case "委托监测":
-			first="WT";
+			first="WTZ";
 			history=temp.getWT();
 			index = (int) (history + 1);
 			temp.setWT(index);
 			break;
 		case "执法监测":
-			first="ZF";
+			first="ZFZ";
 			history=temp.getZF();
 			index = (int) (history + 1);
 			temp.setZF(index);
 			break;
 		case "例行监测":
-			first="LX";
+			first="LXZ";
 			history=temp.getLX();
 			index = (int) (history + 1);
 			temp.setLX(index);
 			break;
 		case "应急监测":
-			first="YJ";
+			first="YJZ";
 			history=temp.getYJ();
 			index = (int) (history + 1);
 			temp.setYJ(index);
 			break;
 		case "监督监测":
-			first="JD";
+			first="JDZ";
 			history=temp.getJD();
 			index = (int) (history + 1);
 			temp.setJD(index);

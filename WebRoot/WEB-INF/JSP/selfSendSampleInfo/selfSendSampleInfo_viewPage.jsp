@@ -25,8 +25,9 @@
 	String time="";
 	Iterator<SelfSendSampleInfo> samplesIterator = samples.iterator();
 	if(samplesIterator.hasNext()){
-		name=samplesIterator.next().getUser().getName();
-		time=formatDate.format(samplesIterator.next().getDate());
+		SelfSendSampleInfo next =samplesIterator.next();
+		name=next.getUser().getName();
+		time=formatDate.format(next.getDate());
 	}
 	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
 	doc.openDataRegion("PO_client").setValue(pb.getClient());
