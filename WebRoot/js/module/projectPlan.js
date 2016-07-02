@@ -236,6 +236,11 @@ $(function() {
 						if(action=='save'){
 							var $body=$(opt.document);
 							var table=$body.find('#projectBookForm');
+//							if($("#depSel").val()==0){
+//								alert("请选择承接科室");
+//								return false;
+//							}
+							
 							var result = FieldValidation.validate3(table);
 							if(!result){
 								return false;

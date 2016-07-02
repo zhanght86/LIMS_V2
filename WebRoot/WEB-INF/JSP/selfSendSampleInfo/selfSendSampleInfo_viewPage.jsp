@@ -45,10 +45,12 @@
 		}
 			table.openCellRC(2 + i, 1).setValue((i+1)+"");
 			table.openCellRC(2 + i, 2).setValue(item.getIdentify());
-			table.openCellRC(2 + i, 3).setValue(item.getSampleState());
+			table.openCellRC(2 + i, 3).setValue(item.getSampleName());
 			table.openCellRC(2 + i, 4).setValue(names);
 			table.openCellRC(2 + i, 5).setValue(
-			item.getOther());
+			item.getSampleState());
+			table.openCellRC(2 + i, 6).setValue(
+					item.getOther());
 		i++;
 	}
 	poCtrl.setTitlebar(false); //Òþ²Ø±êÌâÀ¸

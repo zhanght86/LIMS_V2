@@ -80,12 +80,12 @@
 		<table class="tablelist" id="departmentTable" style="width: 900px">
 			<thead>
 				<tr>
-					<th>编号</th>
-					<th>样品名称</th>
-					<th>样品状态</th>
-					<th>测试项目</th>
-					<th>备注</th>
-					<th>操作</th>
+					<th style="text-align: center;">样品编号</th>
+					<th style="text-align: center;">实验室编号</th>
+					<th style="text-align: center;">样品状态/颜色</th>
+					<th style="text-align: center;">测试项目</th>
+					<th style="text-align: center;">是否完好</th>
+					<th style="text-align: center;">操作</th>
 				</tr>
 			</thead>
 			<tbody id="tbody">
@@ -105,9 +105,12 @@
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
 							data-name="analysisProjectId" id="analysisProjectId" name="analysisProjectId" >
 						</td>
-						<td><input type="text"
+						<td>
+						<label for="save_good"><input type="radio" name="other" data-name="other" value="+" id="save_good">完好</label>
+						<label for="save_bad"><input type="radio" name="other" data-name="other" value="-" id="save_bad">瑕疵</label>
+						<!-- <input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
-							data-name="other" name="other" ></td>
+							data-name="other" name="other" > --></td>
 						<td><input name="" type="button" class="scbtn" id="addBtn"
 							value="保存" /></td>
 					</tr>
@@ -207,7 +210,7 @@
 													var analysisProject = $(
 															'#analysisProjectChoose').val()
 													var other = $(
-															'input[name=other]')
+															'input[name=other]:checked')
 															.val();
 													$(
 															"<td>"

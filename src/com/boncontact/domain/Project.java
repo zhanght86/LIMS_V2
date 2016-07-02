@@ -3,6 +3,9 @@ package com.boncontact.domain;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
+
+import com.boncontact.util.Compara;
 
 /**
  * 业务工程实体 该实体作用：协调统筹整个业务流程，从合同签署到最终的交付客户，该实体均进行流程管理 记录各个阶段产生的业务编号
@@ -46,7 +49,7 @@ public class Project{
 	/* 送样方法：0：非自送样->现场监测室。1：自送样->实验分析室 */
 	private String gainSample;
 	/* 自送样样品信息 */
-	private Set<SelfSendSampleInfo> selfSendSampleInfo = new LinkedHashSet<SelfSendSampleInfo>();
+	private Set<SelfSendSampleInfo> selfSendSampleInfo = new TreeSet<SelfSendSampleInfo>();
 	/* 非自送样样品信息 */
 	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new LinkedHashSet<NonSelfSendSample>();
 	/* 交联单 */

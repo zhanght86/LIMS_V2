@@ -9,7 +9,7 @@ import java.util.Set;
  * @author 瞿龙俊
  * 
  */
-public class SelfSendSampleInfo {
+public class SelfSendSampleInfo implements Comparable<SelfSendSampleInfo> {
 	private Long id;
 	/* 自送样编号 */
 	private String identify;
@@ -17,6 +17,8 @@ public class SelfSendSampleInfo {
 	private String sampleState;
 	/* 样品名称 */
 	private String sampleName;
+	/* 样品状态、颜色 */
+	private String state;
 	/* 测试项目 */
 	private AnalysisProject analysisProject;
 	/* 测试项目集合 */
@@ -130,13 +132,28 @@ public class SelfSendSampleInfo {
 		this.analysisProjectSet = analysisProjectSet;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "SelfSendSampleInfo [id=" + id + ", identify=" + identify
 				+ ", sampleState=" + sampleState + ", sampleName=" + sampleName
-				+ ", analysisProject=" + analysisProject + ", other=" + other
-				+ ", client=" + client + ", date=" + date + ", user=" + user
-				+ ", deliver=" + deliver + ", project=" + project + "]";
+				+ ", state=" + state + ", analysisProject=" + analysisProject
+				+ ", analysisProjectSet=" + analysisProjectSet + ", other="
+				+ other + ", client=" + client + ", date=" + date + ", user="
+				+ user + ", deliver=" + deliver + ", project=" + project + "]";
+	}
+
+	@Override
+	public int compareTo(SelfSendSampleInfo o) {
+		// TODO 自动生成的方法存根
+		return this.getId() > o.getId() ? 1 : 0;
 	}
 
 }

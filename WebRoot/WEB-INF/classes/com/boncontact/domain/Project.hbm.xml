@@ -31,7 +31,7 @@
 		<property name="QualityControlDate" type="date"/>
 		<many-to-one name="QualityControlUser" class="User" column="qualityControlUser_id" lazy="false"/>
 		<many-to-one name="recordAudit" class="RecordAudit" column="recordAudit_id" lazy="false" cascade="all-delete-orphan" unique="true"/>
-		<set name="selfSendSampleInfo" cascade="all">
+		<set name="selfSendSampleInfo" cascade="all" sort="natural">
 			<key column="projectId" />
 			<one-to-many class="SelfSendSampleInfo" />
 		</set>
