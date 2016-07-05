@@ -55,6 +55,9 @@
 	Set<AnalysisProject> analysis = deliveryReceitp.getAnalysisProject();
 	
 	
+	
+	
+	
 	DataRegion dataRegion = doc.openDataRegion("PO_table");
 	Table table = dataRegion.openTable(1);
 	int i = 0;
