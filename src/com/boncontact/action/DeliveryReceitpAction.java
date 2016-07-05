@@ -239,6 +239,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(waterProject);
 						
+						System.out.println(dr);
 						deliveryReceitps.add(dr);
 					}
 					if (airProject.size() != 0) {
@@ -261,7 +262,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(airProject);
-						
+						System.out.println(dr);
 						deliveryReceitps.add(dr);
 					}
 					if (solidProject.size() != 0) {
@@ -284,12 +285,13 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(solidProject);
-						
+						System.out.println(dr);
 						deliveryReceitps.add(dr);
 					
 					}
 					
 					for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
+						deliveryReceitpService.save(deliveryReceitp);
 						System.out.println(deliveryReceitp);
 					}
 					project.setDeliveryReceitpInfo(deliveryReceitps);
@@ -407,6 +409,12 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(solidProject);
 						deliveryReceitpSet.add(dr);
+					}
+					
+					for (DeliveryReceitp dr : deliveryReceitpSet) {
+						
+						deliveryReceitpService.save(dr);
+						System.out.println(dr);
 					}
 					project.setDeliveryReceitpInfo(deliveryReceitpSet);
 					projectService.update(project);

@@ -27,7 +27,7 @@
 				/>
 		</set> -->
 		<set name="selfSendSampleInfo" table="bdc_delivery_selfSendSampleInfo" cascade="save-update">
-			<key column="delivery_id"></key>
+			<key column="delivery_id" ></key>
 			<many-to-many class="SelfSendSampleInfo" column="selfSendSample_id"/>
 		</set>
 		<many-to-one name="project" class="Project" column="projectId" />

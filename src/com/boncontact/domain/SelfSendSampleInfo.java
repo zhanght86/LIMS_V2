@@ -141,16 +141,6 @@ public class SelfSendSampleInfo implements Comparable<SelfSendSampleInfo> {
 	}
 
 	@Override
-	public String toString() {
-		return "SelfSendSampleInfo [id=" + id + ", identify=" + identify
-				+ ", sampleState=" + sampleState + ", sampleName=" + sampleName
-				+ ", state=" + state + ", analysisProject=" + analysisProject
-				+ ", analysisProjectSet=" + analysisProjectSet + ", other="
-				+ other + ", client=" + client + ", date=" + date + ", user="
-				+ user + ", deliver=" + deliver + ", project=" + project + "]";
-	}
-
-	@Override
 	public int compareTo(SelfSendSampleInfo o) {
 		// TODO 自动生成的方法存根
 		return this.getId() > o.getId() ? 1 : 0;

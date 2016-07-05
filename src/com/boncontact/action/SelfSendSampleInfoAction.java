@@ -14,6 +14,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -292,7 +293,7 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		try {
 			Long id = (Long) ActionContext.getContext().getSession()
 					.get("userId");
-			Set<SelfSendSampleInfo> selfSeSampleInfoSet = new LinkedHashSet<SelfSendSampleInfo>();
+			Set<SelfSendSampleInfo> selfSeSampleInfoSet = new TreeSet<SelfSendSampleInfo>();
 			String[] jsons = StringSplitUtils.splite(str, ",");
 			System.out.println("[str]" + str);
 			for (int i = 0; i < jsons.length; i++) {
@@ -326,7 +327,7 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		try {
 			Long id = (Long) ActionContext.getContext().getSession()
 					.get("userId");
-			Set<SelfSendSampleInfo> selfSeSampleInfoSet = new LinkedHashSet<SelfSendSampleInfo>();
+			Set<SelfSendSampleInfo> selfSeSampleInfoSet = new TreeSet<SelfSendSampleInfo>();
 			String[] jsons = StringSplitUtils.splite(str, ",");
 			for (int i = 0; i < jsons.length; i++) {
 				if (jsons[i] != null) {

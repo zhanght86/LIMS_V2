@@ -62,10 +62,10 @@
 						<td>
 							<table class="tablelist">
 								<tr>
-									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">其他</th>
+									<td style="text-align:center">样品编号</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#water" id="w">
 									<s:iterator value="#w.analysisProjectSet" id="set">
@@ -109,10 +109,10 @@
 						<td>
 							<table class="tablelist">
 								<tr>
-									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">其他</th>
+									<td style="text-align:center">样品编号</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#air" id="a">
 									<s:iterator value="#a.analysisProjectSet" id="set">
@@ -156,10 +156,10 @@
 						<td>
 							<table class="tablelist">
 								<tr>
-									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">其他</th>
+									<td style="text-align:center">样品编号</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#solid" id="solid">
 									<s:iterator value="#solid.analysisProjectSet" id="set">

@@ -140,15 +140,6 @@ public class User {
 		this.sex = sex;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", identify=" + identify + ", name=" + name
-				+ ", password=" + password + ", sex=" + sex + ", idCard="
-				+ idCard + ", tel=" + tel + ", workTel=" + workTel
-				+ ", entryTime=" + entryTime + ", address=" + address
-				+ ", contacts=" + contacts + ", contactsTel=" + contactsTel
-				+ ", role=" + role + "]";
-	}
 
 
 
