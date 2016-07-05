@@ -62,6 +62,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,6 +91,22 @@ table td {
 								</s:iterator>
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3">
+									<option>地表水</option>
+									<option>地下水</option>
+									<option>污水</option>
+									<option>海水</option>
+									<option>饮用水</option>
+									<option>土壤</option>
+									<option>污泥</option>
+									<option>有组织废气</option>
+									<option>无组织废气</option>
+									<option>环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -104,6 +121,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -134,6 +152,22 @@ table td {
 
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3">
+									<option>地表水</option>
+									<option>地下水</option>
+									<option>污水</option>
+									<option>海水</option>
+									<option>饮用水</option>
+									<option>土壤</option>
+									<option>污泥</option>
+									<option>有组织废气</option>
+									<option>无组织废气</option>
+									<option>环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -148,6 +182,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -177,6 +212,22 @@ table td {
 
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3">
+									<option>地表水</option>
+									<option>地下水</option>
+									<option>污水</option>
+									<option>海水</option>
+									<option>饮用水</option>
+									<option>土壤</option>
+									<option>污泥</option>
+									<option>有组织废气</option>
+									<option>无组织废气</option>
+									<option>环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -185,7 +236,7 @@ table td {
 	<script type="text/javascript">
 		$(function() {
 			$(".select3").uedSelect({
-				width : 350
+				width : '200%'
 			});
 			$('.viewDelivery').click(function() {
 				alert("aaa");

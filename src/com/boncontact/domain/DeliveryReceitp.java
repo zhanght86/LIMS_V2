@@ -3,6 +3,7 @@ package com.boncontact.domain;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 交接单
@@ -31,13 +32,13 @@ public class DeliveryReceitp {
 	/* 返回人 */
 	private User backUser;
 	/* 自送样列表 */
-	private Set<SelfSendSampleInfo> selfSendSampleInfo = new LinkedHashSet<SelfSendSampleInfo>();
+	private Set<SelfSendSampleInfo> selfSendSampleInfo = new TreeSet<SelfSendSampleInfo>();
 	/* 非自送样列表 */
-	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new LinkedHashSet<NonSelfSendSample>();
+	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new TreeSet<NonSelfSendSample>();
 	/* 项目 */
 	private Project project;
 	/* 分析项目 */
-	private Set<AnalysisProject> analysisProject = new LinkedHashSet<AnalysisProject>();
+	private Set<AnalysisProject> analysisProject = new TreeSet<AnalysisProject>();
 	public Long getId() {
 		return id;
 	}
