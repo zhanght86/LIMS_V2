@@ -154,7 +154,7 @@ table td {
 						</td>
 						<td>
 							<div class="vocation">
-								<select class="select3 sampleType"  data-id ="${wp.id }">
+								<select class="select3 sampleType"  data-id ="${ap.id }">
 									<option value="地表水">地表水</option>
 									<option value="地下水">地下水</option>
 									<option value="污水">污水</option>
@@ -214,7 +214,7 @@ table td {
 						</td>
 						<td>
 							<div class="vocation">
-								<select class="select3 sampleType"  data-id ="${wp.id }">
+								<select class="select3 sampleType"  data-id ="${sp.id }">
 									<option value="地表水">地表水</option>
 									<option value="地下水">地下水</option>
 									<option value="污水">污水</option>

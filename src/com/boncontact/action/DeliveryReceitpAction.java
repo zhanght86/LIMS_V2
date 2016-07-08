@@ -969,6 +969,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 			List<AnalysisProject> waterProject = new ArrayList<AnalysisProject>();
 			List<AnalysisProject> airProject = new ArrayList<AnalysisProject>();
 			List<AnalysisProject> solidProject = new ArrayList<AnalysisProject>();
+			List<Delivery_SampleType> waterType = new ArrayList<Delivery_SampleType>();
+			List<Delivery_SampleType> airType = new ArrayList<Delivery_SampleType>();
+			List<Delivery_SampleType> solidType = new ArrayList<Delivery_SampleType>();
 			if (project != null) {
 				Set<DeliveryReceitp> deliveryReceitps = project
 						.getDeliveryReceitpInfo();
@@ -1021,6 +1024,36 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					}
 
 				}
+				
+				
+				
+				for (AnalysisProject waterAnalysisProject : waterProject) {
+					System.out.println("水质项目");
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, waterAnalysisProject);
+					if (temp != null) {
+						System.out.println("测试测试测试water"+temp);
+						waterType.add(temp);
+					}
+				}
+				for (AnalysisProject airAnalysisProject : airProject) {
+					System.out.println("空气项目");
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, airAnalysisProject);
+					if (temp != null) {
+						System.out.println("测试测试测试air"+temp);
+						airType.add(temp);
+					}
+				}
+				for (AnalysisProject solidAnalysisProject : solidProject) {
+					System.out.println("固体项目");
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, solidAnalysisProject);
+					if (temp != null) {
+						System.out.println("测试测试测试solid"+temp);
+						solidType.add(temp);
+					}
+				}
 				ActionContext.getContext().put("water", water);
 				ActionContext.getContext().put("waterProject", waterProject);
 				ActionContext.getContext().put("air", air);
@@ -1028,6 +1061,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 				ActionContext.getContext().put("solid", solid);
 				ActionContext.getContext().put("solidProject", solidProject);
 				ActionContext.getContext().put("project", project);
+				ActionContext.getContext().put("waterType", waterType);
+				ActionContext.getContext().put("airType", airType);
+				ActionContext.getContext().put("solidType", solidType);
 			}
 		}
 		return "viewPage";

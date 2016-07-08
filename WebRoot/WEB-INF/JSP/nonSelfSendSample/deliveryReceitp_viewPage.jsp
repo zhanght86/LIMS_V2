@@ -53,6 +53,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,10 +64,9 @@
 							<table class="tablelist">
 								<tr>
 									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">采样地点</th>
-									<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 								</tr>
 								<s:iterator value="#water" id="w">
 									<s:iterator value="#w.analysisProjectSet" id="set">
@@ -75,7 +75,6 @@
 											<td style="text-align:center">${w.identify }</td>
 											<td style="text-align:center">${w.sampleName }</td>
 											<td style="text-align:center">${w.sampleState }</td>
-											<td style="text-align:center">${w.samplingPosition }</td>
 											<td style="text-align:center">${w.other }</td>
 										</tr>
 										</c:if>
@@ -83,6 +82,14 @@
 								</s:iterator>
 
 							</table>
+						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#waterType" id="w_s_t">
+						
+								<c:if test="${w_s_t.analysis.id == wp.id }">
+									${w_s_t.type }
+								</c:if>
+							</s:iterator>
 						</td>
 					</tr>
 				</s:iterator>
@@ -102,6 +109,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,10 +120,9 @@
 							<table class="tablelist">
 								<tr>
 									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">采样地点</th>
-									<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 								</tr>
 								<s:iterator value="#air" id="a">
 									<s:iterator value="#a.analysisProjectSet" id="set">
@@ -124,7 +131,6 @@
 											<td style="text-align:center">${a.identify }</td>
 											<td style="text-align:center">${a.sampleName }</td>
 											<td style="text-align:center">${a.sampleState }</td>
-											<td style="text-align:center">${a.samplingPosition }</td>
 											<td style="text-align:center">${a.other }</td>
 										</tr>
 										</c:if>
@@ -132,6 +138,14 @@
 								</s:iterator>
 
 							</table>
+						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#airType" id="a_s_t">
+						
+								<c:if test="${a_s_t.analysis.id == ap.id }">
+									${a_s_t.type }
+								</c:if>
+							</s:iterator>
 						</td>
 					</tr>
 				</s:iterator>
@@ -151,6 +165,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -161,10 +176,9 @@
 							<table class="tablelist">
 								<tr>
 									<th style="text-align:center">样品编号</th>
-									<th style="text-align:center">样品名称</th>
-									<th style="text-align:center">样品状态</th>
-									<th style="text-align:center">采样地点</th>
-									<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 								</tr>
 								<s:iterator value="#solid" id="solid">
 									<s:iterator value="#solid.analysisProjectSet" id="set">
@@ -173,7 +187,6 @@
 											<td style="text-align:center">${solid.identify }</td>
 											<td style="text-align:center">${solid.sampleName }</td>
 											<td style="text-align:center">${solid.sampleState }</td>
-											<td style="text-align:center">${solid.samplingPosition }</td>
 											<td style="text-align:center">${solid.other }</td>
 										</tr>
 										</c:if>
@@ -181,6 +194,15 @@
 								</s:iterator>
 
 							</table>
+						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#solidType" id="s_s_t">
+						
+								<c:if test="${s_s_t.analysis.id == sp.id }">
+									${s_s_t.type }
+								</c:if>
+								
+							</s:iterator>
 						</td>
 					</tr>
 				</s:iterator>
