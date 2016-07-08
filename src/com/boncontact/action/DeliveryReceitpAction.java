@@ -481,7 +481,28 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 				ssi.setDeliver(0);
 				selfSendSampleInfoService.update(ssi);
 			}
+			temp.setSelfSendSampleInfo(null);
 			deliveryReceitpService.delete(temp.getId());
+
+			// Project project = temp.getProject();
+			// project.setSampleTypeSet(null);
+			// projectService.update(project);
+			/*
+			 * project.setSampleTypeSet(null); projectService.update(project);
+			 */
+			/*
+			 * if (project != null) { project.setSampleTypeSet(null);
+			 * 
+			 * }
+			 */
+			/*
+			 * List<Delivery_SampleType> types = delivery_SampleTypeService
+			 * .findByProject(project);
+			 * System.out.println("length: "+types.size()); for
+			 * (Delivery_SampleType delivery_SampleType : types) {
+			 * //delivery_SampleTypeService.delete(delivery_SampleType.getId());
+			 * }
+			 */
 			jsonResult = "{'info':'success'}";
 		} catch (Exception e) {
 			System.out.println(e.toString());
