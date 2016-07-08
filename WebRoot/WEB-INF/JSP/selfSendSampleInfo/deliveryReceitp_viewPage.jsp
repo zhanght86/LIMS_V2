@@ -53,6 +53,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -82,6 +83,14 @@
 
 							</table>
 						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#waterType" id="w_s_t">
+						
+								<c:if test="${w_s_t.analysis.id == wp.id }">
+									${w_s_t.type }
+								</c:if>
+							</s:iterator>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -100,6 +109,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -129,6 +139,14 @@
 
 							</table>
 						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#airType" id="a_s_t">
+						
+								<c:if test="${a_s_t.analysis.id == ap.id }">
+									${a_s_t.type }
+								</c:if>
+							</s:iterator>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -147,6 +165,7 @@
 				<tr>
 					<th style="text-align:center">检测项目</th>
 					<th style="text-align:center">样品信息</th>
+					<th style="text-align:center">样品类别</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -176,6 +195,15 @@
 
 							</table>
 						</td>
+						<td style="text-align: center;">
+							<s:iterator value="#solidType" id="s_s_t">
+						
+								<c:if test="${s_s_t.analysis.id == sp.id }">
+									${s_s_t.type }
+								</c:if>
+								
+							</s:iterator>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -194,7 +222,7 @@
 								asyncbox
 										.open({
 											title : '查看交联单详情',
-											top:0,
+											top : 0,
 											url : "selfSendSampleInfo_deliveryReceitp_viewDetailPage.action?exportType="
 													+ type
 													+ "&viewId="

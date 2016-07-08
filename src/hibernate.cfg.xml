@@ -63,6 +63,8 @@
 	<mapping resource="com/boncontact/domain/AnalysisFrequency.hbm.xml" />
 	<mapping resource="com/boncontact/domain/OriginalRecord.hbm.xml" />
 	<mapping resource="com/boncontact/domain/AuthSignator.hbm.xml" />
+	<mapping
+		resource="com/boncontact/domain/Delivery_SampleType.hbm.xml" />
 
 
 </session-factory>

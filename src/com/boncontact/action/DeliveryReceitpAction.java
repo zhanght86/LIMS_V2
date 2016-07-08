@@ -13,6 +13,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.ServletContext;
 
@@ -24,6 +25,7 @@ import com.boncontact.base.BaseAction;
 import com.boncontact.base.DocumentHandler;
 import com.boncontact.domain.AnalysisProject;
 import com.boncontact.domain.DeliveryReceitp;
+import com.boncontact.domain.Delivery_SampleType;
 import com.boncontact.domain.NonSelfSendSample;
 import com.boncontact.domain.Project;
 import com.boncontact.domain.SelfSendSampleInfo;
@@ -49,6 +51,8 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 	private String fileName;
 	// 真实文件名，不包括路径
 	private String realFileName;
+	// 样品类型
+	private String typeList;
 
 	/**
 	 * 主界面
@@ -238,7 +242,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(waterProject);
-						
+
 						System.out.println(dr);
 						deliveryReceitps.add(dr);
 					}
@@ -287,9 +291,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setAnalysisProject(solidProject);
 						System.out.println(dr);
 						deliveryReceitps.add(dr);
-					
+
 					}
-					
+
 					for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
 						deliveryReceitpService.save(deliveryReceitp);
 						System.out.println(deliveryReceitp);
@@ -410,15 +414,33 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setAnalysisProject(solidProject);
 						deliveryReceitpSet.add(dr);
 					}
-					
+
 					for (DeliveryReceitp dr : deliveryReceitpSet) {
-						
+
 						deliveryReceitpService.save(dr);
 						System.out.println(dr);
 					}
 					project.setDeliveryReceitpInfo(deliveryReceitpSet);
 					projectService.update(project);
 				}
+
+				// 此处为样品类型Set集->Project的Demo
+				Set<Delivery_SampleType> sampleTypes = new HashSet<Delivery_SampleType>();
+				System.out.println("输出" + typeList);
+				String[] idStrings = StringSplitUtils.splite(typeList, ";");
+				for (String ids : idStrings) {
+					String[] kv = StringSplitUtils.splite(ids, ":");
+					long id = Long.parseLong(kv[0]);
+					String value = kv[1];
+					Delivery_SampleType type = new Delivery_SampleType();
+					type.setAnalysis(analysisProjectService.getById(id));
+					type.setProject(project);
+					type.setType(value);
+					sampleTypes.add(type);
+				}
+				project.setSampleTypeSet(sampleTypes);
+				projectService.update(project);
+
 			}
 			jsonResult = "{'info':'success'}";
 		} catch (Exception e) {
@@ -827,6 +849,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 			List<AnalysisProject> waterProject = new ArrayList<AnalysisProject>();
 			List<AnalysisProject> airProject = new ArrayList<AnalysisProject>();
 			List<AnalysisProject> solidProject = new ArrayList<AnalysisProject>();
+			List<Delivery_SampleType> waterType = new ArrayList<Delivery_SampleType>();
+			List<Delivery_SampleType> airType = new ArrayList<Delivery_SampleType>();
+			List<Delivery_SampleType> solidType = new ArrayList<Delivery_SampleType>();
 			if (project != null) {
 				Set<DeliveryReceitp> deliveryReceitps = project
 						.getDeliveryReceitpInfo();
@@ -848,7 +873,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -858,7 +885,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -867,12 +896,38 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
-
 				}
+
+				// 以下为新增
+				for (AnalysisProject waterAnalysisProject : waterProject) {
+
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, waterAnalysisProject);
+					if (temp != null) {
+						waterType.add(temp);
+					}
+				}
+				for (AnalysisProject airAnalysisProject : airProject) {
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, airAnalysisProject);
+					if (temp != null) {
+						airType.add(temp);
+					}
+				}
+				for (AnalysisProject solidAnalysisProject : solidProject) {
+					Delivery_SampleType temp = delivery_SampleTypeService
+							.findByAnalysis(project, solidAnalysisProject);
+					if (temp != null) {
+						solidType.add(temp);
+					}
+				}
+
 				ActionContext.getContext().put("water", water);
 				ActionContext.getContext().put("waterProject", waterProject);
 				ActionContext.getContext().put("air", air);
@@ -880,6 +935,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 				ActionContext.getContext().put("solid", solid);
 				ActionContext.getContext().put("solidProject", solidProject);
 				ActionContext.getContext().put("project", project);
+				ActionContext.getContext().put("waterType", waterType);
+				ActionContext.getContext().put("airType", airType);
+				ActionContext.getContext().put("solidType", solidType);
 			}
 		} else {
 			Set<NonSelfSendSample> selfSendSampleInfos = project
@@ -911,7 +969,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -921,7 +981,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -930,7 +992,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
@@ -947,8 +1011,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 		}
 		return "viewPage";
 	}
-	
-	
+
 	public String viewResultPage() {
 		Project project = projectService.getById(viewId);
 		if (project.getGainSample().equals("1")) {
@@ -981,7 +1044,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -991,7 +1056,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -1000,7 +1067,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
@@ -1044,7 +1113,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -1054,7 +1125,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -1063,7 +1136,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
@@ -1080,8 +1155,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 		}
 		return "viewResultPage";
 	}
-	
-	
+
 	public String viewReportPage() {
 		Project project = projectService.getById(viewId);
 		if (project.getGainSample().equals("1")) {
@@ -1114,7 +1188,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -1124,7 +1200,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -1133,7 +1211,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
@@ -1177,7 +1257,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = airItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!airProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==2) {
+						if (!airProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 2) {
 							airProject.add(item);
 						}
 					}
@@ -1187,7 +1269,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = waterItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!waterProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==1) {
+						if (!waterProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 1) {
 							waterProject.add(item);
 						}
 					}
@@ -1196,7 +1280,9 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					Set<AnalysisProject> items = solidItem
 							.getAnalysisProjectSet();
 					for (AnalysisProject item : items) {
-						if (!solidProject.contains(item)&&item.getAnalysisCategory().getDeliveryReceitp()==3) {
+						if (!solidProject.contains(item)
+								&& item.getAnalysisCategory()
+										.getDeliveryReceitp() == 3) {
 							solidProject.add(item);
 						}
 					}
@@ -1213,7 +1299,6 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 		}
 		return "viewReportPage";
 	}
-	
 
 	public String otherViewPage() {
 		List<DeliveryReceitp> deliveryReceitpList = deliveryReceitpService
@@ -1319,6 +1404,14 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 
 	public void setProjectItemHide(String projectItemHide) {
 		this.projectItemHide = projectItemHide;
+	}
+
+	public String getTypeList() {
+		return typeList;
+	}
+
+	public void setTypeList(String typeList) {
+		this.typeList = typeList;
 	}
 
 	@Override

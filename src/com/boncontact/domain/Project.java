@@ -68,6 +68,8 @@ public class Project{
 	private RecordAudit recordAudit;
 	/* 监测报告 */
 	private Set<Report> reportSet = new LinkedHashSet<Report>();
+	
+	private Set<Delivery_SampleType> sampleTypeSet = new TreeSet<>();
 
 	public Long getId() {
 		return id;
@@ -262,5 +264,14 @@ public class Project{
 	public void setContractChange(Set<ContractChange> contractChange) {
 		this.contractChange = contractChange;
 	}
+
+	public Set<Delivery_SampleType> getSampleTypeSet() {
+		return sampleTypeSet;
+	}
+
+	public void setSampleTypeSet(Set<Delivery_SampleType> sampleTypeSet) {
+		this.sampleTypeSet = sampleTypeSet;
+	}
+	
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.boncontact.domain">
+
+	<class name="Delivery_SampleType" table="bdc_delivery_SampleType">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="project" column="project_id" class="Project"></many-to-one>
+		<many-to-one name="analysis" column="analysis_id" class="AnalysisProject"></many-to-one>
+		<property name="type" type="string"></property>
+	</class>
+</hibernate-mapping>
