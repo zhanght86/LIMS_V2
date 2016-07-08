@@ -51,7 +51,7 @@ public class Project{
 	/* 自送样样品信息 */
 	private Set<SelfSendSampleInfo> selfSendSampleInfo = new TreeSet<SelfSendSampleInfo>();
 	/* 非自送样样品信息 */
-	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new LinkedHashSet<NonSelfSendSample>();
+	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new TreeSet<NonSelfSendSample>();
 	/* 交联单 */
 	private Set<DeliveryReceitp> deliveryReceitpInfo = new LinkedHashSet<DeliveryReceitp>();
 	/* 送检单 */

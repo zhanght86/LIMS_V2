@@ -91,12 +91,12 @@
 			<thead>
 				<tr>
 					<th>样品编号</th>
-					<th>样品名称</th>
-					<th>样品状态</th>
-					<th>采样地点</th>
+					<th>实验室编号</th>
+					<th>样品状态/颜色</th>
+					<!-- <th></th> -->
 					<th>测试项目</th>
-					<th>备注</th>
-					<th>操作</th>
+					<th>是否完好</th>
+					<th>操作123</th>
 				</tr>
 			</thead>
 			<tbody id="tbody">
@@ -109,9 +109,9 @@
 						<td><input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
 							data-name='sampleState' name="sampleState"></td>
-						<td><input type="text"
+						<!-- <td><input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
-							data-name='samplingPosition' name="samplingPosition"></td>
+							data-name='samplingPosition' name="samplingPosition"></td> -->
 						<td>
 							<div class="vocation">
 								<select class="select3" name="analysisProjectId"
@@ -134,7 +134,7 @@
 						<td>${s.identify }</td>
 						<td>${s.sampleName }</td>
 						<td>${s.sampleState }</td>
-						<td>${s.samplingPosition }</td>
+						<!-- <td>aaa</td> -->
 						<td>
 							<s:iterator
 								value="#s.analysisProjectSet" id="it">
@@ -262,9 +262,9 @@
 													var other = $(
 															'input[name=other]')
 															.val();
-													var samplingPosition = $(
+													/* var samplingPosition = $(
 															'input[name=samplingPosition]')
-															.val();
+															.val(); */
 													$(
 															"<td>"
 																	+ json.sampleIdentify
@@ -273,8 +273,8 @@
 																	+ "</td><td>"
 																	+ sampleState
 																	+ "</td><td>"
-																	+ samplingPosition
-																	+ "</td><td>"
+																	/* + samplingPosition
+																	+ "</td><td>" */
 																	+ analysisProject
 																	+ "</td><td>"
 																	+ other
@@ -361,11 +361,11 @@
 																						.find(
 																								'td:eq(2)')
 																						.html()
-																				+ "，采样地点："
+																				/* + "，采样地点："
 																				+ tr
 																						.find(
 																								'td:eq(3)')
-																						.html()
+																						.html() */
 																				+ "，测试项目："
 																				+ tr
 																						.find(

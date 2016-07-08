@@ -69,26 +69,30 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 
 	public String addSample() {
 		try {
-			if (viewId != null && analysisProjectId != null && analysisProjectId != "") {
-				Project pj=projectService.getById(viewId);
+			if (viewId != null && analysisProjectId != null
+					&& analysisProjectId != "") {
+				Project pj = projectService.getById(viewId);
 				String[] ids = StringSplitUtils.splite(analysisProjectId, ",");
-				Set<AnalysisProject> projects=new HashSet<AnalysisProject>();
+				Set<AnalysisProject> projects = new HashSet<AnalysisProject>();
 				for (int i = 0; i < ids.length; i++) {
-					projects.add(analysisProjectService.getById(Long.parseLong(ids[i])));
+					projects.add(analysisProjectService.getById(Long
+							.parseLong(ids[i])));
 				}
 				entity.setAnalysisProjectSet(projects);
-				if(pj!=null){
+				if (pj != null) {
 					String type = pj.gettContractId().getProjectType();
 					entity.setIdentify(AutoIdentify(type));
-				}else{
+				} else {
 					entity.setIdentify("");
 				}
-				Set<NonSelfSendSample> nonSelfSendSamples=pj.getNonSelfSendSampleInfo();
+				Set<NonSelfSendSample> nonSelfSendSamples = pj
+						.getNonSelfSendSampleInfo();
 				entity.setId(null);
+				nonSelfSendSampleService.save(entity);
 				nonSelfSendSamples.add(entity);
 				pj.setNonSelfSendSampleInfo(nonSelfSendSamples);
 				projectService.update(pj);
-				//nonSelfSendSampleService.save(entity);
+				// nonSelfSendSampleService.save(entity);
 				jsonResult = "{'info':'success','sampleId':'" + entity.getId()
 						+ "','sampleIdentify':'" + entity.getIdentify() + "'}";
 			} else {
@@ -136,11 +140,19 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 					analysisProjectService.findAll(""));
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		
-		Set<NonSelfSendSample> nonSelfSendSamples = pj.getNonSelfSendSampleInfo();
-		ActionContext.getContext().put("nowDate", nonSelfSendSamples.iterator().hasNext()?sdf.format(nonSelfSendSamples.iterator().next().getDate()):sdf.format(new Date()));
-		ActionContext.getContext().put("selfSendSampleInfoList", nonSelfSendSamples);
+
+		Set<NonSelfSendSample> nonSelfSendSamples = pj
+				.getNonSelfSendSampleInfo();
+		ActionContext.getContext()
+				.put("nowDate",
+						nonSelfSendSamples.iterator().hasNext() ? sdf
+								.format(nonSelfSendSamples.iterator().next()
+										.getDate() == null ? new Date()
+										: nonSelfSendSamples.iterator().next()
+												.getDate()) : sdf
+								.format(new Date()));
+		ActionContext.getContext().put("selfSendSampleInfoList",
+				nonSelfSendSamples);
 		return "addPage";
 	}
 
@@ -149,8 +161,9 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 			Long id = (Long) ActionContext.getContext().getSession()
 					.get("userId");
 			Project pj = projectService.getById(viewId);
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-			Set<NonSelfSendSample> nonSelfSendSamples=pj.getNonSelfSendSampleInfo();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Set<NonSelfSendSample> nonSelfSendSamples = pj
+					.getNonSelfSendSampleInfo();
 			for (NonSelfSendSample nonSelfSendSample : nonSelfSendSamples) {
 				nonSelfSendSample.setDate(sdf.parse(dateTime));
 				nonSelfSendSample.setUser(userService.getById(id));
@@ -194,11 +207,17 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 			}
 			ActionContext.getContext().put("selfSendSampleInfoList",
 					nonSelfSendSampleInfoList);
-			ActionContext.getContext().put("userName",
-					nonSelfSendSampleInfoList.get(0).getUser()==null?"":nonSelfSendSampleInfoList.get(0).getUser().getName());
+			ActionContext.getContext().put(
+					"userName",
+					nonSelfSendSampleInfoList.get(0).getUser() == null ? ""
+							: nonSelfSendSampleInfoList.get(0).getUser()
+									.getName());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			ActionContext.getContext().put("nowDate",nonSelfSendSampleInfoList.get(0).getDate()==null?"":
-					sdf.format(nonSelfSendSampleInfoList.get(0).getDate()));
+			ActionContext.getContext().put(
+					"nowDate",
+					nonSelfSendSampleInfoList.get(0).getDate() == null ? ""
+							: sdf.format(nonSelfSendSampleInfoList.get(0)
+									.getDate()));
 		} else {
 			ActionContext.getContext().put("selfSendSampleInfoList", null);
 			Long id = (Long) ActionContext.getContext().getSession()
@@ -234,8 +253,9 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 			ActionContext.getContext().put("userName", "");
 			ActionContext.getContext().put("nowDate", new Date());
 		}
-		Set<QualityControl> qualityControlList=pj.getQualityControlSet();
-		ActionContext.getContext().put("qualityControlList", qualityControlList);
+		Set<QualityControl> qualityControlList = pj.getQualityControlSet();
+		ActionContext.getContext()
+				.put("qualityControlList", qualityControlList);
 		ActionContext.getContext().put("selfSendSampleInfoList",
 				nonSelfSendSampleInfoList);
 		ActionContext.getContext().put("nextIndex",
@@ -396,54 +416,54 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 		String first = "";
 		int index = 0;
 		Encode temp = encodeService.getEncode();
-		int history=0;
-		
+		int history = 0;
+
 		switch (type) {
 		case "验收监测":
-			first="YS";
-			history=temp.getYS();
+			first = "YSA";
+			history = temp.getYS();
 			index = (int) (history + 1);
 			temp.setYS(index);
 			break;
 		case "环评监测":
-			first="HP";
-			history=temp.getHP();
+			first = "HPA";
+			history = temp.getHP();
 			index = (int) (history + 1);
 			temp.setHP(index);
 			break;
 		case "委托监测":
-			first="WT";
-			history=temp.getWT();
+			first = "WTA";
+			history = temp.getWT();
 			index = (int) (history + 1);
 			temp.setWT(index);
 			break;
 		case "执法监测":
-			first="ZF";
-			history=temp.getZF();
+			first = "ZFA";
+			history = temp.getZF();
 			index = (int) (history + 1);
 			temp.setZF(index);
 			break;
 		case "例行监测":
-			first="LX";
-			history=temp.getLX();
+			first = "LXA";
+			history = temp.getLX();
 			index = (int) (history + 1);
 			temp.setLX(index);
 			break;
 		case "应急监测":
-			first="YJ";
-			history=temp.getYJ();
+			first = "YJA";
+			history = temp.getYJ();
 			index = (int) (history + 1);
 			temp.setYJ(index);
 			break;
 		case "监督监测":
-			first="JD";
-			history=temp.getJD();
+			first = "JDA";
+			history = temp.getJD();
 			index = (int) (history + 1);
 			temp.setJD(index);
 			break;
 		default:
-			first="A";
-			history=temp.getSelfSendSample();
+			first = "A";
+			history = temp.getSelfSendSample();
 			index = (int) (history + 1);
 			temp.setSelfSendSample(index);
 			break;
@@ -492,8 +512,6 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 		this.realFileName = realFileName;
 	}
 
-
-
 	public NonSelfSendSample getEntity() {
 		return entity;
 	}
@@ -509,7 +527,6 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
-	
 
 	public String getAnalysisProjectId() {
 		return analysisProjectId;
