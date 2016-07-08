@@ -16,6 +16,7 @@ import com.boncontact.service.ContractChangeService;
 import com.boncontact.service.ContractMonitoringItemService;
 import com.boncontact.service.CustomerService;
 import com.boncontact.service.DeliveryReceitpService;
+import com.boncontact.service.Delivery_SampleTypeService;
 import com.boncontact.service.DepartmentService;
 import com.boncontact.service.DeviceService;
 import com.boncontact.service.EncodeService;
@@ -134,4 +135,6 @@ public abstract class BaseAction<T> extends ActionSupport implements
 	protected OriginalRecordService originalRecordService;
 	@Resource
 	protected AuthSignatorService authSignatorService;
+	@Resource
+	protected Delivery_SampleTypeService delivery_SampleTypeService;
 }

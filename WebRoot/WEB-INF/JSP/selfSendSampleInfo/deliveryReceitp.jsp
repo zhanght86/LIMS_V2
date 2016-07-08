@@ -94,16 +94,16 @@ table td {
 						<td>
 							<div class="vocation">
 								<select class="select3 sampleType"  data-id ="${wp.id }">
-									<option>地表水</option>
-									<option>地下水</option>
-									<option>污水</option>
-									<option>海水</option>
-									<option>饮用水</option>
-									<option>土壤</option>
-									<option>污泥</option>
-									<option>有组织废气</option>
-									<option>无组织废气</option>
-									<option>环境空气</option>
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
 								</select>
 							</div>
 						</td>
@@ -155,16 +155,16 @@ table td {
 						<td>
 							<div class="vocation">
 								<select class="select3 sampleType"  data-id ="${ap.id }">
-									<option>地表水</option>
-									<option>地下水</option>
-									<option>污水</option>
-									<option>海水</option>
-									<option>饮用水</option>
-									<option>土壤</option>
-									<option>污泥</option>
-									<option>有组织废气</option>
-									<option>无组织废气</option>
-									<option>环境空气</option>
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
 								</select>
 							</div>
 						</td>
@@ -215,16 +215,16 @@ table td {
 						<td>
 							<div class="vocation">
 								<select class="select3 sampleType" data-id ="${sp.id }">
-									<option>地表水</option>
-									<option>地下水</option>
-									<option>污水</option>
-									<option>海水</option>
-									<option>饮用水</option>
-									<option>土壤</option>
-									<option>污泥</option>
-									<option>有组织废气</option>
-									<option>无组织废气</option>
-									<option>环境空气</option>
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
 								</select>
 							</div>
 						</td>
