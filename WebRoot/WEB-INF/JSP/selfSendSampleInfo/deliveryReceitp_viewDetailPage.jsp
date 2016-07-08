@@ -1,3 +1,5 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="com.boncontact.domain.Delivery_SampleType"%>
 <%@page import="com.boncontact.domain.DeliveryReceitp"%>
 <%@page import="com.boncontact.domain.AnalysisProject"%>
 <%@page import="java.util.jar.Attributes.Name"%>
@@ -32,219 +34,205 @@
 	
 	String exportType=(String)ActionContext.getContext().get("exportType");
 	for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
+		//如果是水质交联单
 		if (exportType.equals("water")
 		&& deliveryReceitp.getSamplesType() == 1) {
 	
 	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
-	
-	//Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+
 	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
 	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+
 	doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
 	
-	long max_id=0,min_id=0;
+	SelfSendSampleInfo max_id=null,min_id=null;
 	if(selfSendSampleInfos.size()>0){
 		SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
-		max_id=min_id=first.getId();
+		max_id=min_id=first;
 		doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
 		doc.openDataRegion("PO_user").setValue(first.getUser().getName());
 	}
-	
-	Set<AnalysisProject> analysis = deliveryReceitp.getAnalysisProject();
-	
-	
-	
-	
-	
 	DataRegion dataRegion = doc.openDataRegion("PO_table");
 	Table table = dataRegion.openTable(1);
-	int i = 0;
-	/* for(SelfSendSampleInfo item:samples){
-		
-	} */
-	
-	
-	
+	int i = 0;	
 	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-		System.out.println("编号为"+selfSendSampleInfo.getId());
-		if(selfSendSampleInfo.getId()>max_id) max_id=selfSendSampleInfo.getId();
-		if(selfSendSampleInfo.getId()<min_id) min_id=selfSendSampleInfo.getId();
-		
-		
-		
-		
-		
-		//Set<AnalysisProject> projects=item.getAnalysisProjectSet();
-		//String names="";
-		/* for(AnalysisProject analysis:projects){
-			names+=analysis.getName()+";";
-		} */
-			table.openCellRC(6 + i, 1).setValue((i+1)+"");
-			table.openCellRC(6 + i, 2).setValue("aa");
-			table.openCellRC(6 + i, 3).setValue("bb");
-			table.openCellRC(6 + i, 4).setValue("cc");
-			table.openCellRC(6 + i, 5).setValue("dd");
-		i++;
-		
-		
+		Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
+		for(AnalysisProject ap:analysisProjects){
+			if(ap.getAnalysisCategory().getDeliveryReceitp() == 1){
+				if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+				if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+			}
+		}
 	}
 	
-	/* doc.openDataRegion("PO_transferDate").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
-	doc.openDataRegion("PO_transferDate2").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser2").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser2").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate2").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser2").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
 	
 	
-	doc.openDataRegion("PO_other").setValue("");
-	doc.openDataRegion("PO_other2").setValue("");
-	// 水和废水
-	doc.openDataRegion("PO_samplingDate").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType").setValue(deliveryReceitp.getMonitoringType());
-	doc.openDataRegion("PO_samplingDate2").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType2").setValue(deliveryReceitp.getMonitoringType());
-	Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
-	.getSelfSendSampleInfo();
-	String identifys="";
-	String status="";
-	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-		Set<AnalysisProject> projectList=selfSendSampleInfo.getAnalysisProjectSet();
-		for(AnalysisProject analysisProject:projectList){
-	if (analysisProject.getAnalysisCategory().getDeliveryReceitp()==1&&!waterProject.contains(analysisProject)) {
-		waterProject.add(analysisProject);
-	}
-		if(!status.contains(selfSendSampleInfo.getSampleState())){
-	status+=selfSendSampleInfo.getSampleState()+";";
+	doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
+	
+	
+	
+	Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
+	Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
+	System.out.println(analysisProjects.size());
+	for(AnalysisProject as : analysisProjects){
+		for(Delivery_SampleType sample:sampleTypes){
+	if(sample.getAnalysis().getId() == as.getId()){
+		table.openCellRC(6 + i, 1).setValue((i+1)+"");
+		table.openCellRC(6 + i, 2).setValue(sample.getType());
+		table.openCellRC(6 + i, 3).setValue(as.getName());
+		int count = 0;
+		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
+			Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+			for(AnalysisProject ap:projectSet){
+				if(ap.getId() == as.getId()){
+					count++;
+				}
+			}
 		}
-		if(!identifys.contains(selfSendSampleInfo.getIdentify())){
-	identifys+=selfSendSampleInfo.getIdentify()+";";
-		}
+		table.openCellRC(6 + i, 4).setValue(count+"");
+	i++;	
+		
 		
 	}
-	doc.openDataRegion("PO_sampleIdentify").setValue(identifys);
-	doc.openDataRegion("PO_sampleState").setValue(status);
-	doc.openDataRegion("PO_sampleIdentify2").setValue(identifys);
-	doc.openDataRegion("PO_sampleState2").setValue(status);
 		}
-	doc.openDataRegion("PO_itemNum").setValue(waterProject.size()+"");
-	doc.openDataRegion("PO_itemNum2").setValue(waterProject.size()+"");
-	String projectStr="";
-	for (AnalysisProject analysisProject : waterProject) {
-		projectStr+=analysisProject.getName()+";";
 	}
-	doc.openDataRegion("PO_analysisProject").setValue(projectStr);
-	doc.openDataRegion("PO_analysisProject2").setValue(projectStr); */
 	}
 		
 		if (exportType.equals("solid")
 		&& deliveryReceitp.getSamplesType() == 0) {
-	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-	// 土壤
-	/* doc.openDataRegion("PO_transferDate").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
-	doc.openDataRegion("PO_transferDate2").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser2").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser2").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate2").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser2").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
-	doc.openDataRegion("PO_other").setValue("");
-	doc.openDataRegion("PO_other2").setValue("");
-	doc.openDataRegion("PO_samplingDate").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType").setValue(deliveryReceitp.getMonitoringType());
-	doc.openDataRegion("PO_samplingDate2").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType2").setValue(deliveryReceitp.getMonitoringType());
-	Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
-	.getSelfSendSampleInfo();
-	String identifys="";
-	String status="";
-	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-		Set<AnalysisProject> projectList=selfSendSampleInfo.getAnalysisProjectSet();
-		for(AnalysisProject analysisProject:projectList){
-	if (analysisProject.getAnalysisCategory().getDeliveryReceitp()==3&&!solidProject.contains(analysisProject)) {
-		solidProject.add(analysisProject);
-	}
-		if(!status.contains(selfSendSampleInfo.getSampleState())){
-	status+=selfSendSampleInfo.getSampleState()+";";
-		}
-		if(!identifys.contains(selfSendSampleInfo.getIdentify())){
-	identifys+=selfSendSampleInfo.getIdentify()+";";
-		}
-	}
-	doc.openDataRegion("PO_sampleIdentify").setValue(identifys);
-	doc.openDataRegion("PO_sampleState").setValue(status);
-	doc.openDataRegion("PO_sampleIdentify2").setValue(identifys);
-	doc.openDataRegion("PO_sampleState2").setValue(status);
-		}
-	doc.openDataRegion("PO_itemNum").setValue(solidProject.size()+"");
-	doc.openDataRegion("PO_itemNum2").setValue(solidProject.size()+"");
-	String projectStr="";
-	for (AnalysisProject analysisProject : solidProject) {
-		projectStr+=analysisProject.getName()+";";
-	}
-	doc.openDataRegion("PO_analysisProject").setValue(projectStr);
-	doc.openDataRegion("PO_analysisProject2").setValue(projectStr); */
+			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+
+			Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
+			selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+
+			doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
+			
+			SelfSendSampleInfo max_id=null,min_id=null;
+			if(selfSendSampleInfos.size()>0){
+				SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
+				max_id=min_id=first;
+				doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
+				doc.openDataRegion("PO_user").setValue(first.getUser().getName());
+			}
+			DataRegion dataRegion = doc.openDataRegion("PO_table");
+			Table table = dataRegion.openTable(1);
+			int i = 0;	
+			for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
+				Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
+				for(AnalysisProject ap:analysisProjects){
+					if(ap.getAnalysisCategory().getDeliveryReceitp() == 3){
+						if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+						if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+					}
+				}
+			}
+			
+			
+			
+			doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
+			
+			
+			
+			Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
+			Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
+			System.out.println(analysisProjects.size());
+			for(AnalysisProject as : analysisProjects){
+				for(Delivery_SampleType sample:sampleTypes){
+			if(sample.getAnalysis().getId() == as.getId()){
+				table.openCellRC(6 + i, 1).setValue((i+1)+"");
+				table.openCellRC(6 + i, 2).setValue(sample.getType());
+				table.openCellRC(6 + i, 3).setValue(as.getName());
+				int count = 0;
+				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
+					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+					for(AnalysisProject ap:projectSet){
+						if(ap.getId() == as.getId()){
+							count++;
+						}
+					}
+				}
+				table.openCellRC(6 + i, 4).setValue(count+"");
+			i++;	
+				
+				
+			}
+				}
+			}
+			
+			
 	}
 		
 		if (exportType.equals("air")
 		&& deliveryReceitp.getSamplesType() ==2) {
-	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-	// 空气
-	/* doc.openDataRegion("PO_transferDate").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
-	doc.openDataRegion("PO_transferDate2").setValue(deliveryReceitp.getTransferDate()==null?"":formatDate.format(deliveryReceitp.getTransferDate()));
-	doc.openDataRegion("PO_transferUser2").setValue(deliveryReceitp.getTransferUser()==null?"":deliveryReceitp.getTransferUser().getName());
-	doc.openDataRegion("PO_receiverUser2").setValue(deliveryReceitp.getReceiverUser()==null?"":deliveryReceitp.getReceiverUser().getName());
-	doc.openDataRegion("PO_backDate2").setValue(deliveryReceitp.getBackDate()==null?"":formatDate.format(deliveryReceitp.getBackDate()));
-	doc.openDataRegion("PO_backUser2").setValue(deliveryReceitp.getBackUser()==null?"":deliveryReceitp.getBackUser().getName());
-	doc.openDataRegion("PO_other").setValue("");
-	doc.openDataRegion("PO_other2").setValue("");
-	doc.openDataRegion("PO_samplingDate").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType").setValue(deliveryReceitp.getMonitoringType());
-	doc.openDataRegion("PO_samplingDate2").setValue(deliveryReceitp.getSamplingDate()==null?"":formatDate.format(deliveryReceitp.getSamplingDate()));
-	doc.openDataRegion("PO_samplesType2").setValue(deliveryReceitp.getMonitoringType());
-	Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
-	.getSelfSendSampleInfo();
-	String identifys="";
-	String status="";
-	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-		Set<AnalysisProject> projectList=selfSendSampleInfo.getAnalysisProjectSet();
-		for(AnalysisProject analysisProject:projectList){
-	if (analysisProject.getAnalysisCategory().getDeliveryReceitp()==2&&!airProject.contains(analysisProject)) {
-		airProject.add(analysisProject);
-	}
-		if(!status.contains(selfSendSampleInfo.getSampleState())){
-	status+=selfSendSampleInfo.getSampleState()+";";
-		}
-		if(!identifys.contains(selfSendSampleInfo.getIdentify())){
-	identifys+=selfSendSampleInfo.getIdentify()+";";
-		}
-	}
-	doc.openDataRegion("PO_sampleIdentify").setValue(identifys);
-	doc.openDataRegion("PO_sampleState").setValue(status);
-	doc.openDataRegion("PO_sampleIdentify2").setValue(identifys);
-	doc.openDataRegion("PO_sampleState2").setValue(status);
-		}
-	doc.openDataRegion("PO_itemNum").setValue(airProject.size()+"");
-	doc.openDataRegion("PO_itemNum2").setValue(airProject.size()+"");
-	String projectStr="";
-	for (AnalysisProject analysisProject : airProject) {
-		projectStr+=analysisProject.getName()+";";
-	}
-	doc.openDataRegion("PO_analysisProject").setValue(projectStr);
-	doc.openDataRegion("PO_analysisProject2").setValue(projectStr); */
+
+			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+
+			Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
+			selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+
+			doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
+			
+			SelfSendSampleInfo max_id=null,min_id=null;
+			if(selfSendSampleInfos.size()>0){
+				SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
+				max_id=min_id=first;
+				doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
+				doc.openDataRegion("PO_user").setValue(first.getUser().getName());
+			}
+			DataRegion dataRegion = doc.openDataRegion("PO_table");
+			Table table = dataRegion.openTable(1);
+			int i = 0;	
+			for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
+				Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
+				for(AnalysisProject ap:analysisProjects){
+					if(ap.getAnalysisCategory().getDeliveryReceitp() == 2){
+						if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+						if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+					}
+				}
+			}
+			
+			
+			
+			doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
+			
+			
+			
+			Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
+			Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
+			System.out.println(analysisProjects.size());
+			for(AnalysisProject as : analysisProjects){
+				for(Delivery_SampleType sample:sampleTypes){
+			if(sample.getAnalysis().getId() == as.getId()){
+				table.openCellRC(6 + i, 1).setValue((i+1)+"");
+				table.openCellRC(6 + i, 2).setValue(sample.getType());
+				table.openCellRC(6 + i, 3).setValue(as.getName());
+				int count = 0;
+				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
+					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+					for(AnalysisProject ap:projectSet){
+						if(ap.getId() == as.getId()){
+							count++;
+						}
+					}
+				}
+				table.openCellRC(6 + i, 4).setValue(count+"");
+			i++;	
+				
+				
+			}
+				}
+			}
+			
+			
+	
+	
 	}
  }
 

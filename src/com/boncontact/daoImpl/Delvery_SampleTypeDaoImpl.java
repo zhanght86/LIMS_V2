@@ -20,7 +20,7 @@ public class Delvery_SampleTypeDaoImpl extends BaseDaoImpl<Delivery_SampleType>
 		List<Delivery_SampleType> delivery_SampleTypes = getSession()
 				.createQuery(
 						"FROM Delivery_SampleType d WHERE d.project ="
-								+ project).list();
+								+ project.getId()).list();
 		return delivery_SampleTypes;
 	}
 
