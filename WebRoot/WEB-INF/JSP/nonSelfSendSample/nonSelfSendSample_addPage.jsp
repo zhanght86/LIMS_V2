@@ -82,11 +82,11 @@
 			<thead>
 				<tr>
 					<th>样品编号</th>
-					<th>样品名称</th>
-					<th>样品状态</th>
-					<th>采样地点</th>
+					<th>实验室编号</th>
+					<th>样品状态/颜色</th>
+					<!-- <th></th> -->
 					<th>测试项目</th>
-					<th>备注</th>
+					<th>是否完好</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -100,9 +100,9 @@
 						<td><input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
 							data-name='sampleState' name="sampleState"></td>
-						<td><input type="text"
+						<!-- <td><input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
-							data-name='samplingPosition' name="samplingPosition"></td>
+							data-name='samplingPosition' name="samplingPosition"></td> -->
 						<td><input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
 							id="analysisProjectChoose" placeholder="请选择检测项目"> <input
@@ -110,9 +110,15 @@
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
 							data-name="analysisProjectId" id="analysisProjectId"
 							name="analysisProjectId"></td>
-						<td><input type="text"
+						<td>
+						<!-- <input type="text"
 							style="width: 80%; border: solid 1px #ced9df; height: 28px"
-							data-name="other" name="other"></td>
+							data-name="other" name="other"> -->
+							
+							<label for="save_good"><input type="radio" name="other" data-name="other" value="+" id="save_good">完好</label>
+						<label for="save_bad"><input type="radio" name="other" data-name="other" value="-" id="save_bad">瑕疵</label>
+							
+						</td>
 						<td><input name="" type="button" class="scbtn" id="addBtn"
 							value="保存" /></td>
 					</tr>
@@ -122,7 +128,7 @@
 						<td>${s.identify }</td>
 						<td>${s.sampleName }</td>
 						<td>${s.sampleState }</td>
-						<td>${s.samplingPosition }</td>
+						<%-- <td>${s.samplingPosition }</td> --%>
 						<td><s:iterator
 								value="#s.analysisProjectSet" id="it">
 									${it.name },
@@ -247,11 +253,11 @@
 																						.find(
 																								'td:eq(2)')
 																						.html()
-																				+ "，采样地点："
+																				/* + "，采样地点："
 																				+ tr
 																						.find(
 																								'td:eq(3)')
-																						.html()
+																						.html() */
 																				+ "，测试项目："
 																				+ tr
 																						.find(
@@ -348,11 +354,11 @@
 															'#analysisProjectChoose')
 															.val();
 													var other = $(
-															'input[name=other]')
-															.val();
-													var samplingPosition = $(
+													'input[name=other]:checked')
+													.val();
+													/* var samplingPosition = $(
 															'input[name=samplingPosition]')
-															.val();
+															.val(); */
 													$(
 															"<td>"
 																	+ json.sampleIdentify
@@ -361,8 +367,8 @@
 																	+ "</td><td>"
 																	+ sampleState
 																	+ "</td><td>"
-																	+ samplingPosition
-																	+ "</td><td>"
+																	/* + samplingPosition
+																	+ "</td><td>" */
 																	+ analysisProject
 																	+ "</td><td>"
 																	+ other

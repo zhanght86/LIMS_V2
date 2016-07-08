@@ -9,7 +9,7 @@ import java.util.Set;
  * @author 瞿龙俊
  * 
  */
-public class NonSelfSendSample {
+public class NonSelfSendSample implements Comparable<NonSelfSendSample> {
 	private Long id;
 	/* 非自送样编号 */
 	private String identify;
@@ -140,6 +140,12 @@ public class NonSelfSendSample {
 				+ ", analysisProject=" + analysisProject + ", other=" + other
 				+ ", date=" + date + ", user=" + user + ", deliver=" + deliver
 				+ ", project=" + project + "]";
+	}
+
+	@Override
+	public int compareTo(NonSelfSendSample o) {
+		// TODO 自动生成的方法存根
+		return this.getId() > o.getId() ? 1 : 0;
 	}
 
 	

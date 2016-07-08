@@ -62,6 +62,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -72,9 +73,9 @@ table td {
 							<table>
 								<tr>
 									<td style="text-align:center">样品编号</td>
-									<td style="text-align:center">样品名称</td>
-									<td style="text-align:center">样品状态</td>
-									<td style="text-align:center">其他</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#water" id="w">
 									<s:iterator value="#w.analysisProjectSet" id="set">
@@ -90,6 +91,22 @@ table td {
 								</s:iterator>
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3 sampleType"  data-id ="${wp.id }">
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -104,6 +121,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -114,9 +132,9 @@ table td {
 							<table>
 								<tr>
 									<td style="text-align:center">样品编号</td>
-									<td style="text-align:center">样品名称</td>
-									<td style="text-align:center">样品状态</td>
-									<td style="text-align:center">其他</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#air" id="a">
 									<s:iterator value="#a.analysisProjectSet" id="set">
@@ -134,6 +152,22 @@ table td {
 
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3 sampleType"  data-id ="${wp.id }">
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -148,6 +182,7 @@ table td {
 				<tr>
 					<td style="text-align:center">检测项目</td>
 					<td style="text-align:center">样品信息</td>
+					<td style="text-align:center">样品类别</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -158,9 +193,9 @@ table td {
 							<table>
 								<tr>
 									<td style="text-align:center">样品编号</td>
-									<td style="text-align:center">样品名称</td>
-									<td style="text-align:center">样品状态</td>
-									<td style="text-align:center">其他</td>
+									<td style="text-align:center">实验室编号</td>
+									<td style="text-align:center">样品状态/颜色</td>
+									<td style="text-align:center">是否完好</td>
 								</tr>
 								<s:iterator value="#solid" id="solid">
 									<s:iterator value="#solid.analysisProjectSet" id="set">
@@ -177,6 +212,22 @@ table td {
 
 							</table>
 						</td>
+						<td>
+							<div class="vocation">
+								<select class="select3 sampleType"  data-id ="${wp.id }">
+									<option value="地表水">地表水</option>
+									<option value="地下水">地下水</option>
+									<option value="污水">污水</option>
+									<option value="海水">海水</option>
+									<option value="饮用水">饮用水</option>
+									<option value="土壤">土壤</option>
+									<option value="污泥">污泥</option>
+									<option value="有组织废气">有组织废气</option>
+									<option value="无组织废气">无组织废气</option>
+									<option value="环境空气">环境空气</option>
+								</select>
+							</div>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -185,7 +236,7 @@ table td {
 	<script type="text/javascript">
 		$(function() {
 			$(".select3").uedSelect({
-				width : 350
+				width : '200%'
 			});
 			$('.viewDelivery').click(function() {
 				alert("aaa");

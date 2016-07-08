@@ -243,8 +243,20 @@ $(function() {
 					var $body=$(opt.document);
 					asyncbox.confirm('是否一键生成该项目的所有交联单？', '生成', function(action) {　
 						if (action == 'ok') {
+							var oSelect = $body.find(".sampleType");
+							var typeList = "";
+							for(var i=0;i<oSelect.length;i++){
+								/*console.log($(oSelect[i]).data("id"));
+								console.log($(oSelect[i]).find("option:selected").val());*/
+								var str = $(oSelect[i]).data("id")+":"+$(oSelect[i]).find("option:selected").val();
+								if(i!=oSelect.length-1){
+									typeList+=(str+";");
+								}else{
+									typeList+=str;
+								}
+							}
 							$.ajax({
-								url:"deliveryReceitp_deliveryReceitp_add.action?viewId="+id,
+								url:"deliveryReceitp_deliveryReceitp_add.action?viewId="+id+"&typeList="+typeList,
 								async:false,
 								success:function(data){
 									var json = eval('('+data+')');

@@ -46,17 +46,19 @@
 			table.insertRowAfter(table.openCellRC(1+i, 1));
 			table.openCellRC(2 + i, 1).setValue((i+1)+"");
 			table.openCellRC(2 + i, 2).setValue(item.getIdentify());
-			table.openCellRC(2 + i, 3).setValue(item.getSampleState());
-			table.openCellRC(2 + i, 4).setValue(item.getSamplingPosition());
-			table.openCellRC(2 + i, 5).setValue(names);
+			table.openCellRC(2 + i, 3).setValue(item.getSampleName());
+			/* table.openCellRC(2 + i, 4).setValue(item.getSamplingPosition()); */
+			table.openCellRC(2 + i, 4).setValue(names);
+			table.openCellRC(2 + i, 5).setValue(
+			item.getSampleState());
 			table.openCellRC(2 + i, 6).setValue(
-			item.getOther());
+					item.getOther());
 		i++;
 	}
-	int remainder = i%17;
+	/* int remainder = i%17;
 		for(int m=0;m<(17-remainder);m++){
 			table.insertRowAfter(table.openCellRC(1+i, 1));
-		}
+		} */
 	poCtrl.setTitlebar(false); //隐藏标题栏
 	//poCtrl.setMenubar(false); //隐藏菜单栏
 	poCtrl.setOfficeToolbars(false);//隐藏Office工具条
