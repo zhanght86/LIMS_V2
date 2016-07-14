@@ -56,9 +56,9 @@
 				<table class="tablelist">
 					<tr>
 						<th style="text-align:center">样品编号</th>
-						<th style="text-align:center">样品名称</th>
-						<th style="text-align:center">样品状态</th>
-						<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 					</tr>
 					<s:iterator value="#waterInspect" id="w">
 						<s:iterator value="#w.analysisProjectSet" id="set">
@@ -93,9 +93,9 @@
 				<table class="tablelist">
 					<tr>
 						<th style="text-align:center">样品编号</th>
-						<th style="text-align:center">样品名称</th>
-						<th style="text-align:center">样品状态</th>
-						<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 					</tr>
 					<s:iterator value="#solidInspect" id="w">
 						<s:iterator value="#w.analysisProjectSet" id="set">
@@ -131,9 +131,9 @@
 				<table class="tablelist">
 					<tr>
 						<th style="text-align:center">样品编号</th>
-						<th style="text-align:center">样品名称</th>
-						<th style="text-align:center">样品状态</th>
-						<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 					</tr>
 					<s:iterator value="#fixedInspect" id="w">
 						<s:iterator value="#w.analysisProjectSet" id="set">
@@ -167,9 +167,9 @@
 				<table class="tablelist">
 					<tr>
 						<th style="text-align:center">样品编号</th>
-						<th style="text-align:center">样品名称</th>
-						<th style="text-align:center">样品状态</th>
-						<th style="text-align:center">其他</th>
+									<th style="text-align:center">实验室编号</th>
+									<th style="text-align:center">样品状态/颜色</th>
+									<th style="text-align:center">是否完好</th>
 					</tr>
 					<s:iterator value="#airInspect" id="w">
 						<s:iterator value="#w.analysisProjectSet" id="set">

@@ -22,6 +22,7 @@ import com.boncontact.base.BaseAction;
 import com.boncontact.base.DocumentHandler;
 import com.boncontact.domain.AnalysisProject;
 import com.boncontact.domain.DeliveryReceitp;
+import com.boncontact.domain.Delivery_SampleType;
 import com.boncontact.domain.InspectionSheet;
 import com.boncontact.domain.InspectionSheet_Air;
 import com.boncontact.domain.InspectionSheet_Result;
@@ -825,8 +826,9 @@ public class InspectionSheetAction extends BaseAction<InspectionSheet> {
 					ActionContext.getContext().put("sheet", inspectionSheet);
 				}
 			}
-
+			Delivery_SampleType sampleType =  delivery_SampleTypeService.findByAnalysis(pj, analysisProject);
 			ActionContext.getContext().put("entity", pj);
+			ActionContext.getContext().put("sampleType", sampleType);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
