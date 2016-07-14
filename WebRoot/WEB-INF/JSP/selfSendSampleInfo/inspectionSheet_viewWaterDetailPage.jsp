@@ -1,4 +1,5 @@
 
+<%@page import="com.boncontact.domain.Delivery_SampleType"%>
 <%@page import="com.boncontact.domain.NonSelfSendSample"%>
 <%@page import="com.boncontact.domain.InspectionSheet_Water"%>
 <%@page import="com.boncontact.domain.InspectionSheet_Solid"%>
@@ -27,6 +28,7 @@
 	Project entity = (Project) ActionContext
 	.getContext().get("entity");
 	InspectionSheet inspectionSheet = (InspectionSheet)ActionContext.getContext().get("sheet");
+	Delivery_SampleType sampleType=(Delivery_SampleType)ActionContext.getContext().get("sampleType");
 	SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 	if(inspectionSheet!=null){
 		DataRegion dataRegion = doc.openDataRegion("PO_table");
@@ -45,7 +47,7 @@
 				}
 					table.insertRowAfter(table.openCellRC(1+i, 1));
 					table.openCellRC(2 + i, 1).setValue(info.getIdentify());
-					table.openCellRC(2 + i, 2).setValue(info.getSampleState());
+					table.openCellRC(2 + i, 2).setValue(sampleType==null?"":sampleType.getType());
 					table.openCellRC(2 + i, 3).setValue(water.getAnalysisResult()==0.0?"":water.getAnalysisResult()+"");
 				i++;
 			}

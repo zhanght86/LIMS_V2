@@ -44,10 +44,10 @@
 				<thead>
 					<tr>
 						<th style="text-align: center;">样品编号</th>
-						<th style="text-align: center;">样品名称</th>
-						<th style="text-align: center;">样品状态</th>
+						<th style="text-align: center;">实验室编号</th>
+						<th style="text-align: center;">样品状态/颜色</th>
 						<th>测试项目</th>
-						<th>备注</th>
+						<th style="text-align: center;">是否完好</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,7 +61,7 @@
 								${it.name },
 							</s:iterator>
 						</td>
-							<td>${s.other }</td>
+							<td style="text-align: center;">${s.other }</td>
 						</tr>
 					</s:iterator>
 
