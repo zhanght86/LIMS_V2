@@ -33,14 +33,22 @@
 	List<AnalysisProject> solidProject = new ArrayList<AnalysisProject>();
 	
 	String exportType=(String)ActionContext.getContext().get("exportType");
+	
+	doc.openDataRegion("PO_condition").setValue(entity.getPackage_condition()==0?"完好":entity.getPackage_condition()==1?"破损":"玷污");
+	doc.openDataRegion("PO_tag").setValue(entity.getSample_Tag()==null?"":entity.getSample_Tag());
+	doc.openDataRegion("PO_additives").setValue(entity.getSolid_Additives()==null?"":entity.getSolid_Additives());
+	
 	for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
 		//如果是水质交联单
 		if (exportType.equals("water")
 		&& deliveryReceitp.getSamplesType() == 1) {
 	
-	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
-	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+	//doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+	//doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+	//doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+	
+	
+	
 
 	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
 	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();

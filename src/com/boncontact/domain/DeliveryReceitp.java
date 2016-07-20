@@ -37,6 +37,14 @@ public class DeliveryReceitp {
 	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new TreeSet<NonSelfSendSample>();
 	/* 项目 */
 	private Project project;
+	
+	/*样品包装情况：样品管理员填*/
+	private int package_condition;
+	/*样品标识：样品管理员填*/
+	private String sample_Tag;
+	/*固定剂添加情况：样品管理员填*/
+	private String solid_Additives;
+	
 	/* 分析项目 */
 	private Set<AnalysisProject> analysisProject = new TreeSet<AnalysisProject>();
 	public Long getId() {
@@ -123,6 +131,25 @@ public class DeliveryReceitp {
 	}
 	public void setBackUser(User backUser) {
 		this.backUser = backUser;
+	}
+	
+	public int getPackage_condition() {
+		return package_condition;
+	}
+	public void setPackage_condition(int package_condition) {
+		this.package_condition = package_condition;
+	}
+	public String getSample_Tag() {
+		return sample_Tag;
+	}
+	public void setSample_Tag(String sample_Tag) {
+		this.sample_Tag = sample_Tag;
+	}
+	public String getSolid_Additives() {
+		return solid_Additives;
+	}
+	public void setSolid_Additives(String solid_Additives) {
+		this.solid_Additives = solid_Additives;
 	}
 	@Override
 	public String toString() {

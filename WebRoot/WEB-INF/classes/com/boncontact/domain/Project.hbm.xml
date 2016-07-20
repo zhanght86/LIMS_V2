@@ -31,10 +31,7 @@
 		<property name="QualityControlDate" type="date" />
 
 
-		<property name="package_condition" type="integer" />
-		<property name="sample_Tag" type="string" />
-		<property name="solid_Additives" type="string" />
-
+	
 
 		<many-to-one name="QualityControlUser" class="User"
 			column="qualityControlUser_id" lazy="false" />

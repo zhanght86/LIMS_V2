@@ -47,10 +47,12 @@ public class SampleTransferAction extends BaseAction<Project> {
 		try {
 			if (viewId != null) {
 				Project pj = projectService.getById(viewId);
-				pj.setSample_Tag(tag);
-				pj.setPackage_condition(condition);
-				System.out.println(additives);
-				pj.setSolid_Additives(additives);
+				//重新设计送检单接收信息，不应该是project字段，而应该是交联单字段
+				
+				//pj.setSample_Tag(tag);
+				//pj.setPackage_condition(condition);
+				//System.out.println(additives);
+				//pj.setSolid_Additives(additives);
 				projectService.update(pj);
 				jsonResult = "{'info':'success'}";
 			}
