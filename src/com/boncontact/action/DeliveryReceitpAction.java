@@ -436,6 +436,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 					type.setAnalysis(analysisProjectService.getById(id));
 					type.setProject(project);
 					type.setType(value);
+					type.setDeliver("0");
 					sampleTypes.add(type);
 				}
 				project.setSampleTypeSet(sampleTypes);

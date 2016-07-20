@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.boncontact.base.BaseAction;
 import com.boncontact.domain.DeliveryReceitp;
+import com.boncontact.domain.Delivery_SampleType;
 import com.boncontact.domain.InspectionSheet;
 import com.boncontact.domain.NonSelfSendSample;
 import com.boncontact.domain.Project;
@@ -24,8 +25,14 @@ public class SampleTransferAction extends BaseAction<Project> {
 	private static final long serialVersionUID = 1625720355129364762L;
 	private Long viewId;
 	private String ids;
+	private String desp;
+	private int saveWay;
 	/* 用于存放JSON生成后的字符串结果 */
 	private String jsonResult;
+
+	private int condition;
+	private String tag;
+	private String additives;
 
 	public String main() {
 		List<Project> projectList = projectService.findAll(" WHERE process=4");
@@ -38,37 +45,15 @@ public class SampleTransferAction extends BaseAction<Project> {
 
 	public String receive() {
 		try {
-			Project pj = projectService.getById(viewId);
-			Set<DeliveryReceitp> deliveryReceitpSet = pj
-					.getDeliveryReceitpInfo();
-			Long id = (Long) ActionContext.getContext().getSession()
-					.get("userId");
-			for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
-				// deliveryReceitp.setReceiverUser(userService.getById(id));
-				if (pj.getGainSample().equals("1")) {
-					Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
-							.getSelfSendSampleInfo();
-					for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-						selfSendSampleInfo.setDeliver(1);
-						selfSendSampleInfoService.update(selfSendSampleInfo);
-					}
-				} else {
-					Set<NonSelfSendSample> selfSendSampleInfos = deliveryReceitp
-							.getNonSelfSendSampleInfo();
-					for (NonSelfSendSample selfSendSampleInfo : selfSendSampleInfos) {
-						selfSendSampleInfo.setDeliver(1);
-						nonSelfSendSampleService.update(selfSendSampleInfo);
-					}
-				}
-
-				deliveryReceitpService.update(deliveryReceitp);
+			if (viewId != null) {
+				Project pj = projectService.getById(viewId);
+				pj.setSample_Tag(tag);
+				pj.setPackage_condition(condition);
+				System.out.println(additives);
+				pj.setSolid_Additives(additives);
+				projectService.update(pj);
+				jsonResult = "{'info':'success'}";
 			}
-			Set<InspectionSheet> inspectionSheetSet = pj.getInspectionSheet();
-			for (InspectionSheet inspectionSheet : inspectionSheetSet) {
-				inspectionSheet.setReceiver(userService.getById(id));
-				inspectionSheetService.update(inspectionSheet);
-			}
-			jsonResult = "{'info':'success'}";
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			jsonResult = "{'info':'failed'}";
@@ -120,11 +105,23 @@ public class SampleTransferAction extends BaseAction<Project> {
 	public String receiveItem() {
 		try {
 			System.out.println(viewId);
-			SelfSendSampleInfo selfSendSample = selfSendSampleInfoService
+			System.out.println("desp" + desp);
+			System.out.println("saveWay" + saveWay);
+			/*
+			 * SelfSendSampleInfo selfSendSample = selfSendSampleInfoService
+			 * .getById(viewId);
+			 */
+			Delivery_SampleType delivery_SampleType = delivery_SampleTypeService
 					.getById(viewId);
-			if (selfSendSample != null) {
-				selfSendSample.setDeliver(1);
-				selfSendSampleInfoService.update(selfSendSample);
+			if (delivery_SampleType != null) {
+				// selfSendSample.setDeliver(1);
+				// selfSendSample.setDesp(desp);
+				// selfSendSample.setSaveWay(saveWay);
+				// selfSendSampleInfoService.update(selfSendSample);
+				delivery_SampleType.setDesp(desp);
+				delivery_SampleType.setSaveWay(saveWay+"");
+				delivery_SampleType.setDeliver("1");
+				delivery_SampleTypeService.update(delivery_SampleType);
 				jsonResult = "{'info':'success'}";
 			} else {
 				jsonResult = "{'info':'failed'}";
@@ -140,11 +137,14 @@ public class SampleTransferAction extends BaseAction<Project> {
 
 	public String receiveBackItem() {
 		try {
-			SelfSendSampleInfo selfSendSample = selfSendSampleInfoService
+			Delivery_SampleType delivery_SampleType = delivery_SampleTypeService
 					.getById(viewId);
-			if (selfSendSample != null) {
-				selfSendSample.setDeliver(0);
-				selfSendSampleInfoService.update(selfSendSample);
+			if (delivery_SampleType != null) {
+				delivery_SampleType.setDeliver("0");
+//				selfSendSampleInfoService.update(selfSendSample);
+				delivery_SampleType.setDesp("");
+				delivery_SampleType.setSaveWay("0");
+				delivery_SampleTypeService.update(delivery_SampleType);
 				jsonResult = "{'info':'success'}";
 			} else {
 				jsonResult = "{'info':'failed'}";
@@ -164,7 +164,25 @@ public class SampleTransferAction extends BaseAction<Project> {
 			Project pj = projectService.getById(viewId);
 			Set<DeliveryReceitp> deliveryReceitpSet = pj
 					.getDeliveryReceitpInfo();
-			if (pj.getGainSample().equals("1")) {
+			Set<Delivery_SampleType> delivery_SampleTypes = pj.getSampleTypeSet();
+			for (Delivery_SampleType delivery_SampleType : delivery_SampleTypes) {
+				if(delivery_SampleType.getDeliver() == "0"){
+					jsonResult = "{'info':'error'}";
+					return SUCCESS;
+				}
+			}
+			
+			for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
+				if(deliveryReceitp!=null){
+					deliveryReceitp.setReceiverUser(userService.getById(id));
+					deliveryReceitpService.update(deliveryReceitp);
+				}
+			}
+			
+			
+			
+			
+			/*if (pj.getGainSample().equals("1")) {
 				for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
 					Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
 							.getSelfSendSampleInfo();
@@ -190,8 +208,8 @@ public class SampleTransferAction extends BaseAction<Project> {
 					deliveryReceitp.setReceiverUser(userService.getById(id));
 					deliveryReceitpService.update(deliveryReceitp);
 				}
-			}
-			Set<InspectionSheet> inspectionSheets=pj.getInspectionSheet();
+			}*/
+			Set<InspectionSheet> inspectionSheets = pj.getInspectionSheet();
 			for (InspectionSheet inspectionSheet : inspectionSheets) {
 				inspectionSheet.setReceiver(userService.getById(id));
 				inspectionSheetService.update(inspectionSheet);
@@ -228,6 +246,46 @@ public class SampleTransferAction extends BaseAction<Project> {
 
 	public void setJsonResult(String jsonResult) {
 		this.jsonResult = jsonResult;
+	}
+
+	public String getDesp() {
+		return desp;
+	}
+
+	public void setDesp(String desp) {
+		this.desp = desp;
+	}
+
+	public int getSaveWay() {
+		return saveWay;
+	}
+
+	public void setSaveWay(int saveWay) {
+		this.saveWay = saveWay;
+	}
+
+	public int getCondition() {
+		return condition;
+	}
+
+	public void setCondition(int condition) {
+		this.condition = condition;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public String getAdditives() {
+		return additives;
+	}
+
+	public void setAdditives(String additives) {
+		this.additives = additives;
 	}
 
 }

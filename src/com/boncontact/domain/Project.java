@@ -70,7 +70,13 @@ public class Project{
 	private Set<Report> reportSet = new LinkedHashSet<Report>();
 	
 	private Set<Delivery_SampleType> sampleTypeSet = new TreeSet<>();
-
+	/*样品包装情况：样品管理员填*/
+	private int package_condition;
+	/*样品标识：样品管理员填*/
+	private String sample_Tag;
+	/*固定剂添加情况：样品管理员填*/
+	private String solid_Additives;
+	
 	public Long getId() {
 		return id;
 	}
@@ -272,6 +278,31 @@ public class Project{
 	public void setSampleTypeSet(Set<Delivery_SampleType> sampleTypeSet) {
 		this.sampleTypeSet = sampleTypeSet;
 	}
+
+	public int getPackage_condition() {
+		return package_condition;
+	}
+
+	public void setPackage_condition(int package_condition) {
+		this.package_condition = package_condition;
+	}
+
+	public String getSample_Tag() {
+		return sample_Tag;
+	}
+
+	public void setSample_Tag(String sample_Tag) {
+		this.sample_Tag = sample_Tag;
+	}
+
+	public String getSolid_Additives() {
+		return solid_Additives;
+	}
+
+	public void setSolid_Additives(String solid_Additives) {
+		this.solid_Additives = solid_Additives;
+	}
+	
 	
 
 }

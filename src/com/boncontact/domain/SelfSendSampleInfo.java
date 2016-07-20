@@ -35,6 +35,10 @@ public class SelfSendSampleInfo implements Comparable<SelfSendSampleInfo> {
 	private int deliver;
 	/* 项目Project */
 	private Project project;
+	/* 样品性状描述 */
+	//private String desp;
+	/* 样品保存条件 */
+	//private int saveWay;
 
 	public Long getId() {
 		return id;
@@ -145,5 +149,4 @@ public class SelfSendSampleInfo implements Comparable<SelfSendSampleInfo> {
 		// TODO 自动生成的方法存根
 		return this.getId() > o.getId() ? 1 : 0;
 	}
-
 }

@@ -17,13 +17,15 @@
 		<property name="client" type="string" />
 		<property name="date" type="date" />
 		<property name="deliver" type="integer"></property>
-
+		<!-- <property name="desp" type="string" />
+		<property name="saveWay" type="integer" /> -->
 		<many-to-one name="analysisProject" column="analysisProject"
 			cascade="save-update" class="AnalysisProject"></many-to-one>
 		<set name="analysisProjectSet" cascade="save-update"
-			table="bdc_selfSampleInfo_analysisProject" >
+			table="bdc_selfSampleInfo_analysisProject">
 			<key column="sample_id" />
-			<many-to-many class="AnalysisProject" column="analysisProjectId" unique="false" />
+			<many-to-many class="AnalysisProject" column="analysisProjectId"
+				unique="false" />
 		</set>
 		<many-to-one name="user" class="User" column="userId"
 			cascade="save-update" />

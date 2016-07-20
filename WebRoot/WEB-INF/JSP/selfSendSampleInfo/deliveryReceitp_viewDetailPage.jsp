@@ -82,6 +82,8 @@
 		table.openCellRC(6 + i, 1).setValue((i+1)+"");
 		table.openCellRC(6 + i, 2).setValue(sample.getType());
 		table.openCellRC(6 + i, 3).setValue(as.getName());
+		table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+		table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"ตอฮย":"ณฃฮย");
 		int count = 0;
 		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 			Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
@@ -146,6 +148,8 @@
 				table.openCellRC(6 + i, 1).setValue((i+1)+"");
 				table.openCellRC(6 + i, 2).setValue(sample.getType());
 				table.openCellRC(6 + i, 3).setValue(as.getName());
+				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"ตอฮย":"ณฃฮย");
 				int count = 0;
 				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
@@ -213,6 +217,8 @@
 				table.openCellRC(6 + i, 1).setValue((i+1)+"");
 				table.openCellRC(6 + i, 2).setValue(sample.getType());
 				table.openCellRC(6 + i, 3).setValue(as.getName());
+				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"ตอฮย":"ณฃฮย");
 				int count = 0;
 				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
