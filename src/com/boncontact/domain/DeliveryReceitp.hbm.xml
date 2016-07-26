@@ -16,11 +16,11 @@
 		<property name="transferDate" type="date" />
 		<property name="backDate" type="date" />
 		
-		<property name="package_condition" type="integer" />
+		<property name="package_condition" type="string" />
 		<property name="sample_Tag" type="string" />
 		<property name="solid_Additives" type="string" />
 		
-		
+		<property name="deliver" type="string"/>
 		<many-to-one name="transferUser" cascade="save-update"
 			class="User" column="transferUser" />
 		<many-to-one name="receiverUser" cascade="save-update"

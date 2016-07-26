@@ -192,8 +192,10 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		
 		List<Delivery_SampleType> delivery_SampleTypes =  delivery_SampleTypeService.findByProject(pj);
 		ActionContext.getContext().put("SampleTypes", delivery_SampleTypes);
+		//System.out.println(pj.getDeliveryReceitpInfo());
+		ActionContext.getContext().put("deliveryReceitp", pj.getDeliveryReceitpInfo());
 		//ActionContext.getContext().put("project", pj);
-		
+		//System.out.println(pj.getDeliveryReceitpInfo().size());
 		return "receivePage";
 	}
 

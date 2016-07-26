@@ -52,6 +52,11 @@ public class ResultReviewAction extends BaseAction<InspectionSheet> {
 			}
 			if (type == 1) {
 				temp.setStep(0);
+				if(temp.getReviewReject() == null){
+					temp.setReviewReject("1");
+				}else{
+					temp.setReviewReject((Integer.parseInt(temp.getReviewReject())+1)+"");
+				}
 			}
 			inspectionSheetService.update(temp);
 			Set<InspectionSheet> inspectionSheetSet = pj.getInspectionSheet();
@@ -84,6 +89,11 @@ public class ResultReviewAction extends BaseAction<InspectionSheet> {
 				}
 				if (type == 1) {
 					inspectionSheet.setStep(0);
+					if(inspectionSheet.getReviewReject() == null){
+						inspectionSheet.setReviewReject("1");
+					}else{
+						inspectionSheet.setReviewReject((Integer.parseInt(inspectionSheet.getReviewReject())+1)+"");
+					}
 				}
 				inspectionSheetService.update(inspectionSheet);
 			}

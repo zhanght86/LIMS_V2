@@ -46,15 +46,27 @@ public class SampleTransferAction extends BaseAction<Project> {
 	public String receive() {
 		try {
 			if (viewId != null) {
-				Project pj = projectService.getById(viewId);
-				//重新设计送检单接收信息，不应该是project字段，而应该是交联单字段
-				
-				//pj.setSample_Tag(tag);
-				//pj.setPackage_condition(condition);
-				//System.out.println(additives);
-				//pj.setSolid_Additives(additives);
-				projectService.update(pj);
-				jsonResult = "{'info':'success'}";
+				DeliveryReceitp dr = deliveryReceitpService.getById(viewId);
+
+				if (dr != null) {
+					dr.setSample_Tag(tag);
+					dr.setPackage_condition(condition + "");
+					dr.setSolid_Additives(additives);
+					dr.setDeliver("1");
+					deliveryReceitpService.update(dr);
+					jsonResult = "{'info':'success'}";
+					return SUCCESS;
+				}
+				jsonResult = "{'info':'failed'}";
+				// Project pj = projectService.getById(viewId);
+				// 重新设计送检单接收信息，不应该是project字段，而应该是交联单字段
+
+				// pj.setSample_Tag(tag);
+				// pj.setPackage_condition(condition);
+				// System.out.println(additives);
+				// pj.setSolid_Additives(additives);
+				// projectService.update(pj);
+				// jsonResult = "{'info':'success'}";
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -121,7 +133,7 @@ public class SampleTransferAction extends BaseAction<Project> {
 				// selfSendSample.setSaveWay(saveWay);
 				// selfSendSampleInfoService.update(selfSendSample);
 				delivery_SampleType.setDesp(desp);
-				delivery_SampleType.setSaveWay(saveWay+"");
+				delivery_SampleType.setSaveWay(saveWay + "");
 				delivery_SampleType.setDeliver("1");
 				delivery_SampleTypeService.update(delivery_SampleType);
 				jsonResult = "{'info':'success'}";
@@ -143,7 +155,7 @@ public class SampleTransferAction extends BaseAction<Project> {
 					.getById(viewId);
 			if (delivery_SampleType != null) {
 				delivery_SampleType.setDeliver("0");
-//				selfSendSampleInfoService.update(selfSendSample);
+				// selfSendSampleInfoService.update(selfSendSample);
 				delivery_SampleType.setDesp("");
 				delivery_SampleType.setSaveWay("0");
 				delivery_SampleTypeService.update(delivery_SampleType);
@@ -166,51 +178,40 @@ public class SampleTransferAction extends BaseAction<Project> {
 			Project pj = projectService.getById(viewId);
 			Set<DeliveryReceitp> deliveryReceitpSet = pj
 					.getDeliveryReceitpInfo();
-			Set<Delivery_SampleType> delivery_SampleTypes = pj.getSampleTypeSet();
+			Set<Delivery_SampleType> delivery_SampleTypes = pj
+					.getSampleTypeSet();
 			for (Delivery_SampleType delivery_SampleType : delivery_SampleTypes) {
-				if(delivery_SampleType.getDeliver() == "0"){
+				if (delivery_SampleType.getDeliver() == "0") {
 					jsonResult = "{'info':'error'}";
 					return SUCCESS;
 				}
 			}
-			
+
 			for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
-				if(deliveryReceitp!=null){
+				if (deliveryReceitp != null) {
 					deliveryReceitp.setReceiverUser(userService.getById(id));
 					deliveryReceitpService.update(deliveryReceitp);
 				}
 			}
-			
-			
-			
-			
-			/*if (pj.getGainSample().equals("1")) {
-				for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
-					Set<SelfSendSampleInfo> selfSendSampleInfos = deliveryReceitp
-							.getSelfSendSampleInfo();
-					for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-						if (selfSendSampleInfo.getDeliver() != 1) {
-							jsonResult = "{'info':'error'}";
-							return SUCCESS;
-						}
-					}
-					deliveryReceitp.setReceiverUser(userService.getById(id));
-					deliveryReceitpService.update(deliveryReceitp);
-				}
-			} else {
-				for (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
-					Set<NonSelfSendSample> selfSendSampleInfos = deliveryReceitp
-							.getNonSelfSendSampleInfo();
-					for (NonSelfSendSample selfSendSampleInfo : selfSendSampleInfos) {
-						if (selfSendSampleInfo.getDeliver() != 1) {
-							jsonResult = "{'info':'error'}";
-							return SUCCESS;
-						}
-					}
-					deliveryReceitp.setReceiverUser(userService.getById(id));
-					deliveryReceitpService.update(deliveryReceitp);
-				}
-			}*/
+
+			/*
+			 * if (pj.getGainSample().equals("1")) { for (DeliveryReceitp
+			 * deliveryReceitp : deliveryReceitpSet) { Set<SelfSendSampleInfo>
+			 * selfSendSampleInfos = deliveryReceitp .getSelfSendSampleInfo();
+			 * for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos)
+			 * { if (selfSendSampleInfo.getDeliver() != 1) { jsonResult =
+			 * "{'info':'error'}"; return SUCCESS; } }
+			 * deliveryReceitp.setReceiverUser(userService.getById(id));
+			 * deliveryReceitpService.update(deliveryReceitp); } } else { for
+			 * (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
+			 * Set<NonSelfSendSample> selfSendSampleInfos = deliveryReceitp
+			 * .getNonSelfSendSampleInfo(); for (NonSelfSendSample
+			 * selfSendSampleInfo : selfSendSampleInfos) { if
+			 * (selfSendSampleInfo.getDeliver() != 1) { jsonResult =
+			 * "{'info':'error'}"; return SUCCESS; } }
+			 * deliveryReceitp.setReceiverUser(userService.getById(id));
+			 * deliveryReceitpService.update(deliveryReceitp); } }
+			 */
 			Set<InspectionSheet> inspectionSheets = pj.getInspectionSheet();
 			for (InspectionSheet inspectionSheet : inspectionSheets) {
 				inspectionSheet.setReceiver(userService.getById(id));

@@ -34,20 +34,26 @@
 	
 	String exportType=(String)ActionContext.getContext().get("exportType");
 	
-	doc.openDataRegion("PO_condition").setValue(entity.getPackage_condition()==0?"完好":entity.getPackage_condition()==1?"破损":"玷污");
-	doc.openDataRegion("PO_tag").setValue(entity.getSample_Tag()==null?"":entity.getSample_Tag());
-	doc.openDataRegion("PO_additives").setValue(entity.getSolid_Additives()==null?"":entity.getSolid_Additives());
+	
 	
 	for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
+		
+		
+		
+		
+		
 		//如果是水质交联单
 		if (exportType.equals("water")
 		&& deliveryReceitp.getSamplesType() == 1) {
 	
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
 	//doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 	//doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 	//doc.openDataRegion("PO_identify").setValue(entity.getContractId());
 	
-	
+	doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
 	
 
 	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
@@ -112,6 +118,11 @@
 		
 		if (exportType.equals("solid")
 		&& deliveryReceitp.getSamplesType() == 0) {
+			
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
 			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
@@ -180,7 +191,12 @@
 		
 		if (exportType.equals("air")
 		&& deliveryReceitp.getSamplesType() ==2) {
-
+			
+			
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
 			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 			doc.openDataRegion("PO_identify").setValue(entity.getContractId());

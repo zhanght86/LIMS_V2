@@ -8,12 +8,9 @@ $(function() {
 			url : 'selfSendSampleInfo_selfSendSampleInfo_receivePage.action?viewId=' + id,
 			width : 1100,
 			height : 550,
-			btnsbar : [ {
-				text : '保　存',
-				action : 'ok'
-			} ].concat($.btn.CANCEL),
+			btnsbar : $.btn.CANCEL,
 			callback : function(action, opt) {
-				if(action=='ok'){
+				/*if(action=='ok'){
 					var oDoc=$(opt.document);
 					asyncbox.confirm('是否保存样品信息？', '提示', function(action) {
 						if (action == 'ok') {
@@ -39,7 +36,7 @@ $(function() {
 						}
 					});
 					return false;
-				}
+				}*/
 			}
 		});
 	});

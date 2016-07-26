@@ -53,9 +53,9 @@ public class Project{
 	/* 非自送样样品信息 */
 	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new TreeSet<NonSelfSendSample>();
 	/* 交联单 */
-	private Set<DeliveryReceitp> deliveryReceitpInfo = new LinkedHashSet<DeliveryReceitp>();
+	private Set<DeliveryReceitp> deliveryReceitpInfo = new TreeSet<DeliveryReceitp>();
 	/* 送检单 */
-	private Set<InspectionSheet> inspectionSheet = new LinkedHashSet<InspectionSheet>();
+	private Set<InspectionSheet> inspectionSheet = new TreeSet<InspectionSheet>();
 	/* 已经生成送检单的项目 */
 	private Set<AnalysisProject> analysisedProject = new LinkedHashSet<AnalysisProject>();
 	/* 质量控制 */

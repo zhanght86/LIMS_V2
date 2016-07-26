@@ -34,7 +34,7 @@ public class TaskDistributionAction extends BaseAction<DeliveryReceitp> {
 	private Long analystId;
 
 	public String main() {
-		List<Project> projectList = projectService.findAll(" WHERE process=5");
+		List<Project> projectList = projectService.findAll(" WHERE process=5 OR process=6 OR process=7");
 		ActionContext.getContext().put("projectList", projectList);
 		ActionContext.getContext().put("totalRecord", projectList.size());
 		ActionContext.getContext().put("totalPage",
@@ -78,6 +78,23 @@ public class TaskDistributionAction extends BaseAction<DeliveryReceitp> {
 			System.out.println(e.toString());
 		}
 		return SUCCESS;
+	}
+	
+	public String rejectCount(){
+		try{
+			if(viewId!=null){
+				Project pj =projectService.getById(viewId);
+				if(pj!=null){
+					ActionContext.getContext().put("p", pj);
+					ActionContext.getContext().put("inspect", pj.getInspectionSheet());
+				}
+			}
+		}catch(Exception e){
+			jsonResult = "{'info':'failed'}";
+			System.out.println(e.toString());
+		}
+		
+		return "rejectCount";
 	}
 	
 	/**

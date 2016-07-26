@@ -66,8 +66,10 @@
 					</div>
 					<div class="tools">
 						<ul class="toolbar">
-							<li class="click flow" data-id="${p.id }"><span><img
-									src="images/t09.png" /></span>业务流转</li>
+							<c:if test="${p.process == 5 }">
+								<li class="click flow" data-id="${p.id }"><span><img
+										src="images/t09.png" /></span>业务流转</li>
+							</c:if>
 							<li class="click viewProjectBook" data-id="${p.id }"><span><img
 									src="images/t10.png" /></span>任务书</li>
 							<c:if test="${p.gainSample==0 }">
@@ -81,21 +83,30 @@
 
 							<li class="click viewQualityControl" data-id="${p.id }"><span><img
 									src="images/t10.png" /></span>质量控制统计表</li>
+							<c:if test="${p.process == 5 }">
+								<li class="click analystAll" data-id="${p.id }"><span><img
+										src="images/t03.png" /></span>设置分析员</li>
 
-							<li class="click analystAll" data-id="${p.id }"><span><img
-									src="images/t03.png" /></span>设置分析员</li>
+								<li class="click reviewAll" data-id="${p.id }"><span><img
+										src="images/t03.png" /></span>设置复核员</li>
 
-							<li class="click reviewAll" data-id="${p.id }"><span><img
-									src="images/t03.png" /></span>设置复核员</li>
-
-							<li class="click auditAll" data-id="${p.id }"><span><img
-									src="images/t03.png" /></span>设置审核员</li>
+								<li class="click auditAll" data-id="${p.id }"><span><img
+										src="images/t03.png" /></span>设置审核员</li>
+							</c:if>
+							<c:if test="${p.process != 5 }">
+								<li class="click viewRecordAudit" data-id="${p.id }"><span><img
+										src="images/t03.png" /></span>审核记录</li>
+								<li class="click rejectCount" data-id="${p.id }"><span><img
+										src="images/t03.png" /></span>拒绝次数</li>
+							</c:if>
 						</ul>
 					</div>
 					<table class="tablelist" id="auditTable">
 						<thead>
 							<tr>
-								<th style="text-align: center;"></th>
+								<c:if test="${p.process == 5 }">
+									<th style="text-align: center;"></th>
+								</c:if>
 								<th style="text-align: center;">分析项目</th>
 								<th>送检单类型</th>
 								<th style="text-align: center;">送样日期</th>
@@ -105,13 +116,18 @@
 								<th style="text-align: center;">设置复核员</th>
 								<th style="text-align: center;">复核员</th>
 								<th style="text-align: center;">设置审核员</th>
-								<th style="text-align: center;">审核员</th>
+								<th style="text-align: center;">审核员</th>						
+								<th style="text-align: center;">原始记录</th>
+								<th style="text-align: center;">当前进度</th>
 							</tr>
 						</thead>
 						<tbody>
 							<s:iterator value="#p.inspectionSheet" id="i">
 								<tr>
-									<td><input type="checkbox" data-id="${i.id }" data-name="${i.analysisProject.name }"></td>
+									<c:if test="${p.process == 5 }">
+										<td><input type="checkbox" data-id="${i.id }"
+											data-name="${i.analysisProject.name }"></td>
+									</c:if>
 									<td style="text-align: center;">${i.analysisProject.name }</td>
 									<c:if test="${i.sheetType==0 }">
 										<td>水质样品送检单</td>
@@ -131,11 +147,19 @@
 										class="tablelink viewInspectionSheet"
 										data-type="${i.sheetType }" data-projectid="${p.id }"
 										data-id="${i.analysisProject.id }">查看</a></td>
+										
+										
+								
 									<c:if test="${not empty i.analyst }">
-										<td style="text-align: center;"><a href="javascript:;"
-											class="tablelink analyst" data-id="${i.id }">变更</a>&nbsp;<a
-											href="javascript:;" class="tablelink delAnalyst"
-											data-id="${i.id }">删除</a></td>
+										<c:if test="${p.process == 5 }">
+											<td style="text-align: center;"><a href="javascript:;"
+												class="tablelink analyst" data-id="${i.id }">变更</a>&nbsp;<a
+												href="javascript:;" class="tablelink delAnalyst"
+												data-id="${i.id }">删除</a></td>
+										</c:if>
+										<c:if test="${p.process == 6 }">
+											<td style="text-align: center;">已流转</td>
+										</c:if>
 										<td style="text-align: center;"><label>${i.analyst.name
 												}</label></td>
 									</c:if>
@@ -145,10 +169,17 @@
 										<td style="text-align: center;">未设置</td>
 									</c:if>
 									<c:if test="${not empty i.review }">
-										<td style="text-align: center;"><a href="javascript:;"
-											class="tablelink review" data-id="${i.id }">变更</a>&nbsp;<a
-											href="javascript:;" class="tablelink delReview"
-											data-id="${i.id }">删除</a></td>
+
+
+										<c:if test="${p.process == 5 }">
+											<td style="text-align: center;"><a href="javascript:;"
+												class="tablelink review" data-id="${i.id }">变更</a>&nbsp;<a
+												href="javascript:;" class="tablelink delReview"
+												data-id="${i.id }">删除</a></td>
+										</c:if>
+										<c:if test="${p.process == 6 }">
+											<td style="text-align: center;">已流转</td>
+										</c:if>
 										<td style="text-align: center;"><label>${i.review.name
 												}</label></td>
 									</c:if>
@@ -157,11 +188,18 @@
 											class="tablelink review" data-id="${i.id }">设置</a></td>
 										<td style="text-align: center;">未设置</td>
 									</c:if>
+
 									<c:if test="${not empty i.audit }">
-										<td style="text-align: center;"><a href="javascript:;"
-											class="tablelink audit" data-id="${i.id }">变更</a>&nbsp;<a
-											href="javascript:;" class="tablelink delAudit"
-											data-id="${i.id }">删除</a></td>
+										<c:if test="${p.process == 5 }">
+											<td style="text-align: center;"><a href="javascript:;"
+												class="tablelink audit" data-id="${i.id }">变更</a>&nbsp;<a
+												href="javascript:;" class="tablelink delAudit"
+												data-id="${i.id }">删除</a></td>
+										</c:if>
+										<c:if test="${p.process == 6 }">
+											<td style="text-align: center;">已流转</td>
+										</c:if>
+
 										<td style="text-align: center;"><label>${i.audit.name
 												}</label></td>
 									</c:if>
@@ -170,6 +208,34 @@
 											class="tablelink audit" data-id="${i.id }">设置</a></td>
 										<td style="text-align: center;">未设置</td>
 									</c:if>
+									<td style="text-align: center;"><c:if
+											test="${not empty i.resultPath }">
+											<a href="javascript:;" class="tablelink downRecord"
+												data-id="${i.id }">查看</a>
+										</c:if> <c:if test="${empty i.resultPath }">
+											<label>未填写</label>
+										</c:if></td>
+									<td style="text-align: center;"><c:if
+											test="${p.process == 5 }">
+											待下达
+										</c:if> <c:if test="${p.process == 6 }">
+											<c:if test="${i.step==0 }">
+												待检测
+											</c:if>
+											<c:if test="${i.step==1 }">
+												检测中
+											</c:if>
+											<c:if test="${i.step==2 }">
+												待复核
+											</c:if>
+											<c:if test="${i.step==3 }">
+												待一审
+											</c:if>
+											<c:if test="${i.step==4 }">
+												待二审
+											</c:if>
+										</c:if></td>
+										
 								</tr>
 							</s:iterator>
 						</tbody>

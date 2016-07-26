@@ -10,7 +10,7 @@ import java.util.Set;
  * @author 瞿龙俊
  * 
  */
-public class InspectionSheet {
+public class InspectionSheet implements Comparable<InspectionSheet> {
 	private Long id;
 	/* 送检单类型 0：水质，1：土壤，2：固定污染源，3：环境空气 */
 	private int sheetType;
@@ -42,7 +42,13 @@ public class InspectionSheet {
 	private String resultPath;
 	/* 当前送检单流程0:创建送检单，1：填写完成送检单，2：复核完成送检单 */
 	private long step;
-
+	/*一审拒绝次数*/
+	private String firstReject;
+	/*二审拒绝次数*/
+	private String secondReject;
+	/*复核拒绝次数*/
+	private String reviewReject;
+	private String itemReject;
 	public Long getId() {
 		return id;
 	}
@@ -163,13 +169,45 @@ public class InspectionSheet {
 		this.result = result;
 	}
 
-	
 	public long getStep() {
 		return step;
 	}
 
 	public void setStep(long step) {
 		this.step = step;
+	}
+	
+
+	public String getFirstReject() {
+		return firstReject;
+	}
+
+	public void setFirstReject(String firstReject) {
+		this.firstReject = firstReject;
+	}
+
+	public String getSecondReject() {
+		return secondReject;
+	}
+
+	public void setSecondReject(String secondReject) {
+		this.secondReject = secondReject;
+	}
+
+	public String getReviewReject() {
+		return reviewReject;
+	}
+
+	public void setReviewReject(String reviewReject) {
+		this.reviewReject = reviewReject;
+	}
+
+	public String getItemReject() {
+		return itemReject;
+	}
+
+	public void setItemReject(String itemReject) {
+		this.itemReject = itemReject;
 	}
 
 	@Override
@@ -182,6 +220,12 @@ public class InspectionSheet {
 				+ ", audit=" + audit + ", project=" + project
 				+ ", analysisProject=" + analysisProject + ", result=" + result
 				+ ", resultPath=" + resultPath + "]";
+	}
+
+	@Override
+	public int compareTo(InspectionSheet o) {
+		// TODO 自动生成的方法存根
+		return this.getId() < o.getId() ? 0 : 1;
 	}
 
 }

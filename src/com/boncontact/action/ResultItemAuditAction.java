@@ -52,6 +52,11 @@ public class ResultItemAuditAction extends BaseAction<InspectionSheet> {
 			}
 			if (type == 1) {
 				temp.setStep(0);
+				if(temp.getItemReject() == null){
+					temp.setItemReject("1");
+				}else{
+					temp.setItemReject((Integer.parseInt(temp.getItemReject())+1)+"");
+				}
 			}
 			inspectionSheetService.update(temp);
 			Set<InspectionSheet> inspectionSheetSet = pj.getInspectionSheet();
@@ -84,6 +89,11 @@ public class ResultItemAuditAction extends BaseAction<InspectionSheet> {
 				}
 				if (type == 1) {
 					inspectionSheet.setStep(0);
+					if(inspectionSheet.getItemReject() == null){
+						inspectionSheet.setItemReject("1");
+					}else{
+						inspectionSheet.setItemReject((Integer.parseInt(inspectionSheet.getItemReject())+1)+"");
+					}
 				}
 				inspectionSheetService.update(inspectionSheet);
 			}
