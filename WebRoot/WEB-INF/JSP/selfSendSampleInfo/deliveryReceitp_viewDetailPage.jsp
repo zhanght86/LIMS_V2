@@ -33,14 +33,28 @@
 	List<AnalysisProject> solidProject = new ArrayList<AnalysisProject>();
 	
 	String exportType=(String)ActionContext.getContext().get("exportType");
+	
+	
+	
 	for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
+		
+		
+		
+		
+		
 		//如果是水质交联单
 		if (exportType.equals("water")
 		&& deliveryReceitp.getSamplesType() == 1) {
 	
-	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
-	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+	//doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+	//doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+	//doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+	
+	doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
+	
 
 	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
 	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
@@ -82,6 +96,8 @@
 		table.openCellRC(6 + i, 1).setValue((i+1)+"");
 		table.openCellRC(6 + i, 2).setValue(sample.getType());
 		table.openCellRC(6 + i, 3).setValue(as.getName());
+		table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+		table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"低温":"常温");
 		int count = 0;
 		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 			Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
@@ -102,6 +118,11 @@
 		
 		if (exportType.equals("solid")
 		&& deliveryReceitp.getSamplesType() == 0) {
+			
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
 			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
@@ -146,6 +167,8 @@
 				table.openCellRC(6 + i, 1).setValue((i+1)+"");
 				table.openCellRC(6 + i, 2).setValue(sample.getType());
 				table.openCellRC(6 + i, 3).setValue(as.getName());
+				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"低温":"常温");
 				int count = 0;
 				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
@@ -168,7 +191,12 @@
 		
 		if (exportType.equals("air")
 		&& deliveryReceitp.getSamplesType() ==2) {
-
+			
+			
+			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"完好":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"破损":"玷污");
+			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
 			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
 			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
 			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
@@ -213,6 +241,8 @@
 				table.openCellRC(6 + i, 1).setValue((i+1)+"");
 				table.openCellRC(6 + i, 2).setValue(sample.getType());
 				table.openCellRC(6 + i, 3).setValue(as.getName());
+				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"低温":"常温");
 				int count = 0;
 				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
 					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();

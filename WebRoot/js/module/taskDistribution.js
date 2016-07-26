@@ -25,6 +25,49 @@ $(function() {
 			}
 		});
 	});
+	$(".rejectCount").on("click",function(){
+		//alert("次数");
+		//rejectCount
+		var id = $(this).attr("data-id");
+		asyncbox.open({
+			title : '审核拒绝统计',
+			url : 'taskDistribution_taskDistribution_rejectCount.action?viewId=' + id,
+			width : 800,
+			height : 300,
+			btnsbar : $.btn.CANCEL,
+			callback : function(action, opt) {
+			}
+		});
+		
+	});
+	
+	
+	$('.downRecord').click(function(){
+		var id=$(this).attr("data-id");
+		asyncbox.open({
+			title : '查看原始记录表',
+			url : 'detectionResult_detectionResult_viewPage.action?viewId=' + id,
+			width : 1100,
+			height : 700,
+			btnsbar : $.btn.CANCEL,
+			callback : function(action, opt) {
+			}
+		});
+	});
+	
+	
+	$('.viewRecordAudit').on('click',function(){
+		var id = $(this).attr("data-id");
+		asyncbox.open({
+			title : '查看实验分析审核记录',
+			url : 'resultAudit_resultAudit_viewPage.action?viewId=' + id,
+			width : 1000,
+			height : 700,
+			btnsbar : $.btn.CANCEL,
+			callback : function(action, opt) {
+			}
+		});
+	});
 	$('.viewNonDeliveryReceitp').click(function(){
 		var id = $(this).attr("data-id");
 		asyncbox.open({

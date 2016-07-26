@@ -8,58 +8,46 @@ $(function() {
 			url : 'selfSendSampleInfo_selfSendSampleInfo_receivePage.action?viewId=' + id,
 			width : 1100,
 			height : 550,
-			btnsbar : [ {
-				text : '接　收',
-				action : 'ok'
-			} ].concat($.btn.CANCEL),
+			btnsbar : $.btn.CANCEL,
 			callback : function(action, opt) {
-				if(action=='ok'){
-					asyncbox.confirm('是否接收全部样品？', '提示', function(action) {
+				/*if(action=='ok'){
+					var oDoc=$(opt.document);
+					asyncbox.confirm('是否保存样品信息？', '提示', function(action) {
 						if (action == 'ok') {
 							$.ajax({
 								url : "sampleTransfer_sampleTransfer_receive.action",
 								data : {
 									'viewId' : id,
-									'delType' : 'analyst'
+									'condition' : oDoc.find('input[type=radio][name=package_condition]:checked').val(),
+									'tag':oDoc.find('input[name=sample_Tag]').val(),
+									'additives':oDoc.find('input[name=solid_Additives]').val()
 								},
 								async : false,
 								success : function(data) {
 									var json = eval('(' + data + ')');
 									if (json.info == "success") {
-										asyncbox.alert('当前项目样品全部接收成功 !', '结果', function() {
-											var body=$(opt.document.body);
-											var trList = body.find('#receiveTable tbody tr');
-											for(var i=0;i<trList.size();i++){
-												$(trList[i]).find('td:eq(5)').html('已接收');
-												$(trList[i]).find('td:eq(6)').find('.receiveItem').hide();
-												$(trList[i]).find('td:eq(6)').find('.receiveBackItem').show();
-											}
-										});
-										
+										asyncbox.alert("样品信息保存成功！",'结果');
 									}
 									if(json.info=='failed') {
-										asyncbox.error('样品接收失败，请刷新页面之后重新尝试！', '结果');
+										asyncbox.error('样品信息保存失败，请刷新页面之后重新尝试！', '结果');
 									}
 								}
 							});
 						}
 					});
 					return false;
-				}
+				}*/
 			}
 		});
 	});
 	$('.viewNonSample').click(function(){
 		var id = $(this).attr("data-id");
 		asyncbox.open({
-			title : '接收样品',
+			title : '保　存',
 			url : 'nonSelfSendSample_nonSelfSendSample_receivePage.action?viewId=' + id,
 			width : 1100,
 			height : 550,
-			btnsbar : [ {
-				text : '接　收',
-				action : 'ok'
-			} ].concat($.btn.CANCEL),
+			btnsbar : $.btn.CANCEL,
 			callback : function(action, opt) {
 				if(action=='ok'){
 					asyncbox.confirm('是否接收全部样品？', '提示', function(action) {

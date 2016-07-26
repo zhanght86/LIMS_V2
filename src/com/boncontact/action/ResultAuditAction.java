@@ -61,6 +61,11 @@ public class ResultAuditAction extends BaseAction<RecordAudit> {
 						.getInspectionSheet();
 				for (InspectionSheet inspectionSheet : inspectionSheetSet) {
 					inspectionSheet.setStep(0);
+					if(inspectionSheet.getFirstReject() == null){
+						inspectionSheet.setFirstReject("1");
+					}else{
+						inspectionSheet.setFirstReject((Integer.parseInt(inspectionSheet.getFirstReject())+1)+"");
+					}
 					inspectionSheetService.update(inspectionSheet);
 				}
 			}

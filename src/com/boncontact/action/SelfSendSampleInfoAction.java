@@ -27,6 +27,7 @@ import com.boncontact.base.DocumentHandler;
 import com.boncontact.domain.AnalysisProject;
 import com.boncontact.domain.ContractMonitoringItem;
 import com.boncontact.domain.DeliveryReceitp;
+import com.boncontact.domain.Delivery_SampleType;
 import com.boncontact.domain.Department;
 import com.boncontact.domain.Encode;
 import com.boncontact.domain.NonSelfSendSample;
@@ -187,6 +188,14 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		ActionContext.getContext().put("nowDate", sdf.format(new Date()));
 		ActionContext.getContext().put("project", pj);
+		
+		
+		List<Delivery_SampleType> delivery_SampleTypes =  delivery_SampleTypeService.findByProject(pj);
+		ActionContext.getContext().put("SampleTypes", delivery_SampleTypes);
+		//System.out.println(pj.getDeliveryReceitpInfo());
+		ActionContext.getContext().put("deliveryReceitp", pj.getDeliveryReceitpInfo());
+		//ActionContext.getContext().put("project", pj);
+		//System.out.println(pj.getDeliveryReceitpInfo().size());
 		return "receivePage";
 	}
 

@@ -14,6 +14,12 @@ public class Delivery_SampleType {
 	private AnalysisProject analysis;
 	// 类型
 	private String type;
+	
+	
+	private String desp;
+	private String saveWay;
+	
+	private String deliver;
 
 	public Long getId() {
 		return id;
@@ -45,6 +51,31 @@ public class Delivery_SampleType {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getDesp() {
+		return desp;
+	}
+
+	public void setDesp(String desp) {
+		this.desp = desp;
+	}
+
+	public String getSaveWay() {
+		return saveWay;
+	}
+
+	public void setSaveWay(String saveWay) {
+		this.saveWay = saveWay;
+	}
+	
+
+	public String getDeliver() {
+		return deliver;
+	}
+
+	public void setDeliver(String deliver) {
+		this.deliver = deliver;
 	}
 
 	@Override

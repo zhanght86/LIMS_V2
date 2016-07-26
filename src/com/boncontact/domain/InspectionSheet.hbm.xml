@@ -27,5 +27,9 @@
 			<one-to-many class="InspectionSheet_Result" />
 		</set>
 		<property name="step" type="long"/>
+		<property name="firstReject" type="string"/>
+		<property name="secondReject" type="string"/>
+		<property name="itemReject" type="string"/>
+		<property name="reviewReject" type="string"/>
 	</class>
 </hibernate-mapping>

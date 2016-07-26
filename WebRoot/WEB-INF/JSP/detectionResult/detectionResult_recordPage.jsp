@@ -29,7 +29,7 @@
 	poCtrl.addCustomToolButton("-", "", 0);
 	poCtrl.addCustomToolButton("¥Ú”°‘§¿¿", "printPreview", 7);
 	poCtrl.addCustomToolButton("¥Ú”°", "printWord", 6);
-	poCtrl.setSaveFilePage("savefile.jsp?id=1&&title="+MD5Utils.GetMD5Code(entity.getName()));
+	poCtrl.setSaveFilePage("savefile.jsp?id=1&&title="+MD5Utils.GetMD5Code(entity.getName()+UUID.randomUUID()));
 	poCtrl.setWriter(doc);
 	poCtrl.setCaption(entity.getName());
 	poCtrl.setFileTitle(entity.getName());

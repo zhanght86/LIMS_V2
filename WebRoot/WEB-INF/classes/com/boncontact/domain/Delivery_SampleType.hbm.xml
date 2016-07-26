@@ -11,6 +11,11 @@
 		</id>
 		<many-to-one name="project" column="project_id" class="Project"></many-to-one>
 		<many-to-one name="analysis" column="analysis_id" class="AnalysisProject"></many-to-one>
+		
+		<property name="desp" type="string"/>
+		<property name="saveWay" type="string"/>
 		<property name="type" type="string"></property>
+		
+		<property name="deliver" type="string"></property>
 	</class>
 </hibernate-mapping>

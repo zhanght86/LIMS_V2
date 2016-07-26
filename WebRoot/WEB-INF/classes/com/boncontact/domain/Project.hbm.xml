@@ -29,6 +29,10 @@
 			class="ProjectBook" column="projectBook_id" unique="true" />
 		<property name="gainSample" type="string" />
 		<property name="QualityControlDate" type="date" />
+
+
+	
+
 		<many-to-one name="QualityControlUser" class="User"
 			column="qualityControlUser_id" lazy="false" />
 		<many-to-one name="recordAudit" class="RecordAudit"
@@ -42,11 +46,11 @@
 			<key column="projectId" />
 			<one-to-many class="NonSelfSendSample" />
 		</set>
-		<set name="deliveryReceitpInfo" cascade="all">
+		<set name="deliveryReceitpInfo" cascade="all" sort="natural">
 			<key column="projectId" />
 			<one-to-many class="DeliveryReceitp" />
 		</set>
-		<set name="inspectionSheet" cascade="all">
+		<set name="inspectionSheet" cascade="all"  sort="natural">
 			<key column="projectId" />
 			<one-to-many class="InspectionSheet" />
 		</set>
