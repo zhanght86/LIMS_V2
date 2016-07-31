@@ -9,32 +9,35 @@
 		<id name="id">
 			<generator class="identity" />
 		</id>
-		<property name="firstInstance1" type="integer"/>
-		<property name="firstInstance2" type="integer"/>
-		<property name="firstInstance3" type="integer"/>
-		<property name="firstInstance4" type="integer"/>
-		<property name="firstInstance5" type="integer"/>
-		<property name="firstInstance6" type="integer"/>
-		<property name="firstInstance7" type="integer"/>
-		<property name="secondInstance1" type="integer"/>
-		<property name="secondInstance2" type="integer"/>
-		<property name="secondInstance3" type="integer"/>
-		<property name="secondInstance4" type="integer"/>
-		<property name="secondInstance5" type="integer"/>
-		<property name="secondInstance6" type="integer"/>
-		<property name="issueAudit1" type="integer"/>
-		<property name="issueAudit2" type="integer"/>
-		<property name="issueAudit3" type="integer"/>
-		<property name="firstOther" type="string" length="2000"/>
-		<property name="secondOhter" type="string" length="2000"/>
-		<property name="issueOther" type="string" length="2000"/>
-		<property name="issueOpinion" type="integer"/>
-		<property name="firstDate" type="date"/>
-		<property name="secondDate" type="date"/>
-		<property name="issueDate" type="date"/>
-		<many-to-one name="firstUser" class="User"/>
-		<many-to-one name="secondUser" class="User"/>
-		<many-to-one name="issueUser" class="User"/>
-		<many-to-one name="report" update="true" column="report_id"/>
+		<property name="firstInstance1" type="integer" />
+		<property name="firstInstance2" type="integer" />
+		<property name="firstInstance3" type="integer" />
+		<property name="firstInstance4" type="integer" />
+		<property name="firstInstance5" type="integer" />
+		<property name="firstInstance6" type="integer" />
+		<property name="firstInstance7" type="integer" />
+		<property name="secondInstance1" type="integer" />
+		<property name="secondInstance2" type="integer" />
+		<property name="secondInstance3" type="integer" />
+		<property name="secondInstance4" type="integer" />
+		<property name="secondInstance5" type="integer" />
+		<property name="secondInstance6" type="integer" />
+		<property name="issueAudit1" type="integer" />
+		<property name="issueAudit2" type="integer" />
+		<property name="issueAudit3" type="integer" />
+		<property name="firstOther" type="string" length="2000" />
+		<property name="secondOhter" type="string" length="2000" />
+		<property name="issueOther" type="string" length="2000" />
+		<property name="issueOpinion" type="integer" />
+		<property name="firstDate" type="date" />
+		<property name="secondDate" type="date" />
+		<property name="issueDate" type="date" />
+		<many-to-one name="firstUser" class="User" />
+		<many-to-one name="secondUser" class="User" />
+		<many-to-one name="issueUser" class="User" />
+		<many-to-one name="report" update="true" column="report_id" />
+
+	
+
 	</class>
 </hibernate-mapping>

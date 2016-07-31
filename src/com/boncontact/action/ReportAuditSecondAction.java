@@ -98,6 +98,12 @@ public class ReportAuditSecondAction extends BaseAction<ReportAudit> {
 			}else{
 				//审核不通过
 				temp.setResult(0);
+				if (temp.getSecondRejectNum() == null) {
+					temp.setSecondRejectNum("1");
+				} else {
+					temp.setSecondRejectNum(Integer.parseInt(temp
+							.getSecondRejectNum()) + 1 + "");
+				}
 			}
 			reportService.update(temp);
 			jsonResult = "{'info':'success'}";
