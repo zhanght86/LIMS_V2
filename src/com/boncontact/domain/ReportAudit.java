@@ -64,6 +64,7 @@ public class ReportAudit {
 	private User secondUser;
 	/* 签发员 */
 	private User issueUser;
+	
 
 	public Long getId() {
 		return id;
@@ -288,6 +289,8 @@ public class ReportAudit {
 	public void setIssueUser(User issueUser) {
 		this.issueUser = issueUser;
 	}
+	
+
 
 	@Override
 	public String toString() {

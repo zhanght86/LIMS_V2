@@ -93,6 +93,8 @@
 							src="images/t10.png" /></span>质量控制统计</li>
 					<li class="click viewRecordAudit" data-projectId="${p.id }"><span><img
 							src="images/t10.png" /></span>实验审核记录</li>
+					<li class="click viewHistoryAudit" data-projectId="${p.id }"><span><img
+							src="images/t10.png" /></span>历史审核记录</li>
 				</ul>
 			</div>
 			<table class="tablelist" id="reportTable">
@@ -158,9 +160,9 @@
 										<span style="color:red;font-weight:bolder">报告编制</span>
 									</c:if> <c:if test="${r.result == 1 }">报告一审</c:if> <c:if
 										test="${r.result == 2 }">报告二审</c:if> <c:if
-										test="${r.result == 3 }">签发审核</c:if>
-									<c:if test="${r.result == 4 }">报告签收</c:if>
-									<c:if test="${r.result == 5 }">已签收</c:if></td>
+										test="${r.result == 3 }">签发审核</c:if> <c:if
+										test="${r.result == 4 }">报告签收</c:if> <c:if
+										test="${r.result == 5 }">已签收</c:if></td>
 							</tr>
 
 						</s:iterator>

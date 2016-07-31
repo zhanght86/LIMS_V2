@@ -135,6 +135,7 @@
 			<result name="dataBaseSetting">/WEB-INF/JSP/basicSetting/basicSetting_dataBaseSetting.jsp
 			</result>
 			<result name="rejectCount">/WEB-INF/JSP/taskDistribution/taskDistribution_rejectCount.jsp</result>
+			<result name="viewHistoryAudit">/WEB-INF/JSP/report/report_viewHistoryAudit.jsp</result>
 		</action>
 	</package>
 

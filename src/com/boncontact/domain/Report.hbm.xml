@@ -10,13 +10,23 @@
 			<generator class="identity" />
 		</id>
 		<property name="identify" type="string" not-null="true" />
-		<property name="type" type="integer"/>
-		<property name="path" type="string" length="1000"/>
-		<property name="coverPath" type="string" length="1000"/>
+		<property name="type" type="integer" />
+		<property name="path" type="string" length="1000" />
+		<property name="coverPath" type="string" length="1000" />
 		<property name="createDate" type="date"></property>
 		<many-to-one name="project" class="Project" column="project_id"></many-to-one>
-		<many-to-one name="maker" class="User" column="maker"/>
-		<one-to-one name="reportAudit" cascade="all-delete-orphan" property-ref="report" ></one-to-one>
-		<property name="result" type="integer"/>
+		<many-to-one name="maker" class="User" column="maker" />
+		<one-to-one name="reportAudit" cascade="all-delete-orphan"
+			property-ref="report"></one-to-one>
+		<property name="result" type="integer" />
+
+		<property name="firstRejectNum" type="string" />
+		<property name="secondRejectNum" type="string" />
+		<property name="issuedRejectNum" type="string" />
+
+		<set name="historyAudit" table="bdc_report_historyAudit" lazy="false">
+			<key column="report_id" />
+			<many-to-many class="ReportAudit" column="audit_id" />
+		</set>
 	</class>
 </hibernate-mapping>

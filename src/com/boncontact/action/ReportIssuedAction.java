@@ -121,6 +121,12 @@ public class ReportIssuedAction extends BaseAction<ReportAudit> {
 			} else {
 				// 审核不通过
 				temp.setResult(0);
+				if (temp.getIssuedRejectNum() == null) {
+					temp.setIssuedRejectNum("1");
+				} else {
+					temp.setIssuedRejectNum(Integer.parseInt(temp
+							.getIssuedRejectNum()) + 1 + "");
+				}
 			}
 			reportService.update(temp);
 			jsonResult = "{'info':'success'}";

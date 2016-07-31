@@ -24,6 +24,7 @@ import com.boncontact.domain.ReportAudit;
 import com.boncontact.util.DeleteFileUtil;
 import com.boncontact.util.PropertiesConfig;
 import com.opensymphony.xwork2.ActionContext;
+import com.sun.org.apache.regexp.internal.REProgram;
 
 @Component("report")
 public class ReportAction extends BaseAction<Report> {
@@ -329,7 +330,16 @@ public class ReportAction extends BaseAction<Report> {
 						
 						if (report.getResult() == 0) {
 							if (report.getReportAudit() != null) {
-								report.setReportAudit(null);
+								//report.setReportAudit(null);
+								//reportService.update(report);
+								//ReportAudit audit= new ReportAudit();
+								ReportAudit history_Audit=report.getReportAudit();
+								history_Audit.setReport(null);
+								
+								Set<ReportAudit> history=report.getHistoryAudit();
+								history.add(history_Audit);
+								report.setHistoryAudit(history);
+								//report.setReportAudit(null);
 								reportService.update(report);
 							}
 							ReportAudit audit = new ReportAudit();
@@ -357,6 +367,11 @@ public class ReportAction extends BaseAction<Report> {
 			jsonResult = "{'info':'failed'}";
 		}
 		return SUCCESS;
+	}
+	
+	public String viewHistoryAudit(){
+		System.out.println("执行viewHistoryAudit");
+		return "viewHistoryAudit";
 	}
 
 	/**
