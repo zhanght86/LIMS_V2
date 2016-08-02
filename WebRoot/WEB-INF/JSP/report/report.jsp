@@ -93,8 +93,7 @@
 							src="images/t10.png" /></span>质量控制统计</li>
 					<li class="click viewRecordAudit" data-projectId="${p.id }"><span><img
 							src="images/t10.png" /></span>实验审核记录</li>
-					<li class="click viewHistoryAudit" data-projectId="${p.id }"><span><img
-							src="images/t10.png" /></span>历史审核记录</li>
+				
 				</ul>
 			</div>
 			<table class="tablelist" id="reportTable">
@@ -106,6 +105,7 @@
 						<th style="text-align: center;">报告原本</th>
 						<th style="text-align: center;">报告封面</th>
 						<th style="text-align: center;">审核记录</th>
+						<th style="text-align: center;">历史审核</th>
 						<th style="text-align: center;">当前流程</th>
 					</tr>
 				</thead>
@@ -154,6 +154,9 @@
 									</c:if></td>
 								<td style="text-align: center;"><a href="javascript:;"
 									class="tablelink viewReportAudit" data-id="${r.id }">查看</a></td>
+									
+								<td style="text-align: center;"><a href="javascript:;"
+									class="tablelink viewHistoryAudit" data-id="${r.id }">查看</a></td>
 
 								<td style="text-align: center;"><c:if
 										test="${r.result == 0 }">

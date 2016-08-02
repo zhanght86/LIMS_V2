@@ -136,6 +136,7 @@
 			</result>
 			<result name="rejectCount">/WEB-INF/JSP/taskDistribution/taskDistribution_rejectCount.jsp</result>
 			<result name="viewHistoryAudit">/WEB-INF/JSP/report/report_viewHistoryAudit.jsp</result>
+			<result name="viewHisPage">/WEB-INF/JSP/reportAudit/reportAudit_viewHisPage.jsp</result>
 		</action>
 	</package>
 
