@@ -34,7 +34,7 @@
 		<property name="entrustedAddress" type="string" />
 		<property name="entrustedTel" type="string" />
 		<property name="entrustedFax" type="string" />
-		<set name="items" cascade="all-delete-orphan">
+		<set name="items" cascade="all-delete-orphan" sort="natural">
 			<key column="contractId"></key>
 			<one-to-many class="ContractMonitoringItem" />
 		</set>
