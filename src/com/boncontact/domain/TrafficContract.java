@@ -3,6 +3,7 @@ package com.boncontact.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 业务合同实体
@@ -34,7 +35,7 @@ public class TrafficContract {
 	// 监测类别
 	private String projectType;
 	// 监测项
-	private Set<ContractMonitoringItem> items = new HashSet<ContractMonitoringItem>();
+	private Set<ContractMonitoringItem> items = new TreeSet<ContractMonitoringItem>();
 	// 监测方法：0：以我公司方法为准，1：客户指定方法
 	private int projectWay;
 	// 客户指定的方法

@@ -6,7 +6,7 @@ package com.boncontact.domain;
  * @author 瞿龙俊
  * 
  */
-public class Delivery_SampleType {
+public class Delivery_SampleType implements Comparable<Delivery_SampleType> {
 	private Long id;
 	// 项目
 	private Project project;
@@ -82,6 +82,15 @@ public class Delivery_SampleType {
 	public String toString() {
 		return "Delivery_SampleType [id=" + id + ", project=" + project
 				+ ", analysis=" + analysis + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(Delivery_SampleType o) {
+		if(this.getId() !=null && o.getId() !=null){
+			return this.getId() < o.getId() ? 0 : 1;
+		}else{
+			return 0;
+		}
 	}
 	
 }

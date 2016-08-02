@@ -6,7 +6,7 @@ package com.boncontact.domain;
  * @author 瞿龙俊
  * 
  */
-public class AnalysisProject {
+public class AnalysisProject implements Comparable<AnalysisProject>{
 	private Long id;
 	/* 项目名称 */
 	private String name;
@@ -63,6 +63,12 @@ public class AnalysisProject {
 		return "AnalysisProject [id=" + id + ", name=" + name + ", type="
 				+ type + ", other=" + other + ", analysisCategory="
 				+ analysisCategory + "]";
+	}
+
+	@Override
+	public int compareTo(AnalysisProject o) {
+		// TODO 自动生成的方法存根
+		return this.getId() < o.getId() ? 0 : 1;
 	}
 
 }

@@ -6,7 +6,7 @@ package com.boncontact.domain;
  * @author 瞿龙俊
  * 
  */
-public class ContractMonitoringItem {
+public class ContractMonitoringItem implements Comparable<ContractMonitoringItem>{
 	// 主键
 	private Long id;
 	// 环境要素
@@ -87,6 +87,12 @@ public class ContractMonitoringItem {
 				+ ", analysisProject=" + analysisProject
 				+ ", analysisFrequency=" + analysisFrequency + ", other="
 				+ other + "]";
+	}
+
+	@Override
+	public int compareTo(ContractMonitoringItem o) {
+		// TODO 自动生成的方法存根
+		return this.getId() > o.getId() ? 1 : 0;
 	}
 
 

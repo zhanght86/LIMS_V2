@@ -48,9 +48,6 @@ public class DeliveryReceitp implements Comparable<DeliveryReceitp> {
 	private String deliver;
 	/* 分析项目 */
 	private Set<AnalysisProject> analysisProject = new TreeSet<AnalysisProject>();
-	
-	
-	
 
 	public Long getId() {
 		return id;
@@ -213,7 +210,11 @@ public class DeliveryReceitp implements Comparable<DeliveryReceitp> {
 	@Override
 	public int compareTo(DeliveryReceitp o) {
 		// TODO 自动生成的方法存根
-		return this.getId() < o.getId() ? 0 : 1;
+		if (this.getId() != null && o.getId() != null) {
+			return this.getId() < o.getId() ? 0 : 1;
+		}else{
+			return 0;
+		}
 	}
 
 }

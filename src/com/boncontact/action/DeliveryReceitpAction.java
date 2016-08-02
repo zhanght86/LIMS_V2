@@ -177,15 +177,15 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 			Project project = projectService.getById(viewId);
 			if (project != null) {
 				if (project.getGainSample().equals("1")) {
-					Set<DeliveryReceitp> deliveryReceitps = new HashSet<DeliveryReceitp>();
+					Set<DeliveryReceitp> deliveryReceitps = new TreeSet<DeliveryReceitp>();
 					Set<SelfSendSampleInfo> selfSendSampleInfos = project
 							.getSelfSendSampleInfo();
-					Set<SelfSendSampleInfo> water = new HashSet<SelfSendSampleInfo>();
-					Set<SelfSendSampleInfo> air = new HashSet<SelfSendSampleInfo>();
-					Set<SelfSendSampleInfo> solid = new HashSet<SelfSendSampleInfo>();
-					Set<AnalysisProject> waterProject = new HashSet<AnalysisProject>();
-					Set<AnalysisProject> airProject = new HashSet<AnalysisProject>();
-					Set<AnalysisProject> solidProject = new HashSet<AnalysisProject>();
+					Set<SelfSendSampleInfo> water = new TreeSet<SelfSendSampleInfo>();
+					Set<SelfSendSampleInfo> air = new TreeSet<SelfSendSampleInfo>();
+					Set<SelfSendSampleInfo> solid = new TreeSet<SelfSendSampleInfo>();
+					Set<AnalysisProject> waterProject = new TreeSet<AnalysisProject>();
+					Set<AnalysisProject> airProject = new TreeSet<AnalysisProject>();
+					Set<AnalysisProject> solidProject = new TreeSet<AnalysisProject>();
 					for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
 						Set<AnalysisProject> projects = selfSendSampleInfo
 								.getAnalysisProjectSet();
@@ -244,6 +244,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setAnalysisProject(waterProject);
 
 						System.out.println(dr);
+						//deliveryReceitpService.save(dr);
 						deliveryReceitps.add(dr);
 					}
 					if (airProject.size() != 0) {
@@ -267,6 +268,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(airProject);
 						System.out.println(dr);
+						//deliveryReceitpService.save(dr);
 						deliveryReceitps.add(dr);
 					}
 					if (solidProject.size() != 0) {
@@ -290,27 +292,30 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(solidProject);
 						System.out.println(dr);
+						//deliveryReceitpService.save(dr);
 						deliveryReceitps.add(dr);
 
 					}
 
 					for (DeliveryReceitp deliveryReceitp : deliveryReceitps) {
-						deliveryReceitpService.save(deliveryReceitp);
-						System.out.println(deliveryReceitp);
+						System.out.println("deliveryReceitpId:"+deliveryReceitp.getId()+"  analysisProject:"+deliveryReceitp.getAnalysisProject());
+						
+						//deliveryReceitpService.save(deliveryReceitp);
+						//System.out.println(deliveryReceitp);
 					}
 					project.setDeliveryReceitpInfo(deliveryReceitps);
 					System.out.println(project);
 					projectService.update(project);
 				} else {
-					Set<DeliveryReceitp> deliveryReceitpSet = new HashSet<DeliveryReceitp>();
+					Set<DeliveryReceitp> deliveryReceitpSet = new TreeSet<DeliveryReceitp>();
 					Set<NonSelfSendSample> nonSelfSendSampleInfos = project
 							.getNonSelfSendSampleInfo();
-					Set<NonSelfSendSample> water = new HashSet<NonSelfSendSample>();
-					Set<NonSelfSendSample> air = new HashSet<NonSelfSendSample>();
-					Set<NonSelfSendSample> solid = new HashSet<NonSelfSendSample>();
-					Set<AnalysisProject> waterProject = new HashSet<AnalysisProject>();
-					Set<AnalysisProject> airProject = new HashSet<AnalysisProject>();
-					Set<AnalysisProject> solidProject = new HashSet<AnalysisProject>();
+					Set<NonSelfSendSample> water = new TreeSet<NonSelfSendSample>();
+					Set<NonSelfSendSample> air = new TreeSet<NonSelfSendSample>();
+					Set<NonSelfSendSample> solid = new TreeSet<NonSelfSendSample>();
+					Set<AnalysisProject> waterProject = new TreeSet<AnalysisProject>();
+					Set<AnalysisProject> airProject = new TreeSet<AnalysisProject>();
+					Set<AnalysisProject> solidProject = new TreeSet<AnalysisProject>();
 					for (NonSelfSendSample nonSelfSendSampleInfo : nonSelfSendSampleInfos) {
 						Set<AnalysisProject> analysisProjects = nonSelfSendSampleInfo
 								.getAnalysisProjectSet();
@@ -365,6 +370,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(waterProject);
+						deliveryReceitpService.save(dr);
 						deliveryReceitpSet.add(dr);
 					}
 					if (airProject.size() != 0) {
@@ -388,7 +394,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(airProject);
-						// deliveryReceitpService.save(dr);
+						deliveryReceitpService.save(dr);
 						deliveryReceitpSet.add(dr);
 					}
 					if (solidProject.size() != 0) {
@@ -412,6 +418,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 								.getSession().get("userId");
 						dr.setTransferUser(userService.getById(id));
 						dr.setAnalysisProject(solidProject);
+						deliveryReceitpService.save(dr);
 						deliveryReceitpSet.add(dr);
 					}
 
@@ -425,7 +432,7 @@ public class DeliveryReceitpAction extends BaseAction<DeliveryReceitp> {
 				}
 
 				// 此处为样品类型Set集->Project的Demo
-				Set<Delivery_SampleType> sampleTypes = new HashSet<Delivery_SampleType>();
+				Set<Delivery_SampleType> sampleTypes = new TreeSet<Delivery_SampleType>();
 				System.out.println("输出" + typeList);
 				String[] idStrings = StringSplitUtils.splite(typeList, ";");
 				for (String ids : idStrings) {
