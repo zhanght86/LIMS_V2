@@ -138,7 +138,7 @@ $(function() {
 		});
 	});
 	$('.viewHistoryAudit').on("click",function(){
-		var id = $(this).attr("data-projectId");
+		var id = $(this).attr("data-id");
 		asyncbox.open({
 			title : '查看历史审核记录',
 			url : 'report_report_viewHistoryAudit.action?viewId=' + id,

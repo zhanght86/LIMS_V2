@@ -42,7 +42,8 @@ public class ReportAction extends BaseAction<Report> {
 	private Long projectId;
 
 	public String main() {
-		List<Project> projectList = projectService.findAll("WHERE process=9  or process = 10");
+		List<Project> projectList = projectService
+				.findAll("WHERE process=9  or process = 10");
 		List<Project> levelPj = new ArrayList<Project>();
 		for (Project project : projectList) {
 			int flag = 0;
@@ -51,7 +52,7 @@ public class ReportAction extends BaseAction<Report> {
 				flag = 1;
 			}
 			for (Report report : rp) {
-				if (report.getResult() <5  ) {
+				if (report.getResult() < 5) {
 					flag = 1;
 				}
 			}
@@ -69,12 +70,12 @@ public class ReportAction extends BaseAction<Report> {
 		}
 		return "addPage";
 	}
-	
-	public String addCoverPage(){
-		if(viewId!=null){
-			Report report=reportService.getById(viewId);
+
+	public String addCoverPage() {
+		if (viewId != null) {
+			Report report = reportService.getById(viewId);
 			ActionContext.getContext().put("entity", report);
-			
+
 		}
 		return "addCoverPage";
 	}
@@ -100,50 +101,50 @@ public class ReportAction extends BaseAction<Report> {
 		}
 		return "changePage";
 	}
-	
+
 	public String deleteReport() {
 		try {
-			if(viewId!=null){
+			if (viewId != null) {
 				Report temp = reportService.getById(viewId);
-				String path = ServletActionContext.getRequest().getRealPath(
-						"/")+temp.getPath();
+				String path = ServletActionContext.getRequest()
+						.getRealPath("/") + temp.getPath();
 				if (path != null) {
 					DeleteFileUtil.delete(path);
 				}
-				String coverPath=ServletActionContext.getRequest().getRealPath(
-						"/")+temp.getCoverPath();
-				if(coverPath != null){
+				String coverPath = ServletActionContext.getRequest()
+						.getRealPath("/") + temp.getCoverPath();
+				if (coverPath != null) {
 					DeleteFileUtil.delete(coverPath);
 				}
 				reportService.delete(viewId);
 				jsonResult = "{'info':'success'}";
-			}else{
+			} else {
 				jsonResult = "{'info':'failed'}";
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			jsonResult = "{'info':'failed'}";
 		}
 		return SUCCESS;
 	}
-	
+
 	public String deleteReportCover() {
 		try {
-			if(viewId!=null){
+			if (viewId != null) {
 				Report temp = reportService.getById(viewId);
-				String path = ServletActionContext.getRequest().getRealPath(
-						"/")+temp.getCoverPath();
+				String path = ServletActionContext.getRequest()
+						.getRealPath("/") + temp.getCoverPath();
 				if (path != null) {
 					DeleteFileUtil.delete(path);
 				}
 				temp.setCoverPath(null);
 				reportService.update(temp);
 				jsonResult = "{'info':'success'}";
-			}else{
+			} else {
 				jsonResult = "{'info':'failed'}";
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			jsonResult = "{'info':'failed'}";
@@ -195,12 +196,11 @@ public class ReportAction extends BaseAction<Report> {
 		}
 		return SUCCESS;
 	}
-	
-	
-	public String saveRecordCover(){
+
+	public String saveRecordCover() {
 		try {
 			if (viewId != null && reportPath != null) {
-				Report report=reportService.getById(viewId);
+				Report report = reportService.getById(viewId);
 				report.setCoverPath(reportPath);
 				reportService.update(report);
 				jsonResult = "{'info':'success'}";
@@ -209,15 +209,16 @@ public class ReportAction extends BaseAction<Report> {
 			System.out.println(e.toString());
 			jsonResult = "{'info':'failed'}";
 		}
-		
+
 		return SUCCESS;
 	}
-	public String viewCoverPage(){
+
+	public String viewCoverPage() {
 		if (viewId != null) {
 			Report report = reportService.getById(viewId);
 			ActionContext.getContext().put("entity", report);
 		}
-		
+
 		return "viewCoverPage";
 	}
 
@@ -316,30 +317,35 @@ public class ReportAction extends BaseAction<Report> {
 					return SUCCESS;
 				} else {
 					Set<Report> reportSet = pj.getReportSet();
-					String identifys="";
+					String identifys = "";
 					for (Report report : reportSet) {
-						if(report.getCoverPath()==null){
-							identifys+=report.getIdentify()+",";
+						if (report.getCoverPath() == null) {
+							identifys += report.getIdentify() + ",";
 						}
 					}
-					if(identifys != ""){
-						jsonResult = "{'info':'nooneCover','identify':'"+identifys.substring(0,identifys.length()-1)+"'}";
+					if (identifys != "") {
+						jsonResult = "{'info':'nooneCover','identify':'"
+								+ identifys
+										.substring(0, identifys.length() - 1)
+								+ "'}";
 						return SUCCESS;
 					}
 					for (Report report : reportSet) {
-						
+
 						if (report.getResult() == 0) {
 							if (report.getReportAudit() != null) {
-								//report.setReportAudit(null);
-								//reportService.update(report);
-								//ReportAudit audit= new ReportAudit();
-								ReportAudit history_Audit=report.getReportAudit();
+								// report.setReportAudit(null);
+								// reportService.update(report);
+								// ReportAudit audit= new ReportAudit();
+								ReportAudit history_Audit = report
+										.getReportAudit();
 								history_Audit.setReport(null);
-								
-								Set<ReportAudit> history=report.getHistoryAudit();
+
+								Set<ReportAudit> history = report
+										.getHistoryAudit();
 								history.add(history_Audit);
 								report.setHistoryAudit(history);
-								//report.setReportAudit(null);
+								// report.setReportAudit(null);
 								reportService.update(report);
 							}
 							ReportAudit audit = new ReportAudit();
@@ -368,9 +374,18 @@ public class ReportAction extends BaseAction<Report> {
 		}
 		return SUCCESS;
 	}
-	
-	public String viewHistoryAudit(){
-		System.out.println("执行viewHistoryAudit");
+
+	public String viewHistoryAudit() {
+		// System.out.println("执行viewHistoryAudit");
+		if (viewId != null) {
+			Report report = reportService.getById(viewId);
+			System.out.println(report);
+			if (report != null) {
+				ActionContext.getContext().put("historyAudit", report.getHistoryAudit());
+				System.out.println(report.getHistoryAudit().size());
+			}
+			ActionContext.getContext().put("viewId", viewId);
+		}
 		return "viewHistoryAudit";
 	}
 

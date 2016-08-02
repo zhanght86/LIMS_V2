@@ -28,11 +28,12 @@ public class ReportAuditAction extends BaseAction<ReportAudit> {
 	private int resultType;
 	private Long viewId;
 	private String jsonResult;
+	private int history_id;
 
 	public String main() {
 		List<Project> projectList = projectService
 				.findAll(" WHERE process=9  or process = 10");
-		List<Project> levelPj = new ArrayList<Project>(); 
+		List<Project> levelPj = new ArrayList<Project>();
 		for (Project project : projectList) {
 			int flag = 0;
 			Set<Report> rp = project.getReportSet();
@@ -70,6 +71,28 @@ public class ReportAuditAction extends BaseAction<ReportAudit> {
 		return "viewPage";
 	}
 
+	public String viewHisPage() {
+		if (viewId != null) {
+			Report report = reportService.getById(viewId);
+			if (report != null) {
+				ActionContext.getContext().put("entity", report);
+				Set<ReportAudit> history = report.getHistoryAudit();
+				ReportAudit audit = null;
+				for (ReportAudit reportAudit : history) {
+					if (reportAudit.getId() == history_id) {
+						audit = reportAudit;
+						break;
+					}
+				}
+				System.out.println("audit的值为"+audit);
+				if (audit != null) {
+					ActionContext.getContext().put("audit", audit);
+				}
+			}
+		}
+		return "viewHisPage";
+	}
+
 	public String add() {
 		try {
 			Report temp = reportService.getById(viewId);
@@ -82,37 +105,38 @@ public class ReportAuditAction extends BaseAction<ReportAudit> {
 			ra.setFirstInstance5(entity.getFirstInstance5());
 			ra.setFirstInstance6(entity.getFirstInstance6());
 			ra.setFirstInstance7(entity.getFirstInstance7());
-			/*entity.setReport(temp);
-			entity.setId(null);
-			entity.setFirstDate(new Date());*/
+			/*
+			 * entity.setReport(temp); entity.setId(null);
+			 * entity.setFirstDate(new Date());
+			 */
 			Long id = (Long) ActionContext.getContext().getSession()
 					.get("userId");
 			User user = userService.getById(id);
-			//entity.setFirstUser(user);
-			
+			// entity.setFirstUser(user);
+
 			ra.setFirstOther(entity.getFirstOther());
 			ra.setFirstUser(user);
 			ra.setFirstDate(new Date());
-			
+
 			temp.setReportAudit(ra);
 			if (resultType == 1) {
-				//审核通过
+				// 审核通过
 				temp.setResult(2);
-				int flag=0;
-				Set<Report> reportSet=pj.getReportSet();
+				int flag = 0;
+				Set<Report> reportSet = pj.getReportSet();
 				for (Report report : reportSet) {
-					if(report.getResult()<2){
-						flag=1;
+					if (report.getResult() < 2) {
+						flag = 1;
 					}
 				}
-				if(flag==0){
-					ProjectBook pb=pj.getProjectBook();
+				if (flag == 0) {
+					ProjectBook pb = pj.getProjectBook();
 					pb.setReportFirstInstance(user);
 					pb.setReportFirstDate(new Date());
 					pj.setProjectBook(pb);
 					projectService.update(pj);
 				}
-			
+
 			} else {
 				temp.setResult(0);
 				if (temp.getFirstRejectNum() == null) {
@@ -153,6 +177,14 @@ public class ReportAuditAction extends BaseAction<ReportAudit> {
 
 	public void setJsonResult(String jsonResult) {
 		this.jsonResult = jsonResult;
+	}
+
+	public int getHistory_id() {
+		return history_id;
+	}
+
+	public void setHistory_id(int history_id) {
+		this.history_id = history_id;
 	}
 
 	@Override
