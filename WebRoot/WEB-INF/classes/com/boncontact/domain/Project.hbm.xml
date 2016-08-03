@@ -50,7 +50,7 @@
 			<key column="projectId" />
 			<one-to-many class="DeliveryReceitp" />
 		</set>
-		<set name="inspectionSheet" cascade="all"  sort="natural">
+		<set name="inspectionSheet" cascade="all" >
 			<key column="projectId" />
 			<one-to-many class="InspectionSheet" />
 		</set>

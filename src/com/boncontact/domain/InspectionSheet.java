@@ -10,7 +10,7 @@ import java.util.Set;
  * @author 瞿龙俊
  * 
  */
-public class InspectionSheet implements Comparable<InspectionSheet> {
+public class InspectionSheet {
 	private Long id;
 	/* 送检单类型 0：水质，1：土壤，2：固定污染源，3：环境空气 */
 	private int sheetType;
@@ -222,10 +222,5 @@ public class InspectionSheet implements Comparable<InspectionSheet> {
 				+ ", resultPath=" + resultPath + "]";
 	}
 
-	@Override
-	public int compareTo(InspectionSheet o) {
-		// TODO 自动生成的方法存根
-		return this.getId() < o.getId() ? 0 : 1;
-	}
 
 }

@@ -56,7 +56,7 @@ public class Project{
 	/* 交联单 */
 	private Set<DeliveryReceitp> deliveryReceitpInfo = new HashSet<DeliveryReceitp>();
 	/* 送检单 */
-	private Set<InspectionSheet> inspectionSheet = new TreeSet<InspectionSheet>();
+	private Set<InspectionSheet> inspectionSheet = new HashSet<InspectionSheet>();
 	/* 已经生成送检单的项目 */
 	private Set<AnalysisProject> analysisedProject = new LinkedHashSet<AnalysisProject>();
 	/* 质量控制 */
