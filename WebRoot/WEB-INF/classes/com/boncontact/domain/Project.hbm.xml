@@ -46,7 +46,7 @@
 			<key column="projectId" />
 			<one-to-many class="NonSelfSendSample" />
 		</set>
-		<set name="deliveryReceitpInfo" cascade="all" sort="natural">
+		<set name="deliveryReceitpInfo" cascade="all" >
 			<key column="projectId" />
 			<one-to-many class="DeliveryReceitp" />
 		</set>
