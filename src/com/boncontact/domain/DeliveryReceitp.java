@@ -11,7 +11,7 @@ import java.util.TreeSet;
  * @author 瞿龙俊
  * 
  */
-public class DeliveryReceitp implements Comparable<DeliveryReceitp> {
+public class DeliveryReceitp{
 	private Long id;
 	/* 样品类型：0：土壤 ，1：水和废水 2：空气和废气 */
 	private int samplesType;
@@ -206,15 +206,4 @@ public class DeliveryReceitp implements Comparable<DeliveryReceitp> {
 				+ nonSelfSendSampleInfo + ", project=" + project
 				+ ", analysisProject=" + analysisProject + "]";
 	}
-
-	@Override
-	public int compareTo(DeliveryReceitp o) {
-		// TODO 自动生成的方法存根
-		if (this.getId() != null && o.getId() != null) {
-			return this.getId() < o.getId() ? 0 : 1;
-		}else{
-			return 0;
-		}
-	}
-
 }

@@ -1,6 +1,7 @@
 package com.boncontact.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -53,7 +54,7 @@ public class Project{
 	/* 非自送样样品信息 */
 	private Set<NonSelfSendSample> nonSelfSendSampleInfo = new TreeSet<NonSelfSendSample>();
 	/* 交联单 */
-	private Set<DeliveryReceitp> deliveryReceitpInfo = new TreeSet<DeliveryReceitp>();
+	private Set<DeliveryReceitp> deliveryReceitpInfo = new HashSet<DeliveryReceitp>();
 	/* 送检单 */
 	private Set<InspectionSheet> inspectionSheet = new TreeSet<InspectionSheet>();
 	/* 已经生成送检单的项目 */

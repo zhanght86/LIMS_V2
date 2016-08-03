@@ -46,15 +46,15 @@
 		if (exportType.equals("water")
 		&& deliveryReceitp.getSamplesType() == 1) {
 	
-			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
-			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
-			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
-	//doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-	//doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
-	//doc.openDataRegion("PO_identify").setValue(entity.getContractId());
-	
-	doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
-	
+	if(deliveryReceitp.getReceiverUser()!=null){
+		doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
+		doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+		doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+		doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
+	}	
+	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
 
 	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
 	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
@@ -74,10 +74,10 @@
 	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
 		Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
 		for(AnalysisProject ap:analysisProjects){
-			if(ap.getAnalysisCategory().getDeliveryReceitp() == 1){
-				if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
-				if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
-			}
+	if(ap.getAnalysisCategory().getDeliveryReceitp() == 1){
+		if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+		if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+	}
 		}
 	}
 	
@@ -96,16 +96,18 @@
 		table.openCellRC(6 + i, 1).setValue((i+1)+"");
 		table.openCellRC(6 + i, 2).setValue(sample.getType());
 		table.openCellRC(6 + i, 3).setValue(as.getName());
-		table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
-		table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
+		if(deliveryReceitp.getReceiverUser()!=null){
+			table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+			table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
+		}
 		int count = 0;
 		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
-			Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
-			for(AnalysisProject ap:projectSet){
-				if(ap.getId() == as.getId()){
-					count++;
-				}
-			}
+	Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+	for(AnalysisProject ap:projectSet){
+		if(ap.getId() == as.getId()){
+	count++;
+		}
+	}
 		}
 		table.openCellRC(6 + i, 4).setValue(count+"");
 	i++;	
@@ -118,149 +120,156 @@
 		
 		if (exportType.equals("solid")
 		&& deliveryReceitp.getSamplesType() == 0) {
-			
-			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
-			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
-			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
-			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
-			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
-			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+	
+			if(deliveryReceitp.getReceiverUser()!=null){
+	doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
+	doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+	doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+	doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
+			}
+	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
 
-			Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
-			selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
+	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
 
-			doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
-			
-			SelfSendSampleInfo max_id=null,min_id=null;
-			if(selfSendSampleInfos.size()>0){
-				SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
-				max_id=min_id=first;
-				doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
-				doc.openDataRegion("PO_user").setValue(first.getUser().getName());
-			}
-			DataRegion dataRegion = doc.openDataRegion("PO_table");
-			Table table = dataRegion.openTable(1);
-			int i = 0;	
-			for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-				Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
-				for(AnalysisProject ap:analysisProjects){
-					if(ap.getAnalysisCategory().getDeliveryReceitp() == 3){
-						if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
-						if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
-					}
-				}
-			}
-			
-			
-			
-			doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
-			
-			
-			
-			Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
-			Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
-			System.out.println(analysisProjects.size());
-			for(AnalysisProject as : analysisProjects){
-				for(Delivery_SampleType sample:sampleTypes){
-			if(sample.getAnalysis().getId() == as.getId()){
-				table.openCellRC(6 + i, 1).setValue((i+1)+"");
-				table.openCellRC(6 + i, 2).setValue(sample.getType());
-				table.openCellRC(6 + i, 3).setValue(as.getName());
-				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
-				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
-				int count = 0;
-				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
-					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
-					for(AnalysisProject ap:projectSet){
-						if(ap.getId() == as.getId()){
-							count++;
-						}
-					}
-				}
-				table.openCellRC(6 + i, 4).setValue(count+"");
-			i++;	
-				
-				
-			}
-				}
-			}
-			
-			
+	doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
+	
+	SelfSendSampleInfo max_id=null,min_id=null;
+	if(selfSendSampleInfos.size()>0){
+		SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
+		max_id=min_id=first;
+		doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
+		doc.openDataRegion("PO_user").setValue(first.getUser().getName());
+	}
+	DataRegion dataRegion = doc.openDataRegion("PO_table");
+	Table table = dataRegion.openTable(1);
+	int i = 0;	
+	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
+		Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
+		for(AnalysisProject ap:analysisProjects){
+	if(ap.getAnalysisCategory().getDeliveryReceitp() == 3){
+		if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+		if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+	}
+		}
+	}
+	
+	
+	
+	doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
+	
+	
+	
+	Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
+	Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
+	System.out.println(analysisProjects.size());
+	for(AnalysisProject as : analysisProjects){
+		for(Delivery_SampleType sample:sampleTypes){
+	if(sample.getAnalysis().getId() == as.getId()){
+		table.openCellRC(6 + i, 1).setValue((i+1)+"");
+		table.openCellRC(6 + i, 2).setValue(sample.getType());
+		table.openCellRC(6 + i, 3).setValue(as.getName());
+		if(deliveryReceitp.getReceiverUser()!=null){
+			table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+			table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
+		}
+		int count = 0;
+		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
+	Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+	for(AnalysisProject ap:projectSet){
+		if(ap.getId() == as.getId()){
+	count++;
+		}
+	}
+		}
+		table.openCellRC(6 + i, 4).setValue(count+"");
+	i++;	
+		
+		
+	}
+		}
+	}
+	
+	
 	}
 		
 		if (exportType.equals("air")
 		&& deliveryReceitp.getSamplesType() ==2) {
-			
-			
-			doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
-			doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
-			doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
-			doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
-			doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
-			doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
-			doc.openDataRegion("PO_identify").setValue(entity.getContractId());
+	
+			if(deliveryReceitp.getReceiverUser()!=null){
+	doc.openDataRegion("PO_condition").setValue(deliveryReceitp.getPackage_condition().equalsIgnoreCase("0")?"ÍêºÃ":deliveryReceitp.getPackage_condition().equalsIgnoreCase("1")?"ÆÆËð":"çèÎÛ");
+	doc.openDataRegion("PO_tag").setValue(deliveryReceitp.getSample_Tag()==null?"":deliveryReceitp.getSample_Tag());
+	doc.openDataRegion("PO_additives").setValue(deliveryReceitp.getSolid_Additives()==null?"":deliveryReceitp.getSolid_Additives());
+	doc.openDataRegion("PO_receiver").setValue(deliveryReceitp.getReceiverUser().getName());
+			}
+	doc.openDataRegion("PO_client").setValue(entity.getProjectBook().getClient());
+	doc.openDataRegion("PO_come").setValue(entity.gettContractId().getProjectType());
+	doc.openDataRegion("PO_identify").setValue(entity.getContractId());
 
-			Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
-			selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
+	Set<SelfSendSampleInfo> selfSendSampleInfos =new TreeSet<SelfSendSampleInfo>();
+	selfSendSampleInfos = deliveryReceitp.getSelfSendSampleInfo();
 
-			doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
-			
-			SelfSendSampleInfo max_id=null,min_id=null;
-			if(selfSendSampleInfos.size()>0){
-				SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
-				max_id=min_id=first;
-				doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
-				doc.openDataRegion("PO_user").setValue(first.getUser().getName());
-			}
-			DataRegion dataRegion = doc.openDataRegion("PO_table");
-			Table table = dataRegion.openTable(1);
-			int i = 0;	
-			for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
-				Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
-				for(AnalysisProject ap:analysisProjects){
-					if(ap.getAnalysisCategory().getDeliveryReceitp() == 2){
-						if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
-						if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
-					}
-				}
-			}
-			
-			
-			
-			doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
-			
-			
-			
-			Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
-			Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
-			System.out.println(analysisProjects.size());
-			for(AnalysisProject as : analysisProjects){
-				for(Delivery_SampleType sample:sampleTypes){
-			if(sample.getAnalysis().getId() == as.getId()){
-				table.openCellRC(6 + i, 1).setValue((i+1)+"");
-				table.openCellRC(6 + i, 2).setValue(sample.getType());
-				table.openCellRC(6 + i, 3).setValue(as.getName());
-				table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
-				table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
-				int count = 0;
-				for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
-					Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
-					for(AnalysisProject ap:projectSet){
-						if(ap.getId() == as.getId()){
-							count++;
-						}
-					}
-				}
-				table.openCellRC(6 + i, 4).setValue(count+"");
-			i++;	
-				
-				
-			}
-				}
-			}
-			
-			
+	doc.openDataRegion("PO_totalCount").setValue(selfSendSampleInfos.size()+"");
+	
+	SelfSendSampleInfo max_id=null,min_id=null;
+	if(selfSendSampleInfos.size()>0){
+		SelfSendSampleInfo first =selfSendSampleInfos.iterator().next();
+		max_id=min_id=first;
+		doc.openDataRegion("PO_sampleDate").setValue(formatDate.format(first.getDate()));
+		doc.openDataRegion("PO_user").setValue(first.getUser().getName());
+	}
+	DataRegion dataRegion = doc.openDataRegion("PO_table");
+	Table table = dataRegion.openTable(1);
+	int i = 0;	
+	for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos) {
+		Set<AnalysisProject> analysisProjects = selfSendSampleInfo.getAnalysisProjectSet();
+		for(AnalysisProject ap:analysisProjects){
+	if(ap.getAnalysisCategory().getDeliveryReceitp() == 2){
+		if(selfSendSampleInfo.getId()>max_id.getId()) max_id=selfSendSampleInfo;
+		if(selfSendSampleInfo.getId()<min_id.getId()) min_id=selfSendSampleInfo;
+	}
+		}
+	}
+	
+	
+	
+	doc.openDataRegion("PO_section").setValue(min_id.getIdentify()+"-"+max_id.getIdentify());
+	
+	
+	
+	Set<AnalysisProject> analysisProjects = deliveryReceitp.getAnalysisProject();
+	Set<Delivery_SampleType> sampleTypes =entity.getSampleTypeSet();
+	System.out.println(analysisProjects.size());
+	for(AnalysisProject as : analysisProjects){
+		for(Delivery_SampleType sample:sampleTypes){
+	if(sample.getAnalysis().getId() == as.getId()){
+		table.openCellRC(6 + i, 1).setValue((i+1)+"");
+		table.openCellRC(6 + i, 2).setValue(sample.getType());
+		table.openCellRC(6 + i, 3).setValue(as.getName());
+		if(deliveryReceitp.getReceiverUser()!=null){
+			table.openCellRC(6 + i, 5).setValue(sample.getDesp()==null?"":sample.getDesp());
+			table.openCellRC(6 + i, 6).setValue(sample.getSaveWay().equalsIgnoreCase("0")?"µÍÎÂ":"³£ÎÂ");
+		}
+		int count = 0;
+		for(SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos){
+	Set<AnalysisProject> projectSet = selfSendSampleInfo.getAnalysisProjectSet();
+	for(AnalysisProject ap:projectSet){
+		if(ap.getId() == as.getId()){
+	count++;
+		}
+	}
+		}
+		table.openCellRC(6 + i, 4).setValue(count+"");
+	i++;	
+		
+		
+	}
+		}
+	}
+	
+	
 	
 	
 	}
