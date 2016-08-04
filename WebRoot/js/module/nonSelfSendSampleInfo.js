@@ -255,7 +255,7 @@ $(function() {
 									typeList+=str;
 								}
 							}
-							alert(typeList);
+							//alert(typeList);
 							$.ajax({
 								url:"deliveryReceitp_deliveryReceitp_add.action?viewId="+id+"&typeList="+typeList,
 								async:false,

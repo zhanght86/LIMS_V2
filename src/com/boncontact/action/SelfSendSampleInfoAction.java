@@ -205,6 +205,7 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 		Iterator<DeliveryReceitp> it = DeliveryReceitpSet.iterator();
 		if (pj.getGainSample().equals("0")) {
 			List<NonSelfSendSample> selfSendSampleInfoList = new ArrayList<NonSelfSendSample>();
+			AnalysisProject item = analysisProjectService.getById(itemId);
 			while (it.hasNext()) {
 				DeliveryReceitp temp = it.next();
 				Set<NonSelfSendSample> selfSendSampleInfoSet = temp
@@ -213,7 +214,10 @@ public class SelfSendSampleInfoAction extends BaseAction<SelfSendSampleInfo> {
 						.iterator();
 				while (itSet.hasNext()) {
 					NonSelfSendSample si = itSet.next();
-					if (!selfSendSampleInfoList.contains(si)) {
+					Set<AnalysisProject> analysisProjects = si
+							.getAnalysisProjectSet();
+					if (analysisProjects.contains(item)
+							&& !selfSendSampleInfoList.contains(si)) {
 						selfSendSampleInfoList.add(si);
 					}
 				}
