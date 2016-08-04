@@ -166,7 +166,14 @@
 									style="width: 80%; border: solid 1px #ced9df; height: 28px"
 									data-name='name' name="sampleName">
 							</c:if></td>
-						<td style="text-align: center;"><c:if
+						<td style="text-align: center;">
+						<c:if
+								test="${empty s.saveWay }">
+								<label for="lower"><input type="radio"
+									name="saveWay${s.id }" id="lower" value="0" checked="checked">低温</label>
+								<label for="common"><input type="radio"
+									name="saveWay${s.id }" id="" common"" value="1">常温</label>
+							</c:if> <c:if
 								test="${s.saveWay == 0 }">
 								<label for="lower"><input type="radio"
 									name="saveWay${s.id }" id="lower" value="0" checked="checked">低温</label>
