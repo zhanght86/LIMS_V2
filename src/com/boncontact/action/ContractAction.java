@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.ServletContext;
 
@@ -96,7 +97,7 @@ public class ContractAction extends BaseAction<TrafficContract> {
 	}
 	
 	public String template() throws IOException{
-		Set<ContractMonitoringItem> contractItems = new HashSet<ContractMonitoringItem>();
+		Set<ContractMonitoringItem> contractItems = new TreeSet<ContractMonitoringItem>();
 		String[] strList = StringSplitUtils.splite(str, ";");
 		for (int i = 0; i < strList.length; i++) {
 			String[] items = StringSplitUtils.splite(strList[i], ",");
@@ -129,6 +130,7 @@ public class ContractAction extends BaseAction<TrafficContract> {
 					contractItem.setOther(value);
 				}
 			}
+			contractMonitoringItemService.save(contractItem);
 			contractItems.add(contractItem);
 		}
 		Long userId=(Long) ActionContext.getContext().getSession().get("userId");
@@ -148,7 +150,7 @@ public class ContractAction extends BaseAction<TrafficContract> {
 	 * @return
 	 */
 	public String create() {
-		Set<ContractMonitoringItem> contractItems = new HashSet<ContractMonitoringItem>();
+		Set<ContractMonitoringItem> contractItems = new TreeSet<ContractMonitoringItem>();
 		String[] strList = StringSplitUtils.splite(str, ";");
 		for (int i = 0; i < strList.length; i++) {
 			String[] items = StringSplitUtils.splite(strList[i], ",");
