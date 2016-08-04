@@ -239,14 +239,14 @@ table td {
 				width : '200%'
 			});
 			$('.viewDelivery').click(function() {
-				alert("aaa");
+				//alert("aaa");
 			});
 			$('.exportDelivery')
 					.click(
 							function() {
 								var type = $(this).data("type");
 								var viewId = $('#viewId').attr('value');
-								alert(type);
+								//alert(type);
 								asyncbox
 										.confirm(
 												'是否将当前环境要素的交接联单导出为Word格式？',
