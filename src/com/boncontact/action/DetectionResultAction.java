@@ -101,6 +101,7 @@ public class DetectionResultAction extends BaseAction<InspectionSheet_Result> {
 				projectList.add(temp);
 			}
 		}
+		
 		ActionContext.getContext().put("nowId", id);
 		ActionContext.getContext().put("projectList", projectList);
 		return "main";

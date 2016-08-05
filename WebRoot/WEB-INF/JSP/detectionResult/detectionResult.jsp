@@ -113,12 +113,12 @@
 								<td style="text-align: center;">
 								<c:if
 										test="${not empty i.resultPath }">
-										<a href="javascript:;" class="tablelink downRecord"
+										<a href="javascript:;" style="color: green;" class="tablelink downRecord"
 											data-id="${i.id }">查看</a>
 										<c:if test="${i.step==0 }">
-											<a href="javascript:;" class="tablelink changeRecord"
+											<a href="javascript:;"  class="tablelink changeRecord"
 											data-id="${i.id }">修改</a>
-											<a href="javascript:;" class="tablelink delRecord"
+											<a href="javascript:;" style="color: red;" class="tablelink delRecord"
 												data-id="${i.id }">删除</a>
 										</c:if>
 									</c:if> 
@@ -141,7 +141,7 @@
 										</c:if>
 									<a href="javascript:;"
 										class="tablelink viewInspectionSheet"
-										data-type="${i.sheetType }" data-projectid="${p.id }"
+										data-type="${i.sheetType }" style="color: green;" data-projectid="${p.id }"
 										data-id="${i.analysisProject.id }">查看</a></td>
 								
 								<c:if test="${i.step==0 }">

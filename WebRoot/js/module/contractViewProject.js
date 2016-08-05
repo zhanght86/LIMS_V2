@@ -48,6 +48,37 @@ $(function() {
 			}
 		});
 	});
+	
+	$('.viewHistoryAudit').on("click",function(){
+		var id = $(this).attr("data-id");
+		asyncbox.open({
+			title : '查看历史审核记录',
+			url : 'report_report_viewHistoryAudit.action?viewId=' + id,
+			width : 1000,
+			height : 700,
+			top:0,
+			btnsbar : $.btn.CANCEL,
+			callback : function(action, opt) {
+			}
+		});
+		
+	});
+	
+	$(".rejectCount").on("click",function(){
+		var id = $(this).attr("data-id");
+		asyncbox.open({
+			title : '审核拒绝统计',
+			url : 'taskDistribution_taskDistribution_rejectCount.action?viewId=' + id,
+			width : 800,
+			height : 300,
+			top:0,
+			btnsbar : $.btn.CANCEL,
+			callback : function(action, opt) {
+			}
+		});
+		
+	});
+	
 	$('.viewProjectBook').click(function(){
 		var id = $(this).attr("data-id");
 		asyncbox.open({

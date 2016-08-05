@@ -77,9 +77,9 @@
 						<td>${L.index+1 }</td>
 						<td>${h.firstUser.name }</td>
 						<td>${h.firstDate }</td>
-						<td>${h.firstUser.name }</td>
+						<td>${h.secondUser.name }</td>
 						<td>${h.secondDate }</td>
-						<td>${h.firstUser.name }</td>
+						<td>${h.issueUser.name }</td>
 						<td>${h.issueDate }</td>
 						<td><a href="javascript:;" class="tablelink viewHisAudit"
 							data-id="${h.id }">查看</a></td>

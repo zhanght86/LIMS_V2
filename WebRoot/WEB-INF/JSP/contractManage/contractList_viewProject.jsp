@@ -127,8 +127,7 @@
 					}</label></li>
 			<li><label>任务书操作</label> <label class="viewLabel"><a
 					href="javascript:;" style="padding-right: 20px"
-					class="tablelink viewProjectBook" data-id="${pj.id }">查看任务书</a>
-				<%-- <a
+					class="tablelink viewProjectBook" data-id="${pj.id }">查看任务书</a> <%-- <a
 					href="javascript:;" class="tablelink exportProjectBook"
 					data-id="${pj.id }">下载任务书</a> --%></label></li>
 			<li></li>
@@ -212,11 +211,11 @@
 		</div>
 		<c:if test="${pj.gainSample==1 }">
 			<a href="javascript:;" data-id="${pj.id }"
-			class="tablelink viewDeliveryReceitp">查看</a>
+				class="tablelink viewDeliveryReceitp">查看</a>
 		</c:if>
 		<c:if test="${pj.gainSample==0 }">
 			<a href="javascript:;" data-id="${pj.id }"
-			class="tablelink viewNonDeliveryReceitp">查看</a>
+				class="tablelink viewNonDeliveryReceitp">查看</a>
 		</c:if>
 		<ul class="forminfo">
 			<li></li>
@@ -225,7 +224,7 @@
 			<span>送检单</span>
 		</div>
 		<a href="javascript:;" class="tablelink viewInspection"
-									data-id="${pj.id }" >查看</a>
+			data-id="${pj.id }">查看</a>
 		<ul class="forminfo">
 			<li></li>
 		</ul>
@@ -316,7 +315,7 @@
 				</tr>
 			</s:iterator>
 		</table> --%>
-		
+
 		<ul class="forminfo">
 			<li></li>
 			<li><label>质量控制表</label> <label class="viewLabel"><a
@@ -341,6 +340,9 @@
 			<li><label>审核结果</label> <label class="viewLabel"><a
 					href="javascript:;" data-type="1"
 					class="tablelink exportResultAudit" data-id="${pj.id }">原始记录审核表</a></label></li>
+			<li><label>拒绝次数</label> <label class="viewLabel"><a
+					href="javascript:;" data-type="1"
+					class="tablelink rejectCount" data-id="${pj.id }">查看</a></label></li>
 			<li></li>
 		</ul>
 		<div class="formtitle">
@@ -354,6 +356,7 @@
 					<th style="text-align: center;">报告原本</th>
 					<th style="text-align: center;">报告封面</th>
 					<th style="text-align: center;">报告审核记录表</th>
+					<th style="text-align: center;">报告审核历史记录</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -363,10 +366,13 @@
 						<td style="text-align: center;">${r.maker.name }</td>
 						<td style="text-align: center;"><a href="javascript:;"
 							class="tablelink downReport" data-id="${r.id }">查看</a></td>
-							<td style="text-align: center;"><a href="javascript:;"
+						<td style="text-align: center;"><a href="javascript:;"
 							class="tablelink viewReportCover" data-id="${r.id }">查看</a></td>
 						<td style="text-align: center;"><a href="javascript:;"
 							class="tablelink downReportAudiit" data-id="${r.id }">查看</a></td>
+						<td style="text-align: center;"><a href="javascript:;"
+							class="tablelink viewHistoryAudit" data-id="${r.id }">查看</a></td>
+
 					</tr>
 				</s:iterator>
 			</tbody>

@@ -12,7 +12,7 @@ import com.sun.org.apache.regexp.internal.REProgram;
  * @author 瞿龙俊
  * 
  */
-public class Report {
+public class Report implements Comparable<Report> {
 	/* 逻辑主键 */
 	private Long id;
 	/* 业务主键 */
@@ -153,6 +153,14 @@ public class Report {
 
 	public void setHistoryAudit(Set<ReportAudit> historyAudit) {
 		this.historyAudit = historyAudit;
+	}
+
+	@Override
+	public int compareTo(Report o) {
+		// TODO 自动生成的方法存根
+		if (this.getId() == null)
+			return 1;
+		return this.getId() < o.getId() ? 0 : 1;
 	}
 
 }
