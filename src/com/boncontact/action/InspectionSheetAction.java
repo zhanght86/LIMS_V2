@@ -248,7 +248,7 @@ public class InspectionSheetAction extends BaseAction<InspectionSheet> {
 		try {
 			Project project = projectService.getById(viewId);
 			if (project.getGainSample().equals("1")) {
-				Set<InspectionSheet> inspectionSheets = new HashSet<InspectionSheet>();
+				Set<InspectionSheet> inspectionSheets = new TreeSet<InspectionSheet>();
 				Set<DeliveryReceitp> deliveryReceitps = project
 						.getDeliveryReceitpInfo();
 				if (deliveryReceitps.size() != 0) {
@@ -432,6 +432,7 @@ public class InspectionSheetAction extends BaseAction<InspectionSheet> {
 						fixedSheet.setResult(results);
 						inspectionSheets.add(fixedSheet);
 					}
+					System.out.println(inspectionSheets.size());
 					project.setInspectionSheet(inspectionSheets);
 					projectService.update(project);
 				}

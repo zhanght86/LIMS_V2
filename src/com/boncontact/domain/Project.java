@@ -68,7 +68,7 @@ public class Project{
 	/* 原始记录审核表 */
 	private RecordAudit recordAudit;
 	/* 监测报告 */
-	private Set<Report> reportSet = new LinkedHashSet<Report>();
+	private Set<Report> reportSet = new TreeSet<Report>();
 	
 	private Set<Delivery_SampleType> sampleTypeSet = new TreeSet<>();
 

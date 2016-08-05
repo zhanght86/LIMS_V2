@@ -157,7 +157,7 @@
 												href="javascript:;" class="tablelink delAnalyst"
 												data-id="${i.id }">删除</a></td>
 										</c:if>
-										<c:if test="${p.process == 6 }">
+										<c:if test="${p.process != 5 }">
 											<td style="text-align: center;">已流转</td>
 										</c:if>
 										<td style="text-align: center;"><label>${i.analyst.name
@@ -177,7 +177,7 @@
 												href="javascript:;" class="tablelink delReview"
 												data-id="${i.id }">删除</a></td>
 										</c:if>
-										<c:if test="${p.process == 6 }">
+										<c:if test="${p.process != 5}">
 											<td style="text-align: center;">已流转</td>
 										</c:if>
 										<td style="text-align: center;"><label>${i.review.name
@@ -196,7 +196,7 @@
 												href="javascript:;" class="tablelink delAudit"
 												data-id="${i.id }">删除</a></td>
 										</c:if>
-										<c:if test="${p.process == 6 }">
+										<c:if test="${p.process != 5 }">
 											<td style="text-align: center;">已流转</td>
 										</c:if>
 
@@ -234,7 +234,10 @@
 											<c:if test="${i.step==4 }">
 												待二审
 											</c:if>
-										</c:if></td>
+										</c:if>
+										<c:if test="${p.process == 7 }">待一审</c:if>
+										<c:if test="${p.process == 8 }">待二审</c:if>
+										</td>
 										
 								</tr>
 							</s:iterator>

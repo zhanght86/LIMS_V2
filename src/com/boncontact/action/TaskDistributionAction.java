@@ -34,7 +34,8 @@ public class TaskDistributionAction extends BaseAction<DeliveryReceitp> {
 	private Long analystId;
 
 	public String main() {
-		List<Project> projectList = projectService.findAll(" WHERE process=5 OR process=6 OR process=7");
+		List<Project> projectList = projectService.findAll(" WHERE process=5 OR process=6 OR process=7 OR process=8");
+		System.out.println(projectList.size());
 		ActionContext.getContext().put("projectList", projectList);
 		ActionContext.getContext().put("totalRecord", projectList.size());
 		ActionContext.getContext().put("totalPage",
