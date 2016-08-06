@@ -422,6 +422,7 @@ $(function() {
 										if(json.info=="success"){
 											asyncbox.alert("分析员设置成功！！", '结果',function(){
 												window.location.reload();
+												$('#auditTable').find('input[type=checkbox]').prop('checked',false);
 											});						
 										}
 										if(json.info=="failed"){
@@ -482,6 +483,7 @@ $(function() {
 										if(json.info=="success"){
 											asyncbox.alert("复核员设置成功！！", '结果',function(){
 												window.location.reload();
+												$('#auditTable').find('input[type=checkbox]').prop('checked',false);
 											});						
 										}
 										if(json.info=="failed"){
@@ -543,6 +545,7 @@ $(function() {
 										if(json.info=="success"){
 											asyncbox.alert("审核员设置成功！！", '结果',function(){
 												window.location.reload();
+												$('#auditTable').find('input[type=checkbox]').prop('checked',false);
 											});						
 										}
 										if(json.info=="failed"){
