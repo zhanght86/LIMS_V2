@@ -157,7 +157,7 @@
 						<td style="text-align: center;">${L.index+1 }</td>
 						<td style="text-align: center;">${s.type }</td>
 						<td style="text-align: center;">${s.analysis.name }</td>
-						<td>3</td>
+						<td>待获取</td>
 						<td style="text-align: center;"><c:if
 								test="${not empty s.desp}">
 								<span>${s.desp }</span>
@@ -248,31 +248,46 @@
 							for="package_solid${dr.id }"><input type="radio"
 								name="package_condition_${dr.id }" value="2"
 								id="package_solid${dr.id }" ${dr.package_condition=="2"?"checked":"" }/>玷污</label></td>
-						<td style="text-align: center;"><input type="text"
-							style=" border:solid 1px #ced9df; height: 28px" name="sample_Tag" value="${dr.sample_Tag }">
+						<td style="text-align: center;">
+								<c:if test="${not empty dr.sample_Tag }">
+									<span>${dr.sample_Tag }</span>
+								</c:if>
+								<c:if test="${empty dr.sample_Tag }">
+									<input type="text" style=" border:solid 1px #ced9df; height: 28px" name="sample_Tag"/>
+								</c:if>
+							</td>
+						
+						<td style="text-align: center;">
+							<c:if test="${not empty dr.solid_Additives }">
+								<span>${dr.solid_Additives }</span>
+							</c:if>
+							<c:if test="${empty dr.solid_Additives }">
+								<input type="text"
+									style=" border:solid 1px #ced9df; height: 28px"
+									name="solid_Additives">
+							</c:if>
 						</td>
-						<td style="text-align: center;"><input type="text"
-							style=" border:solid 1px #ced9df; height: 28px"
-							name="solid_Additives" value="${dr.solid_Additives }"></td>
+						
+						
 						<td style="text-align: center;"><c:if
 								test="${dr.deliver!='1' }">
-								未接收
+								未记录
 							</c:if> <c:if test="${dr.deliver=='1' }">
-								已接收
+								已记录
 							</c:if></td>
 
 						<td style="text-align: center;"><c:if
 								test="${dr.deliver!='1' }">
 								<a href="javascript:;" data-id="${dr.id }"
-									class="tablelink receiveDeliveryItem">接收</a>
+									class="tablelink receiveDeliveryItem">记录</a>
 								<a href="javascript:;" data-id="${dr.id }"
 									class="tablelink receiveBackDeliveryItem"
-									style="display: none;">取消接收</a>
+									style="display: none;">取消记录</a>
 							</c:if> <c:if test="${dr.deliver=='1' }">
 								<a href="javascript:;" data-id="${dr.id }"
-									class="tablelink receiveDeliveryItem" style="display: none;">接收</a>
+									class="tablelink receiveDeliveryItem" style="display: none;">记录</a>
 								<a href="javascript:;" data-id="${dr.id }"
-									class="tablelink receiveBackDeliveryItem">取消接收</a>
+									class="tablelink receiveBackDeliveryItem">取消记录</a>
 							</c:if></td>
 					</tr>
 				</s:iterator>
@@ -467,17 +482,6 @@
 																							+ '的交联单接收成功 !',
 																					'结果',
 																					function() {
-																						me
-																								.parent()
-																								.prev()
-																								.html(
-																										'已接收');
-																						me
-																								.siblings(
-																										'.receiveBackItem')
-																								.show();
-																						me
-																								.hide();
 																						window.location
 																								.reload();
 																					});
@@ -493,8 +497,52 @@
 											}
 										});
 					});
-	$('.receiveBackDeliveryItem').on("click", function() {
+	$('.receiveBackDeliveryItem')
+	.on(
+			"click",
+			function() {
 
-	});
+				var id = $(this).data("id");
+				var me = $(this);
+
+				asyncbox
+						.confirm(
+								'是否取消填写当前交联单记录？',
+								'提示',
+								function(action) {
+									if (action == 'ok') {
+										$
+												.ajax({
+													url : "sampleTransfer_sampleTransfer_receiveBackDeliveryItem.action",
+													data : {
+														'viewId' : id
+													},
+													async : false,
+													success : function(
+															data) {
+														var json = eval('('
+																+ data
+																+ ')');
+														if (json.info == "success") {
+															asyncbox
+																	.alert(
+																			'当前交联单记录取消完成!',
+																			'结果',
+																			function() {
+																				window.location
+																						.reload();
+																			});
+														}
+														if (json.info == 'failed') {
+															asyncbox
+																	.error(
+																			'交联单记录取消失败，请刷新页面之后重新尝试！',
+																			'结果');
+														}
+													}
+												});
+									}
+								});
+			});
 </script>
 </html>

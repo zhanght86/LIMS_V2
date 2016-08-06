@@ -25,6 +25,7 @@ import com.boncontact.base.DocumentHandler;
 import com.boncontact.domain.AnalysisProject;
 import com.boncontact.domain.ContractMonitoringItem;
 import com.boncontact.domain.DeliveryReceitp;
+import com.boncontact.domain.Delivery_SampleType;
 import com.boncontact.domain.Department;
 import com.boncontact.domain.Encode;
 import com.boncontact.domain.NonSelfSendSample;
@@ -234,6 +235,33 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 	}
 
 	public String receivePage() {
+		/*
+		 * Project pj = projectService.getById(viewId); List<NonSelfSendSample>
+		 * nonSelfSendSampleInfoList = new ArrayList<NonSelfSendSample>();
+		 * Iterator<NonSelfSendSample> it = pj.getNonSelfSendSampleInfo()
+		 * .iterator(); while (it.hasNext()) {
+		 * nonSelfSendSampleInfoList.add(it.next()); } if
+		 * (nonSelfSendSampleInfoList.size() != 0) {
+		 * ActionContext.getContext().put("date",
+		 * nonSelfSendSampleInfoList.get(0).getDate());
+		 * ActionContext.getContext().put("userName",
+		 * nonSelfSendSampleInfoList.get(0).getUser().getName());
+		 * ActionContext.getContext().put("nowDate",
+		 * nonSelfSendSampleInfoList.get(0).getDate()); } else {
+		 * ActionContext.getContext().put("date", new Date());
+		 * ActionContext.getContext().put("userName", "");
+		 * ActionContext.getContext().put("nowDate", new Date()); }
+		 * Set<QualityControl> qualityControlList = pj.getQualityControlSet();
+		 * ActionContext.getContext() .put("qualityControlList",
+		 * qualityControlList);
+		 * ActionContext.getContext().put("selfSendSampleInfoList",
+		 * nonSelfSendSampleInfoList);
+		 * ActionContext.getContext().put("nextIndex",
+		 * nonSelfSendSampleInfoList.size());
+		 * 
+		 * ActionContext.getContext().put("project", pj);
+		 */
+
 		Project pj = projectService.getById(viewId);
 		List<NonSelfSendSample> nonSelfSendSampleInfoList = new ArrayList<NonSelfSendSample>();
 		Iterator<NonSelfSendSample> it = pj.getNonSelfSendSampleInfo()
@@ -241,27 +269,40 @@ public class NonSelfSendSampleAction extends BaseAction<NonSelfSendSample> {
 		while (it.hasNext()) {
 			nonSelfSendSampleInfoList.add(it.next());
 		}
-		if (nonSelfSendSampleInfoList.size() != 0) {
+		if (nonSelfSendSampleInfoList.size() == 0) {
+			ActionContext.getContext().put("client", "");
 			ActionContext.getContext().put("date",
 					nonSelfSendSampleInfoList.get(0).getDate());
 			ActionContext.getContext().put("userName",
 					nonSelfSendSampleInfoList.get(0).getUser().getName());
-			ActionContext.getContext().put("nowDate",
-					nonSelfSendSampleInfoList.get(0).getDate());
 		} else {
-			ActionContext.getContext().put("date", new Date());
-			ActionContext.getContext().put("userName", "");
-			ActionContext.getContext().put("nowDate", new Date());
+			ActionContext.getContext().put("client", "");
+			ActionContext.getContext().put("date",
+					nonSelfSendSampleInfoList.get(0).getDate());
+			ActionContext.getContext().put("userName",
+					nonSelfSendSampleInfoList.get(0).getUser().getName());
 		}
 		Set<QualityControl> qualityControlList = pj.getQualityControlSet();
 		ActionContext.getContext()
 				.put("qualityControlList", qualityControlList);
+
 		ActionContext.getContext().put("selfSendSampleInfoList",
 				nonSelfSendSampleInfoList);
 		ActionContext.getContext().put("nextIndex",
 				nonSelfSendSampleInfoList.size());
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		ActionContext.getContext().put("nowDate", sdf.format(new Date()));
 		ActionContext.getContext().put("project", pj);
+
+		List<Delivery_SampleType> delivery_SampleTypes = delivery_SampleTypeService
+				.findByProject(pj);
+		ActionContext.getContext().put("SampleTypes", delivery_SampleTypes);
+		// System.out.println(pj.getDeliveryReceitpInfo());
+		ActionContext.getContext().put("deliveryReceitp",
+				pj.getDeliveryReceitpInfo());
+		// ActionContext.getContext().put("project", pj);
+		// System.out.println(pj.getDeliveryReceitpInfo().size());
+
 		return "receivePage";
 	}
 
