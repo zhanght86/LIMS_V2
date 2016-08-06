@@ -651,6 +651,13 @@
 				<param name="root">jsonResult</param>
 			</result>
 		</action>
+		
+		<action name="sampleTransfer_sampleTransfer_receiveBackDeliveryItem"
+			class="sampleTransfer" method="receiveBackDeliveryItem">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
 		<action name="sampleTransfer_sampleTransfer_receiveBackNonItem"
 			class="sampleTransfer" method="receiveBackNonItem">
 			<result type="json">

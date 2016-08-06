@@ -77,12 +77,32 @@ public class SampleTransferAction extends BaseAction<Project> {
 
 	public String receiveNonItem() {
 		try {
+			/*
+			 * System.out.println(viewId); NonSelfSendSample nonSelfSendSample =
+			 * nonSelfSendSampleService .getById(viewId); if (nonSelfSendSample
+			 * != null) { nonSelfSendSample.setDeliver(1);
+			 * nonSelfSendSampleService.update(nonSelfSendSample); jsonResult =
+			 * "{'info':'success'}";
+			 */
+
 			System.out.println(viewId);
-			NonSelfSendSample nonSelfSendSample = nonSelfSendSampleService
+			System.out.println("desp" + desp);
+			System.out.println("saveWay" + saveWay);
+			/*
+			 * SelfSendSampleInfo selfSendSample = selfSendSampleInfoService
+			 * .getById(viewId);
+			 */
+			Delivery_SampleType delivery_SampleType = delivery_SampleTypeService
 					.getById(viewId);
-			if (nonSelfSendSample != null) {
-				nonSelfSendSample.setDeliver(1);
-				nonSelfSendSampleService.update(nonSelfSendSample);
+			if (delivery_SampleType != null) {
+				// selfSendSample.setDeliver(1);
+				// selfSendSample.setDesp(desp);
+				// selfSendSample.setSaveWay(saveWay);
+				// selfSendSampleInfoService.update(selfSendSample);
+				delivery_SampleType.setDesp(desp);
+				delivery_SampleType.setSaveWay(saveWay + "");
+				delivery_SampleType.setDeliver("1");
+				delivery_SampleTypeService.update(delivery_SampleType);
 				jsonResult = "{'info':'success'}";
 			} else {
 				jsonResult = "{'info':'failed'}";
@@ -98,12 +118,14 @@ public class SampleTransferAction extends BaseAction<Project> {
 
 	public String receiveBackNonItem() {
 		try {
-			System.out.println(viewId);
-			NonSelfSendSample nonSelfSendSample = nonSelfSendSampleService
+			Delivery_SampleType delivery_SampleType = delivery_SampleTypeService
 					.getById(viewId);
-			if (nonSelfSendSample != null) {
-				nonSelfSendSample.setDeliver(0);
-				nonSelfSendSampleService.update(nonSelfSendSample);
+			if (delivery_SampleType != null) {
+				delivery_SampleType.setDeliver("0");
+				// selfSendSampleInfoService.update(selfSendSample);
+				delivery_SampleType.setDesp("");
+				delivery_SampleType.setSaveWay("0");
+				delivery_SampleTypeService.update(delivery_SampleType);
 				jsonResult = "{'info':'success'}";
 			} else {
 				jsonResult = "{'info':'failed'}";
@@ -171,6 +193,26 @@ public class SampleTransferAction extends BaseAction<Project> {
 		return SUCCESS;
 	}
 
+	public String receiveBackDeliveryItem() {
+		try {
+			DeliveryReceitp dr = deliveryReceitpService.getById(viewId);
+			if (dr != null) {
+				dr.setSample_Tag("");
+				dr.setPackage_condition("0");
+				dr.setSolid_Additives("");
+				dr.setDeliver("0");
+				deliveryReceitpService.update(dr);
+				jsonResult = "{'info':'success'}";
+			}else {
+				jsonResult = "{'info':'failed'}";
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			jsonResult = "{'info':'failed'}";
+		}
+		return SUCCESS;
+	}
+
 	public String flow() {
 		try {
 			Long id = (Long) ActionContext.getContext().getSession()
@@ -193,25 +235,6 @@ public class SampleTransferAction extends BaseAction<Project> {
 					deliveryReceitpService.update(deliveryReceitp);
 				}
 			}
-
-			/*
-			 * if (pj.getGainSample().equals("1")) { for (DeliveryReceitp
-			 * deliveryReceitp : deliveryReceitpSet) { Set<SelfSendSampleInfo>
-			 * selfSendSampleInfos = deliveryReceitp .getSelfSendSampleInfo();
-			 * for (SelfSendSampleInfo selfSendSampleInfo : selfSendSampleInfos)
-			 * { if (selfSendSampleInfo.getDeliver() != 1) { jsonResult =
-			 * "{'info':'error'}"; return SUCCESS; } }
-			 * deliveryReceitp.setReceiverUser(userService.getById(id));
-			 * deliveryReceitpService.update(deliveryReceitp); } } else { for
-			 * (DeliveryReceitp deliveryReceitp : deliveryReceitpSet) {
-			 * Set<NonSelfSendSample> selfSendSampleInfos = deliveryReceitp
-			 * .getNonSelfSendSampleInfo(); for (NonSelfSendSample
-			 * selfSendSampleInfo : selfSendSampleInfos) { if
-			 * (selfSendSampleInfo.getDeliver() != 1) { jsonResult =
-			 * "{'info':'error'}"; return SUCCESS; } }
-			 * deliveryReceitp.setReceiverUser(userService.getById(id));
-			 * deliveryReceitpService.update(deliveryReceitp); } }
-			 */
 			Set<InspectionSheet> inspectionSheets = pj.getInspectionSheet();
 			for (InspectionSheet inspectionSheet : inspectionSheets) {
 				inspectionSheet.setReceiver(userService.getById(id));
