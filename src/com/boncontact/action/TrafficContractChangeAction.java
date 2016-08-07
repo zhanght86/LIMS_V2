@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.stereotype.Component;
 
@@ -66,7 +67,7 @@ public class TrafficContractChangeAction extends BaseAction<TrafficContract> {
 	
 	public String add() {
 		try {
-			Set<ContractMonitoringItem> contractItems = new HashSet<ContractMonitoringItem>();
+			Set<ContractMonitoringItem> contractItems = new TreeSet<ContractMonitoringItem>();
 			String[] strList = StringSplitUtils.splite(str, ";");
 			for (int i = 0; i < strList.length; i++) {
 				String[] items = StringSplitUtils.splite(strList[i], ",");
@@ -115,7 +116,40 @@ public class TrafficContractChangeAction extends BaseAction<TrafficContract> {
 			if(projectId!=null){
 				entity.setProject(projectService.getById(projectId));
 			}
-			trafficContractService.update(entity);
+			
+			TrafficContract tc = trafficContractService.getById(entity.getId());
+			tc.setCustomerName(entity.getCustomerName());
+			tc.setCustomerCode(entity.getCustomerCode());
+			tc.setCustomerAddress(entity.getCustomerAddress());
+			tc.setCustomerTel(entity.getCustomerTel());
+			tc.setCustomerPeople(entity.getCustomerTel());
+			tc.setCustomerPeople(entity.getCustomerPeople());
+			tc.setCustomerFax(entity.getCustomerFax());
+			tc.setProjectName(entity.getProjectName());
+			tc.setProjectAim(entity.getProjectAim());
+			tc.setProjectType(entity.getProjectType());
+			tc.setItems(entity.getItems());
+			tc.setProjectWay(entity.getProjectWay());
+			tc.setSubpackageName(entity.getSubpackageName());
+			tc.setSubProject(entity.getSubProject());
+			tc.setPaymentWay(entity.getPaymentWay());
+			tc.setDeadLine(entity.getDeadLine());
+			tc.setCost(entity.getCost());
+			tc.setInRoom(entity.getInRoom());
+			tc.setSecrecy(entity.getSecrecy());
+			tc.setOther(entity.getOther());
+			tc.setEntrusted(entity.getEntrusted());
+			tc.setEntrustedCode(entity.getEntrustedCode());
+			tc.setEntrustedAddress(entity.getEntrustedAddress());
+			tc.setEntrustedTel(entity.getEntrustedTel());
+			tc.setContractors(entity.getContractors());
+			tc.setEntrustedFax(entity.getEntrustedFax());
+			tc.setCustomerPeople(entity.getCustomerPeople());
+			tc.setProjectWayText(entity.getProjectWayText());
+			
+			
+			
+			trafficContractService.update(tc);
 			
 			//此处需要增加删除project功能--》业务合同变更之后回到合同起草环节
 			Project project = entity.getProject();

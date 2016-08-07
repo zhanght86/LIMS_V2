@@ -92,6 +92,7 @@ public class ContractMonitoringItem implements Comparable<ContractMonitoringItem
 	@Override
 	public int compareTo(ContractMonitoringItem o) {
 		// TODO 自动生成的方法存根
+		if(this.getId() == null) return 1;
 		return this.getId() > o.getId() ? 1 : 0;
 	}
 
