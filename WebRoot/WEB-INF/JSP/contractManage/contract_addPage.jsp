@@ -178,7 +178,7 @@
 						<tr class="itemsList">
 							<td width="73"> 
 							 <select class="select2" style="height:30px;width:100%; padding:0;margin:0" id="analysisCategory">
-							 	<option value="-1">请选择</option>
+							 	<option value="-1">选择</option>
 							 	<s:iterator value="#analysisCategory" id="a">
 							 	<option  value="${a.id}">${a.name}</option>
 							 	</s:iterator>
